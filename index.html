@@ -1,223 +1,545 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Raghad | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Raghad Alyagoot | IT Student 👩🏻‍💻</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Orbitron', sans-serif;
+      font-family: 'Poppins', sans-serif;
+      scroll-behavior: smooth;
     }
-
     body {
-      background-color: #0d1117;
-      color: #f0f6fc;
+      background-color: #001f3f; /* داكن جدًا - أزرق */
+      color: #e0e7ff;
       overflow-x: hidden;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-image: linear-gradient(135deg, #002a5c 0%, #004080 100%);
     }
-
-    .background-binary {
+    canvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      height: 100%;
       z-index: -1;
-      background: repeating-linear-gradient(
-        0deg,
-        rgba(0, 43, 91, 0.3) 0px,
-        rgba(0, 43, 91, 0.3) 2px,
-        transparent 2px,
-        transparent 4px
-      );
-      animation: moveBinary 20s linear infinite;
+      filter: brightness(0.3);
     }
-
-    @keyframes moveBinary {
-      0% {
-        background-position: 0 0;
-      }
-      100% {
-        background-position: 0 1000px;
-      }
-    }
-
     header {
-      padding: 20px;
+      width: 100%;
+      max-width: 1200px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: rgba(0, 0, 0, 0.6);
+      padding: 15px 40px;
+      background-color: rgba(0, 36, 99, 0.85);
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 20;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 12px rgba(0, 64, 128, 0.8);
+      flex-wrap: wrap;
+      border-radius: 0 0 15px 15px;
     }
-
-    .logo {
-      font-size: 24px;
-      font-weight: bold;
-      color: #58a6ff;
+    header .logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #7fdbff; /* أزرق فاتح */
+      letter-spacing: 2px;
+      user-select: none;
+      text-shadow: 0 0 8px #00cfff;
     }
-
-    nav a {
-      margin: 0 15px;
-      color: #c9d1d9;
-      text-decoration: none;
+    header nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-top: 8px;
+    }
+    /* أزرار دائرية مع تأثير هوليغرافيك */
+    header nav a {
       position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #00bfff, #0074d9);
+      border-radius: 50%;
+      color: #e0f7ff;
+      font-weight: 600;
+      font-size: 13px;
+      text-decoration: none;
+      box-shadow: 0 0 10px #0074d9;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      overflow: hidden;
+      user-select: none;
     }
-
-    nav a::before {
-      content: '';
+    header nav a::before {
+      content: attr(data-label);
       position: absolute;
-      width: 0%;
-      height: 2px;
-      bottom: -3px;
-      left: 0;
-      background-color: #58a6ff;
-      transition: width 0.3s;
+      bottom: -25px;
+      font-size: 10px;
+      color: #7fdbff;
+      opacity: 0;
+      transition: opacity 0.3s, bottom 0.3s;
+      pointer-events: none;
+      white-space: nowrap;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    header nav a:hover {
+      transform: scale(1.25);
+      box-shadow: 0 0 25px #00d4ff, 0 0 50px #00aaff;
+    }
+    header nav a:hover::before {
+      opacity: 1;
+      bottom: -38px;
+    }
+    /* نستخدم حروف أول اسم الرابط كاختصار */
+    header nav a[href="#home"]::after { content: "🏠"; }
+    header nav a[href="#about"]::after { content: "👩‍💻"; }
+    header nav a[href="#education"]::after { content: "🎓"; }
+    header nav a[href="#experience"]::after { content: "🏆"; }
+    header nav a[href="#projects"]::after { content: "📂"; }
+    header nav a[href="#skills"]::after { content: "🛠️"; }
+    header nav a[href="#contact"]::after { content: "📞"; }
+    header nav a::after {
+      font-size: 20px;
+      pointer-events: none;
     }
 
-    nav a:hover::before {
+    main.hero {
       width: 100%;
+      max-width: 1200px;
+      display: flex;
+      flex-wrap: wrap;
+      background-color: #003366;
+      margin-top: 30px;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 35px #001a4dbb;
+      color: #cce6ff;
     }
-
-    section {
-      padding: 80px 20px;
-      text-align: center;
+    .hero-image {
+      flex: 1 1 450px;
+      min-width: 300px;
+      max-height: 450px;
+      overflow: hidden;
     }
-
-    section h2 {
-      font-size: 36px;
-      margin-bottom: 20px;
-      color: #58a6ff;
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+      border-radius: 0 0 0 12px;
+      box-shadow: inset 0 0 40px #0074d9aa;
     }
-
-    .hero {
-      height: 100vh;
+    .hero-image img:hover {
+      transform: scale(1.07) rotate(1deg);
+      filter: brightness(1.1);
+    }
+    .hero-content {
+      flex: 1 1 450px;
+      padding: 60px 50px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      background: radial-gradient(circle at center, #0d1117, #000000);
+      text-align: left;
+      text-shadow: 0 0 12px #0099ffcc;
     }
-
-    .hero h1 {
+    .hero-content .typing {
       font-size: 48px;
-      margin-bottom: 20px;
+      font-weight: 700;
+      border-right: 3px solid #7fdbff;
+      width: fit-content;
+      white-space: nowrap;
+      overflow: hidden;
+      animation: typing 3.5s steps(20), blink 0.6s step-end infinite;
+      margin-bottom: 30px;
+      color: #7fdbff;
+      letter-spacing: 2px;
+      user-select: none;
     }
-
-    .hero p {
-      font-size: 20px;
-      max-width: 600px;
+    @keyframes typing {
+      from { width: 0 }
+      to { width: 100% }
     }
-
-    .about, .projects, .contact {
-      background-color: rgba(255, 255, 255, 0.02);
-      margin: 40px auto;
-      width: 90%;
-      border-radius: 16px;
-      padding: 60px 20px;
-      box-shadow: 0 0 30px rgba(88, 166, 255, 0.1);
-      transform: perspective(1000px) rotateX(1deg);
+    @keyframes blink {
+      50% { border-color: transparent }
     }
-
-    .project {
-      margin: 20px 0;
+    .hero-content p {
+      font-size: 17px;
+      margin-bottom: 40px;
+      max-width: 480px;
+      line-height: 1.6;
+      color: #cce6ffdd;
     }
-
-    .project h3 {
-      color: #8ab4f8;
+    .btn {
+      background-color: #7fdbff;
+      color: #003366;
+      padding: 14px 32px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 16px;
+      border-radius: 30px;
+      width: fit-content;
+      box-shadow: 0 8px 20px #00bfffbb;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+      user-select: none;
     }
-
-    footer {
-      padding: 40px 20px;
-      text-align: center;
-      color: #8b949e;
+    .btn:hover {
+      background-color: #00bfff;
+      transform: scale(1.1);
+      box-shadow: 0 12px 30px #00d4ffcc;
+    }
+    section.page-content {
+      width: 100%;
+      max-width: 800px;
+      background: #004080;
+      border-radius: 12px;
+      box-shadow: 0 0 25px #001a4dcc;
+      margin: 60px 0;
+      padding: 30px 40px;
+      color: #cce6ff;
+      user-select: none;
+    }
+    section.page-content h2 {
+      color: #7fdbff;
+      margin-bottom: 24px;
+      font-weight: 700;
+      font-size: 28px;
+      letter-spacing: 1.5px;
+      border-bottom: 3px solid #7fdbff;
+      padding-bottom: 10px;
+      user-select: text;
+    }
+    section.page-content p, section.page-content ul {
+      font-size: 16px;
+      margin-bottom: 22px;
+      line-height: 1.6;
+      user-select: text;
+    }
+    section.page-content ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+    section.page-content ul li {
+      background: #005a9c;
+      padding: 14px 20px;
+      margin-bottom: 14px;
+      border-radius: 12px;
+      box-shadow: inset 0 0 14px #004472;
+      font-weight: 700;
+      transition: background-color 0.3s;
+      user-select: text;
+      cursor: default;
+    }
+    section.page-content ul li:hover {
+      background-color: #0074d9;
+    }
+    /* Skills bars */
+    .skills-bar {
+      background: #002a55;
+      border-radius: 15px;
+      height: 26px;
+      margin-bottom: 25px;
+      overflow: hidden;
+      box-shadow: inset 0 0 8px #003366;
+    }
+    .skills-bar div {
+      height: 100%;
+      background: linear-gradient(90deg, #7fdbff, #00aaff);
+      text-align: right;
+      padding-right: 14px;
+      line-height: 26px;
+      color: #001f3f;
+      font-weight: 800;
+      font-size: 15px;
+      transition: width 1s ease;
+      border-radius: 15px 0 0 15px;
+      user-select: none;
+    }
+    .project-card {
+      background: #005a9c;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 18px 0;
+      box-shadow: 0 0 30px #002e63cc;
+      transition: transform 0.35s ease, box-shadow 0.35s ease;
+      cursor: pointer;
+      user-select: none;
+    }
+    .project-card:hover {
+      transform: scale(1.04);
+      background-color: #0074d9;
+      box-shadow: 0 0 40px #0099ffcc;
+    }
+    .project-card h3 {
+      margin-bottom: 10px;
+      color: #7fdbff;
+      font-size: 22px;
+      user-select: text;
+    }
+    .project-card p {
+      margin-bottom: 12px;
+      color: #cee6ffcc;
+      font-size: 16px;
+      user-select: text;
+    }
+    .project-card a {
+      color: #7fdbff;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 15px;
+      transition: color 0.3s;
+      user-select: text;
+    }
+    .project-card a:hover {
+      color: #cce6ff;
+    }
+    .link {
+      color: #7fdbff;
+      text-decoration: none;
+      font-weight: 600;
+      user-select: text;
+    }
+    /* Hobbies */
+    .hobbies-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .hobby-item {
+      background: #005a9c;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 700;
+      box-shadow: inset 0 0 12px #003366;
+      cursor: default;
+      user-select: none;
+      font-size: 15px;
+      color: #7fdbff;
+      transition: background-color 0.3s;
+    }
+    .hobby-item:hover {
+      background-color: #0074d9;
+      box-shadow: inset 0 0 16px #005bb5;
+    }
+    /* Scroll to top button */
+    #topBtn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: #7fdbff;
+      color: #001f3f;
+      padding: 14px 22px;
+      border: none;
+      border-radius: 35px;
+      font-weight: 700;
       font-size: 14px;
+      cursor: pointer;
+      display: none;
+      box-shadow: 0 8px 20px #00bfffcc;
+      z-index: 999;
+      transition: background-color 0.3s ease;
+      user-select: none;
     }
-
-    /* Animation */
-    [data-animate] {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    #topBtn:hover {
+      background-color: #00aaff;
+      color: #003366;
     }
-
-    [data-animate].visible {
-      opacity: 1;
-      transform: none;
+    /* Responsive */
+    @media (max-width: 850px) {
+      main.hero {
+        flex-direction: column;
+        margin-top: 20px;
+      }
+      .hero-image, .hero-content {
+        flex: none;
+        max-width: 100%;
+      }
+      .hero-image img {
+        height: 300px;
+        border-radius: 12px 12px 0 0;
+      }
+      .hero-content {
+        padding: 40px 25px;
+        text-align: center;
+      }
+      header {
+        justify-content: center;
+      }
+      header nav {
+        margin-top: 12px;
+        justify-content: center;
+      }
+      header nav a {
+        width: 40px;
+        height: 40px;
+        font-size: 11px;
+      }
+      header .logo {
+        font-size: 18px;
+      }
     }
   </style>
 </head>
-
 <body>
-  <div class="background-binary"></div>
+<canvas id="matrix"></canvas>
 
-  <header>
-    <div class="logo">Raghad.dev</div>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header>
+  <div class="logo">Raghad Alyagoot</div>
+  <nav>
+    <a href="#home" data-label="Home"></a>
+    <a href="#about" data-label="About"></a>
+    <a href="#education" data-label="Education"></a>
+    <a href="#experience" data-label="Experience"></a>
+    <a href="#projects" data-label="Projects"></a>
+    <a href="#skills" data-label="Skills"></a>
+    <a href="#contact" data-label="Contact"></a>
+  </nav>
+</header>
 
-  <section class="hero">
-    <h1>Hi, I'm Raghad</h1>
-    <p>A passionate Computer Science student with a love for front-end development and creating clean, intuitive web interfaces.</p>
-  </section>
+<main class="hero" id="home">
+  <div class="hero-image">
+    <img src="rody.jpg" alt="Raghad Alyagoot" />
+  </div>
+  <div class="hero-content">
+    <div class="typing">Raghad Alyagoot</div>
+    <p>
+      I’m an ambitious IT student & UI/UX designer who loves creating meaningful projects and continuously learning to improve my skills.
+    </p>
+    <a href="#about" class="btn">Explore Now</a>
+  </div>
+</main>
 
-  <section id="about" class="about" data-animate>
-    <h2>About Me</h2>
-    <p>I'm a computer science student based in Saudi Arabia. I love working with HTML, CSS, and JavaScript to build creative digital experiences. I enjoy learning new technologies and collaborating on meaningful projects.</p>
-  </section>
+<section class="page-content" id="about">
+  <h2>About Me</h2>
+  <p>
+    Passionate about technology, programming, and design, I am dedicated to developing innovative solutions that blend creativity and logic. I love collaborating on projects that challenge me and help me grow.
+  </p>
+  <p>
+    Currently a senior at the University of Tabuk, majoring in Information Technology, I am excited about building a career in software development and UI/UX design.
+  </p>
+</section>
 
-  <section id="projects" class="projects" data-animate>
-    <h2>Projects</h2>
-    <div class="project">
-      <h3>🔍 Smart Maze Game</h3>
-      <p>A fun maze game with rounds, player animation, and sound effects on winning. Built using JavaScript and DOM manipulation.</p>
-    </div>
-    <div class="project">
-      <h3>📡 Enterprise Network Simulation</h3>
-      <p>Designed a Tier 3 network architecture with VLANs and OSPF routing using Cisco Packet Tracer as a final course project.</p>
-    </div>
-    <div class="project">
-      <h3>🧾 rodycv</h3>
-      <p>My custom-designed CV website with a modern layout and print-ready styling. Perfect for showcasing my academic profile.</p>
-    </div>
-  </section>
+<section class="page-content" id="education">
+  <h2>Education</h2>
+  <p><strong>University of Tabuk</strong> — Bachelor in Information Technology</p>
+  <p>Expected Graduation: 2026</p>
+  <ul>
+    <li>Relevant Courses: Data Structures, Web Development, Database Systems, Network Security</li>
+    <li>GPA: 3.8 / 4.0</li>
+  </ul>
+</section>
 
-  <section id="contact" class="contact" data-animate>
-    <h2>Contact</h2>
-    <p>Feel free to reach out via email: <a href="mailto:raghad@example.com" style="color:#58a6ff">raghad@example.com</a></p>
-  </section>
+<section class="page-content" id="experience">
+  <h2>Experience & Achievements</h2>
+  <ul>
+    <li>🏆 1st Place Winner - Networking Bootcamp, 2024</li>
+    <li>📚 Completed 7 Professional Courses in IT and Design</li>
+    <li>💻 Internship at Tech Solutions Co. - Assisted in front-end development</li>
+  </ul>
+</section>
 
-  <footer>
-    &copy; 2025 Raghad Alyagoot. All rights reserved.
-  </footer>
+<section class="page-content" id="projects">
+  <h2>Projects</h2>
+  <div class="project-card">
+    <h3>Personal Portfolio Website</h3>
+    <p>Built with HTML, CSS, and JavaScript. Responsive and interactive design.</p>
+    <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Project</a>
+  </div>
+  <div class="project-card">
+    <h3>Task Tracking Web App</h3>
+    <p>React-based app with Firebase backend for real-time task management.</p>
+    <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">View Project</a>
+  </div>
+  <div class="project-card">
+    <h3>Networking Simulation</h3>
+    <p>Designed and implemented a tier 3 network topology using Cisco Packet Tracer.</p>
+    <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Project</a>
+  </div>
+</section>
 
-  <script>
-    const sections = document.querySelectorAll('[data-animate]');
+<section class="page-content" id="skills">
+  <h2>Technical Skills</h2>
+  <p>HTML</p>
+  <div class="skills-bar"><div style="width: 90%;">90%</div></div>
+  <p>CSS</p>
+  <div class="skills-bar"><div style="width: 85%;">85%</div></div>
+  <p>JavaScript</p>
+  <div class="skills-bar"><div style="width: 75%;">75%</div></div>
+  <p>UI/UX Design (Figma, Canva)</p>
+  <div class="skills-bar"><div style="width: 85%;">85%</div></div>
+  <p>MySQL & PHP</p>
+  <div class="skills-bar"><div style="width: 70%;">70%</div></div>
+  <p>Networking (Packet Tracer)</p>
+  <div class="skills-bar"><div style="width: 80%;">80%</div></div>
+</section>
 
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, {
-      threshold: 0.2
-    });
+<section class="page-content" id="hobbies">
+  <h2>Hobbies & Interests</h2>
+  <div class="hobbies-list">
+    <div class="hobby-item">Coding Challenges</div>
+    <div class="hobby-item">Reading Tech Blogs</div>
+    <div class="hobby-item">UI/UX Design</div>
+    <div class="hobby-item">Gaming</div>
+    <div class="hobby-item">Photography</div>
+  </div>
+</section>
 
-    sections.forEach(section => {
-      observer.observe(section);
-    });
-  </script>
+<section class="page-content" id="contact">
+  <h2>Contact Me</h2>
+  <p>Email: <a href="mailto:ragad1alyagoot@gmail.com" class="link">ragad1alyagoot@gmail.com</a></p>
+  <p>Phone: <a href="tel:+966545077990" class="link">0545077990</a></p>
+  <p>
+    Download CV: 
+    <a href="Raghad_Alyagoot_CV.pdf" class="link" download>
+      <strong style="color:#7fdbff;">⬇️ PDF</strong>
+    </a>
+  </p>
+</section>
+
+<button id="topBtn" onclick="scrollToTop()">Top ↑</button>
+
+<script>
+  // Matrix code rain background
+  const canvas = document.getElementById('matrix');
+  const ctx = canvas.getContext('2d');
+  canvas.height = window.innerHeight;
+  canvas.width = window.innerWidth;
+  const letters = "01";
+  const fontSize = 14;
+  const columns = canvas.width / fontSize;
+  const drops = Array(Math.floor(columns)).fill(1);
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.05)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = "#0F0";
+    ctx.font = fontSize + "px monospace";
+    for (let i = 0; i < drops.length; i++) {
+      const text = letters[Math.floor(Math.random() * letters.length)];
+      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i]++;
+    }
+  }
+  setInterval(draw, 33);
+
+  // Scroll to top button
+  const topBtn = document.getElementById("topBtn");
+  window.onscroll = () => {
+    topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+  };
+  function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+</script>
 </body>
-
 </html>
