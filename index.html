@@ -6,11 +6,11 @@
   <title>Raghad Alyagoot | Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
+    /* Reset */
     * {
-      margin: 0; padding: 0; box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-      scroll-behavior: smooth;
+      margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth;
     }
+
     body {
       background-color: #000;
       color: #fff;
@@ -21,87 +21,100 @@
       align-items: center;
       position: relative;
     }
+
+    /* Canvas for background matrix */
     canvas#matrix {
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       z-index: -1;
-      background-color: #000;
+      background: transparent;
     }
+
+    /* Header */
     header {
       width: 100%;
       max-width: 1200px;
-      padding: 15px 40px;
       display: flex;
-      justify-content: center;
-      gap: 20px;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: rgba(0,0,0,0.85);
       position: sticky;
       top: 0;
-      background: rgba(0,0,0,0.85);
+      z-index: 50;
       backdrop-filter: blur(6px);
-      border-radius: 0 0 25px 25px;
-      z-index: 10;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.7);
+      flex-wrap: wrap;
     }
-    /* الأزرار الدائرية */
-    header nav a {
+    header .logo {
+      font-weight: 700;
+      font-size: 20px;
+      color: #007a99;
+      letter-spacing: 2px;
+      user-select: none;
+    }
+
+    /* Navigation with circular blue buttons */
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    nav a {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 52px;
-      height: 52px;
+      width: 50px;
+      height: 50px;
+      background-color: #001f2f;
       border-radius: 50%;
-      background-color: #001f3f;
       color: #007a99;
-      font-weight: 600;
-      font-size: 14px;
       text-decoration: none;
-      box-shadow: 0 0 8px #007a99aa;
-      transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+      font-weight: 700;
+      font-size: 14px;
+      box-shadow: 0 0 10px #007a99aa;
       position: relative;
+      transition: all 0.3s ease;
       user-select: none;
     }
-    header nav a:hover,
-    header nav a:focus {
+    nav a:hover, nav a:focus {
       background-color: #007a99;
-      color: #fff;
-      box-shadow: 0 0 20px #00b8d4;
+      color: #000;
+      box-shadow: 0 0 15px #00aaffcc;
+      transform: scale(1.1);
       outline: none;
     }
-    /* إضافة tooltip عشان توضح اسم كل قسم */
-    header nav a::after {
+    nav a::after {
       content: attr(data-tooltip);
       position: absolute;
-      bottom: -28px;
+      bottom: -30px;
+      white-space: nowrap;
       background: #007a99cc;
-      color: #fff;
-      font-size: 12px;
+      color: #000;
       padding: 4px 8px;
       border-radius: 6px;
-      white-space: nowrap;
+      font-size: 12px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s;
-      left: 50%;
-      transform: translateX(-50%);
-      user-select: none;
-      z-index: 100;
+      transition: opacity 0.3s ease;
     }
-    header nav a:hover::after,
-    header nav a:focus::after {
+    nav a:hover::after, nav a:focus::after {
       opacity: 1;
     }
 
+    /* Main Hero */
     main.hero {
       width: 100%;
       max-width: 1200px;
       display: flex;
       flex-wrap: wrap;
       background-color: #053a52;
-      margin: 40px 0;
-      border-radius: 16px;
-      box-shadow: 0 0 25px #003a6ccc;
+      margin: 30px 0;
+      border-radius: 14px;
       overflow: hidden;
+      box-shadow: 0 0 25px #000000bb;
     }
     .hero-image {
       flex: 1 1 450px;
@@ -114,10 +127,10 @@
       height: 100%;
       object-fit: cover;
       transition: transform 0.6s ease;
-      border-radius: 0 0 0 16px;
+      border-radius: 0 0 0 14px;
     }
     .hero-image img:hover {
-      transform: scale(1.05);
+      transform: scale(1.07);
     }
     .hero-content {
       flex: 1 1 450px;
@@ -125,9 +138,9 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-      color: #fff;
+      text-align: left;
     }
-    .typing {
+    .hero-content .typing {
       font-size: 48px;
       font-weight: 700;
       border-right: 3px solid #007a99;
@@ -136,8 +149,9 @@
       overflow: hidden;
       animation: typing 3.5s steps(20), blink 0.6s step-end infinite;
       margin-bottom: 30px;
-      color: #00b8d4;
+      color: #007a99;
       letter-spacing: 2px;
+      user-select: none;
     }
     @keyframes typing {
       from { width: 0 }
@@ -151,309 +165,376 @@
       margin-bottom: 40px;
       max-width: 480px;
       line-height: 1.5;
-      color: #ccc;
+      color: #eee;
     }
     .btn {
       background-color: #007a99;
       color: #fff;
-      padding: 14px 32px;
-      font-weight: 700;
-      font-size: 15px;
-      border-radius: 8px;
+      padding: 12px 28px;
       text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+      border-radius: 8px;
       width: fit-content;
-      box-shadow: 0 5px 15px #007a9955;
+      box-shadow: 0 5px 15px #007a9988;
       transition: background-color 0.3s ease;
+      user-select: none;
     }
     .btn:hover {
-      background-color: #00b8d4;
-      box-shadow: 0 7px 25px #00b8d477;
+      background-color: #005f73;
+      box-shadow: 0 8px 25px #007a99cc;
     }
+
+    /* Section styling */
     section.page-content {
       width: 100%;
-      max-width: 820px;
+      max-width: 800px;
       background: #053a52;
-      border-radius: 16px;
-      box-shadow: 0 0 20px #003a6cbb;
-      margin: 50px 0;
+      border-radius: 14px;
+      box-shadow: 0 0 18px #000000cc;
+      margin: 60px 0;
       padding: 30px 40px;
-      color: #eee;
     }
     section.page-content h2 {
-      color: #00b8d4;
+      color: #007a99;
       margin-bottom: 25px;
       font-weight: 700;
       font-size: 28px;
       letter-spacing: 1.3px;
-      border-bottom: 3px solid #00b8d4;
-      padding-bottom: 10px;
+      border-bottom: 3px solid #007a99;
+      padding-bottom: 12px;
+      user-select: none;
     }
     section.page-content p, section.page-content ul {
+      color: #ddd;
       font-size: 16px;
       margin-bottom: 22px;
-      line-height: 1.5;
+      line-height: 1.6;
     }
     section.page-content ul {
       list-style-type: none;
       padding-left: 0;
     }
     section.page-content ul li {
-      background: #0b4d66;
-      padding: 14px 20px;
+      background: #005f73;
+      padding: 14px 22px;
       margin-bottom: 14px;
-      border-radius: 10px;
-      box-shadow: inset 0 0 10px #063045;
-      font-weight: 600;
-      transition: background-color 0.3s;
+      border-radius: 14px;
+      box-shadow: inset 0 0 10px #004051;
+      font-weight: 700;
+      transition: background-color 0.3s ease;
       cursor: default;
       user-select: none;
     }
     section.page-content ul li:hover {
-      background-color: #0d6790;
+      background-color: #007a99;
+      box-shadow: 0 0 10px #007a99cc;
+      color: #fff;
     }
+
     /* Skills bars */
     .skills-bar {
-      background: #274b7e;
+      background: #004051;
       border-radius: 14px;
       height: 24px;
       margin-bottom: 22px;
       overflow: hidden;
-      box-shadow: inset 0 0 6px #1a3b6a;
+      box-shadow: inset 0 0 10px #002832;
     }
     .skills-bar div {
       height: 100%;
-      background: linear-gradient(90deg, #00b8d4, #007a99);
+      background: linear-gradient(90deg, #007a99, #00aacc);
       text-align: right;
       padding-right: 14px;
       line-height: 24px;
-      color: #001f3f;
-      font-weight: 700;
+      color: #001f2f;
+      font-weight: 800;
       font-size: 15px;
       transition: width 0.8s ease;
       border-radius: 14px 0 0 14px;
+      user-select: none;
     }
+
+    /* Projects cards */
     .project-card {
-      background: #0b4d66;
-      border-radius: 16px;
-      padding: 24px;
-      margin: 18px 0;
-      box-shadow: 0 0 20px #002f5e99;
+      background: #004051;
+      border-radius: 14px;
+      padding: 22px;
+      margin: 20px 0;
+      box-shadow: 0 0 25px #003b50cc;
       transition: transform 0.3s ease;
       cursor: pointer;
+      user-select: none;
     }
     .project-card:hover {
-      transform: scale(1.04);
-      background-color: #0d6790;
+      transform: scale(1.05);
+      background-color: #006f90;
+      box-shadow: 0 0 30px #00b4ffdd;
     }
     .project-card h3 {
       margin-bottom: 10px;
-      color: #00b8d4;
+      color: #00b4ff;
       font-size: 22px;
+      user-select: none;
     }
     .project-card p {
       margin-bottom: 14px;
-      color: #ccc;
-      font-size: 16px;
+      color: #cceeff;
     }
     .project-card a {
-      color: #00b8d4;
-      font-weight: 700;
-      font-size: 15px;
+      color: #00b4ff;
       text-decoration: none;
-      transition: color 0.3s;
+      font-weight: 800;
+      font-size: 15px;
+      transition: color 0.3s ease;
+      user-select: text;
     }
     .project-card a:hover {
-      color: #fff;
+      color: #0099cc;
     }
-    .link {
-      color: #00b8d4;
-      font-weight: 600;
-      text-decoration: none;
+
+    /* Hobbies */
+    .hobbies-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      user-select: none;
     }
+    .hobby-item {
+      background: #004051;
+      padding: 12px 22px;
+      border-radius: 30px;
+      font-weight: 700;
+      box-shadow: inset 0 0 12px #002832;
+      cursor: default;
+      font-size: 15px;
+      color: #00b4ff;
+    }
+
     /* Scroll to top button */
     #topBtn {
       position: fixed;
       bottom: 25px;
       right: 25px;
       background: #007a99;
-      color: #fff;
-      padding: 14px 20px;
+      color: #000;
+      padding: 14px 22px;
       border: none;
       border-radius: 30px;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 15px;
       cursor: pointer;
-      box-shadow: 0 6px 15px #00b8d4aa;
       display: none;
-      z-index: 1000;
+      box-shadow: 0 8px 25px #00b4ffdd;
+      z-index: 999;
       transition: background-color 0.3s ease;
+      user-select: none;
     }
     #topBtn:hover {
-      background-color: #00b8d4;
+      background-color: #005f73;
     }
+
     /* Responsive */
     @media (max-width: 900px) {
       main.hero {
         flex-direction: column;
+        margin-top: 20px;
       }
       .hero-image, .hero-content {
-        max-width: 100%;
         flex: none;
+        max-width: 100%;
       }
       .hero-image img {
         height: 320px;
-        border-radius: 16px 16px 0 0;
+        border-radius: 14px 14px 0 0;
       }
       .hero-content {
-        padding: 40px 30px;
+        padding: 45px 25px;
         text-align: center;
       }
-      header nav a {
-        width: 44px;
-        height: 44px;
-        font-size: 12px;
+      header {
+        justify-content: center;
+      }
+      nav {
+        justify-content: center;
       }
     }
   </style>
 </head>
 <body>
+  <!-- Background Matrix -->
+  <canvas id="matrix"></canvas>
 
-<canvas id="matrix"></canvas>
+  <!-- Header with Logo and Navigation -->
+  <header>
+    <div class="logo">RAGHAD</div>
+    <nav>
+      <a href="#home" data-tooltip="Intro">IN</a>
+      <a href="#about" data-tooltip="About Me">AB</a>
+      <a href="#education" data-tooltip="Education">ED</a>
+      <a href="#experience" data-tooltip="Experience">EX</a>
+      <a href="#projects" data-tooltip="Projects">PR</a>
+      <a href="#skills" data-tooltip="Skills">SK</a>
+      <a href="#contact" data-tooltip="Contact">CT</a>
+    </nav>
+  </header>
 
-<header>
-  <nav>
-    <a href="#home" data-tooltip="Dashboard">🏠</a>
-    <a href="#about" data-tooltip="About Me">👩🏻‍💻</a>
-    <a href="#education" data-tooltip="Education">🎓</a>
-    <a href="#experience" data-tooltip="Experience">💼</a>
-    <a href="#projects" data-tooltip="Projects">🛠️</a>
-    <a href="#skills" data-tooltip="Skills">📊</a>
-    <a href="#contact" data-tooltip="Contact">📬</a>
-  </nav>
-</header>
+  <!-- Hero Section -->
+  <main class="hero" id="home">
+    <div class="hero-image">
+      <img src="rody.jpg" alt="Raghad Alyagoot" />
+    </div>
+    <div class="hero-content">
+      <div class="typing">Raghad Alyagoot</div>
+      <p>
+        I’m an ambitious IT student & UI/UX designer who loves creating meaningful projects and continuously learning to improve my skills.
+      </p>
+      <a href="#about" class="btn">Explore Now</a>
+    </div>
+  </main>
 
-<main class="hero" id="home">
-  <div class="hero-image">
-    <img src="rody.jpg" alt="Raghad Alyagoot" />
-  </div>
-  <div class="hero-content">
-    <div class="typing">Raghad Alyagoot</div>
+  <!-- About Section -->
+  <section class="page-content" id="about">
+    <h2>About Me</h2>
     <p>
-      I’m an ambitious IT student & UI/UX designer who loves creating meaningful projects and continuously learning to improve my skills.
+      Passionate about technology, programming, and design, I am dedicated to developing innovative solutions that blend creativity and logic. I love collaborating on projects that challenge me and help me grow.
     </p>
-    <a href="#about" class="btn">Explore Now</a>
-  </div>
-</main>
+    <p>
+      Currently a senior at the University of Tabuk, majoring in Information Technology, I am excited about building a career in software development and UI/UX design.
+    </p>
+  </section>
 
-<section class="page-content" id="about">
-  <h2>About Me</h2>
-  <p>
-    Passionate about technology, programming, and design, I am dedicated to developing innovative solutions that blend creativity and logic. I love collaborating on projects that challenge me and help me grow.
-  </p>
-  <p>
-    Currently a senior at the University of Tabuk, majoring in Information Technology, I am excited about building a career in software development and UI/UX design.
-  </p>
-</section>
+  <!-- Education Section -->
+  <section class="page-content" id="education">
+    <h2>Education</h2>
+    <p><strong>University of Tabuk</strong> — Bachelor in Information Technology</p>
+    <p>Expected Graduation: 2026</p>
+    <ul>
+      <li>Relevant Courses: Data Structures, Web Development, Database Systems, Network Security</li>
+      <li>GPA: 3.8 / 4.0</li>
+    </ul>
+  </section>
 
-<section class="page-content" id="education">
-  <h2>Education</h2>
-  <p><strong>University of Tabuk</strong> — Bachelor in Information Technology</p>
-  <p>Expected Graduation: 2026</p>
-  <ul>
-    <li>Relevant Courses: Data Structures, Web Development, Database Systems, Network Security</li>
-    <li>GPA: 3.8 / 4.0</li>
-  </ul>
-</section>
+  <!-- Experience Section -->
+  <section class="page-content" id="experience">
+    <h2>Experience & Achievements</h2>
+    <ul>
+      <li>🏆 1st Place Winner - Networking Bootcamp, 2024</li>
+      <li>📚 Completed 7 Professional Courses in IT and Design</li>
+      <li>💻 Internship at Tech Solutions Co. - Assisted in front-end development</li>
+    </ul>
+  </section>
 
-<section class="page-content" id="experience">
-  <h2>Experience & Achievements</h2>
-  <ul>
-    <li>🏆 1st Place Winner - Networking Bootcamp, 2024</li>
-    <li>📚 Completed 7 Professional Courses in IT and Design</li>
-    <li>💻 Internship at Tech Solutions Co. - Assisted in front-end development</li>
-  </ul>
-</section>
+  <!-- Projects Section -->
+  <section class="page-content" id="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Personal Portfolio Website</h3>
+      <p>Built with HTML, CSS, and JavaScript. Responsive and interactive design.</p>
+      <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+    <div class="project-card">
+      <h3>Task Tracking Web App</h3>
+      <p>React-based app with Firebase backend for real-time task management.</p>
+      <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+    <div class="project-card">
+      <h3>Networking Simulation</h3>
+      <p>Designed and implemented a tier 3 network topology using Cisco Packet Tracer.</p>
+      <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Project</a>
+    </div>
+  </section>
 
-<section class="page-content" id="projects">
-  <h2>Projects</h2>
-  <div class="project-card">
-    <h3>Personal Portfolio Website</h3>
-    <p>Built with HTML, CSS, and JavaScript. Responsive and interactive design.</p>
-    <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Project</a>
-  </div>
-  <div class="project-card">
-    <h3>Task Tracking Web App</h3>
-    <p>React-based app with Firebase backend for real-time task management.</p>
-    <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">View Project</a>
-  </div>
-  <div class="project-card">
-    <h3>Networking Simulation</h3>
-    <p>Designed and implemented a tier 3 network topology using Cisco Packet Tracer.</p>
-    <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Project</a>
-  </div>
-</section>
+  <!-- Skills Section -->
+  <section class="page-content" id="skills">
+    <h2>Technical Skills</h2>
+    <p>HTML</p>
+    <div class="skills-bar"><div style="width: 90%;">90%</div></div>
+    <p>CSS</p>
+    <div class="skills-bar"><div style="width: 85%;">85%</div></div>
+    <p>JavaScript</p>
+    <div class="skills-bar"><div style="width: 75%;">75%</div></div>
+    <p>UI/UX Design (Figma, Canva)</p>
+    <div class="skills-bar"><div style="width: 85%;">85%</div></div>
+    <p>MySQL & PHP</p>
+    <div class="skills-bar"><div style="width: 70%;">70%</div></div>
+    <p>Networking (Packet Tracer)</p>
+    <div class="skills-bar"><div style="width: 80%;">80%</div></div>
+  </section>
 
-<section class="page-content" id="skills">
-  <h2>Technical Skills</h2>
-  <p>HTML</p>
-  <div class="skills-bar"><div style="width: 90%;">90%</div></div>
-  <p>CSS</p>
-  <div class="skills-bar"><div style="width: 85%;">85%</div></div>
-  <p>JavaScript</p>
-  <div class="skills-bar"><div style="width: 75%;">75%</div></div>
-  <p>UI/UX Design (Figma, Canva)</p>
-  <div class="skills-bar"><div style="width: 85%;">85%</div></div>
-  <p>MySQL & PHP</p>
-  <div class="skills-bar"><div style="width: 70%;">70%</div></div>
-  <p>Networking (Packet Tracer)</p>
-  <div class="skills-bar"><div style="width: 80%;">80%</div></div>
-</section>
+  <!-- Hobbies Section -->
+  <section class="page-content" id="hobbies">
+    <h2>Hobbies & Interests</h2>
+    <div class="hobbies-list">
+      <div class="hobby-item">Coding Challenges</div>
+      <div class="hobby-item">Reading Tech Blogs</div>
+      <div class="hobby-item">UI/UX Design</div>
+      <div class="hobby-item">Gaming</div>
+      <div class="hobby-item">Photography</div>
+    </div>
+  </section>
 
-<section class="page-content" id="contact">
-  <h2>Contact Me</h2>
-  <p>Email: <a href="mailto:ragad1alyagoot@gmail.com" class="link">ragad1alyagoot@gmail.com</a></p>
-  <p>Phone: <a href="tel:+966545077990" class="link">0545077990</a></p>
-</section>
+  <!-- Contact Section -->
+  <section class="page-content" id="contact">
+    <h2>Contact Me</h2>
+    <p>Email: <a href="mailto:ragad1alyagoot@gmail.com" class="link">ragad1alyagoot@gmail.com</a></p>
+    <p>Phone: <a href="tel:+966545077990" class="link">0545077990</a></p>
+    <p>
+      Download CV:
+      <a href="Raghad_Alyagoot_CV.pdf" class="link" download>
+        <strong style="color:#007a99;">⬇️ PDF</strong>
+      </a>
+    </p>
+  </section>
 
-<button id="topBtn" onclick="scrollToTop()">Top ↑</button>
+  <!-- Scroll to Top Button -->
+  <button id="topBtn" onclick="scrollToTop()">Top ↑</button>
 
-<script>
-  // Matrix code rain background with blue 0/1
-  const canvas = document.getElementById('matrix');
-  const ctx = canvas.getContext('2d');
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-  const letters = "01011010110";
-  const fontSize = 14;
-  const columns = Math.floor(canvas.width / fontSize);
-  const drops = new Array(columns).fill(1);
+  <script>
+    // Matrix background with blue 0 and 1 (your custom sequence)
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.06)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = "#007a99";
-    ctx.font = fontSize + "px monospace";
-    for (let i = 0; i < drops.length; i++) {
-      const text = letters.charAt(Math.floor(Math.random() * letters.length));
-      ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-      if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-        drops[i] = 0;
+    const letters = "0101010101001"; // your long sequence
+    const fontSize = 16;
+    const columns = Math.floor(canvas.width / fontSize);
+    const drops = Array(columns).fill(1);
+
+    function draw() {
+      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = "#007a99";
+      ctx.font = fontSize + "px monospace";
+
+      for(let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
       }
-      drops[i]++;
     }
-  }
+    setInterval(draw, 33);
 
-  setInterval(draw, 33);
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
 
-  // Scroll to top button
-  const topBtn = document.getElementById("topBtn");
-  window.onscroll = () => {
-    topBtn.style.display = window.scrollY > 200 ? "block" : "none";
-  };
-  function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
-</script>
-
+    // Scroll to top button
+    const topBtn = document.getElementById("topBtn");
+    window.onscroll = () => {
+      topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+    };
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  </script>
 </body>
 </html>
