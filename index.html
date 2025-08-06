@@ -182,7 +182,7 @@
     }
     .btn:hover {
       background-color: #005f73;
-      box-shadow: 0 8px 80px #007a99cc;
+      box-shadow: 0 8px 25px #007a99cc;
     }
 
     /* Section styling */
@@ -194,6 +194,8 @@
       box-shadow: 0 0 18px #000000cc;
       margin: 60px 0;
       padding: 30px 40px;
+      height: 450px;             /* FIXED HEIGHT TO MATCH HERO */
+      overflow-y: auto;          /* SCROLL IF CONTENT OVERFLOWS */
     }
     section.page-content h2 {
       color: #007a99;
@@ -358,6 +360,13 @@
       nav {
         justify-content: center;
       }
+      /* Also adjust fixed height for small screens */
+      section.page-content {
+        height: auto;
+        max-width: 90%;
+        padding: 20px 15px;
+        margin: 40px 0;
+      }
     }
   </style>
 </head>
@@ -491,51 +500,4 @@
   <!-- Scroll to Top Button -->
   <button id="topBtn" onclick="scrollToTop()">Top ↑</button>
 
-  <script>
-    // Matrix background with blue 0 and 1 (your custom sequence)
-    const canvas = document.getElementById('matrix');
-    const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-
-    const letters = "0101010101001"; // your long sequence
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
-
-    function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      ctx.fillStyle = "#007a99";
-      ctx.font = fontSize + "px monospace";
-
-      for(let i = 0; i < drops.length; i++) {
-        const text = letters.charAt(Math.floor(Math.random() * letters.length));
-        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-          drops[i] = 0;
-        }
-        drops[i]++;
-      }
-    }
-    setInterval(draw, 33);
-
-    // Handle window resize
-    window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    });
-
-    // Scroll to top button
-    const topBtn = document.getElementById("topBtn");
-    window.onscroll = () => {
-      topBtn.style.display = window.scrollY > 200 ? "block" : "none";
-    };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-  </script>
-</body>
-</html>
+  <
