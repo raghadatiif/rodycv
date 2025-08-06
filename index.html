@@ -115,6 +115,8 @@
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 0 25px #000000bb;
+
+      scroll-margin-top: 80px; /* Added for scroll offset */
     }
     .hero-image {
       flex: 1 1 450px;
@@ -194,8 +196,9 @@
       box-shadow: 0 0 18px #000000cc;
       margin: 60px 0;
       padding: 30px 40px;
-      height: 450px;             /* FIXED HEIGHT TO MATCH HERO */
-      overflow-y: auto;          /* SCROLL IF CONTENT OVERFLOWS */
+      scroll-margin-top: 80px; /* Added for scroll offset */
+      /* Removed any fixed height or overflow */
+      overflow-y: visible;
     }
     section.page-content h2 {
       color: #007a99;
@@ -360,13 +363,6 @@
       nav {
         justify-content: center;
       }
-      /* Also adjust fixed height for small screens */
-      section.page-content {
-        height: auto;
-        max-width: 90%;
-        padding: 20px 15px;
-        margin: 40px 0;
-      }
     }
   </style>
 </head>
@@ -500,4 +496,54 @@
   <!-- Scroll to Top Button -->
   <button id="topBtn" onclick="scrollToTop()">Top ↑</button>
 
-  <
+  <script>
+    // Matrix background with blue letters
+    const canvas = document.getElementById('matrix');
+    const ctx = canvas.getContext('2d');
+
+    let width = canvas.width = window.innerWidth;
+    let height = canvas.height = window.innerHeight;
+
+    const letters = '0123456789';
+    const fontSize = 14;
+    const columns = Math.floor(width / fontSize);
+
+    const drops = new Array(columns).fill(1);
+
+    function draw() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = '#00b4ff'; // blue letters
+      ctx.font = fontSize + 'px monospace';
+
+      for(let i = 0; i < drops.length; i++) {
+        const text = letters.charAt(Math.floor(Math.random() * letters.length));
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if(drops[i] * fontSize > height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(draw, 50);
+
+    // Scroll to top button show/hide
+    const topBtn = document.getElementById('topBtn');
+
+    window.onscroll = function() {
+      if (document.documentElement.scrollTop > 200) {
+        topBtn.style.display = 'block';
+      } else {
+        topBtn.style.display = 'none';
+      }
+    };
+
+    function scrollToTop() {
+      window.scrollTo({top: 0, behavior: 'smooth'});
+    }
+  </script>
+</body>
+</html>
