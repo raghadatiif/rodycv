@@ -47,13 +47,13 @@
       backdrop-filter: blur(6px);
       box-shadow: 0 2px 6px rgba(0,0,0,0.7);
       flex-wrap: wrap;
+      user-select: none;
     }
     header .logo {
       font-weight: 700;
       font-size: 20px;
       color: #007a99;
       letter-spacing: 2px;
-      user-select: none;
     }
 
     /* Navigation with circular blue buttons */
@@ -77,7 +77,6 @@
       box-shadow: 0 0 10px #007a99aa;
       position: relative;
       transition: all 0.3s ease;
-      user-select: none;
     }
     nav a:hover, nav a:focus {
       background-color: #007a99;
@@ -115,8 +114,10 @@
       border-radius: 14px;
       overflow: hidden;
       box-shadow: 0 0 25px #000000bb;
-
-      scroll-margin-top: 80px; /* Added for scroll offset */
+      scroll-margin-top: 80px; /* To offset sticky header */
+      height: 100vh;  /* full viewport height */
+      align-items: center; /* center vertically */
+      user-select: none;
     }
     .hero-image {
       flex: 1 1 450px;
@@ -153,7 +154,6 @@
       margin-bottom: 30px;
       color: #007a99;
       letter-spacing: 2px;
-      user-select: none;
     }
     @keyframes typing {
       from { width: 0 }
@@ -195,10 +195,14 @@
       border-radius: 14px;
       box-shadow: 0 0 18px #000000cc;
       margin: 60px 0;
-      padding: 30px 40px;
-      scroll-margin-top: 80px; /* Added for scroll offset */
-      /* Removed any fixed height or overflow */
-      overflow-y: visible;
+      padding: 40px 40px;
+      scroll-margin-top: 80px;
+      height: 100vh; /* full viewport height */
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* center vertically */
+      user-select: none;
+      overflow-y: auto;
     }
     section.page-content h2 {
       color: #007a99;
@@ -208,7 +212,6 @@
       letter-spacing: 1.3px;
       border-bottom: 3px solid #007a99;
       padding-bottom: 12px;
-      user-select: none;
     }
     section.page-content p, section.page-content ul {
       color: #ddd;
@@ -219,6 +222,8 @@
     section.page-content ul {
       list-style-type: none;
       padding-left: 0;
+      max-height: 40vh; /* limit ul height, scroll if overflow */
+      overflow-y: auto;
     }
     section.page-content ul li {
       background: #005f73;
@@ -280,7 +285,6 @@
       margin-bottom: 10px;
       color: #00b4ff;
       font-size: 22px;
-      user-select: none;
     }
     .project-card p {
       margin-bottom: 14px;
@@ -292,7 +296,6 @@
       font-weight: 800;
       font-size: 15px;
       transition: color 0.3s ease;
-      user-select: text;
     }
     .project-card a:hover {
       color: #0099cc;
@@ -333,7 +336,6 @@
       box-shadow: 0 8px 25px #00b4ffdd;
       z-index: 999;
       transition: background-color 0.3s ease;
-      user-select: none;
     }
     #topBtn:hover {
       background-color: #005f73;
@@ -344,6 +346,7 @@
       main.hero {
         flex-direction: column;
         margin-top: 20px;
+        height: auto; /* let hero adjust height on small screens */
       }
       .hero-image, .hero-content {
         flex: none;
@@ -362,6 +365,12 @@
       }
       nav {
         justify-content: center;
+      }
+      section.page-content {
+        height: auto;
+        margin: 40px 20px;
+        max-width: 100%;
+        padding: 30px 20px;
       }
     }
   </style>
@@ -393,7 +402,6 @@
       <div class="typing">Raghad Alyagoot</div>
       <p>
         A passionate IT student who thrives on curiosity and continuous learning. Driven by challenges and committed to personal growth, I enjoy exploring new technologies and developing practical skills to make a meaningful impact.
-
       </p>
       <a href="#about" class="btn">Explore Now</a>
     </div>
@@ -497,7 +505,7 @@
   <button id="topBtn" onclick="scrollToTop()">Top ↑</button>
 
   <script>
-    // Matrix background with blue letters
+    // Matrix background with blue digits
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
