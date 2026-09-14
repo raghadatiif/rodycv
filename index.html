@@ -9,9 +9,9 @@
   <style>
     :root {
       --bg: #07090e;
-      --surface: #0e131f;
+      --surface: rgba(14, 19, 31, 0.85);
       --border: rgba(255, 255, 255, 0.08);
-      --border-accent: rgba(0, 232, 198, 0.3);
+      --border-accent: rgba(0, 232, 198, 0.35);
       --teal: #00e8c6;
       --blue: #38bdf8;
       --text: #f1f5f9;
@@ -24,14 +24,12 @@
       scroll-behavior: smooth;
     }
 
-    body {
+    html, body {
+      width: 100%;
+      min-height: 100vh;
       background-color: var(--bg);
       color: var(--text);
-      min-height: 100vh;
       overflow-x: hidden;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
       position: relative;
     }
 
@@ -42,22 +40,21 @@
       width: 100vw;
       height: 100vh;
       z-index: 0;
-      opacity: 0.2;
+      opacity: 0.22;
       pointer-events: none;
     }
 
-    /* Minimal Top Navigation */
+    /* Full-Width Header */
     header {
       width: 100%;
-      max-width: 1100px;
-      padding: 20px 30px;
+      padding: 18px 4vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(7, 9, 14, 0.85);
+      background: rgba(7, 9, 14, 0.88);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border);
     }
@@ -65,7 +62,7 @@
     .brand-logo {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 18px;
       color: #fff;
     }
 
@@ -82,13 +79,13 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 7px 14px;
+      padding: 8px 16px;
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
       border-radius: 20px;
       color: var(--muted);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 500;
       transition: all 0.2s ease;
     }
@@ -96,38 +93,42 @@
     nav a:hover {
       color: #fff;
       border-color: var(--teal);
-      background: rgba(0, 232, 198, 0.06);
+      background: rgba(0, 232, 198, 0.08);
+      transform: translateY(-1px);
     }
 
-    /* Main Container (Solid Connected Flow) */
+    /* Full-Screen Edge-to-Edge Container */
     .content-stream {
       width: 100%;
-      max-width: 960px;
-      padding: 40px 24px 100px;
+      padding: 40px 4vw 100px;
       position: relative;
       z-index: 1;
       display: flex;
       flex-direction: column;
-      gap: 48px;
+      gap: 32px;
     }
 
-    /* Hero Profile Section */
+    /* Full Width Hero Profile */
     .hero-block {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 40px;
       display: flex;
-      gap: 36px;
+      gap: 40px;
       align-items: center;
-      padding-bottom: 40px;
-      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
     }
 
     .hero-avatar {
-      width: 190px;
-      height: 190px;
+      width: 240px;
+      height: 240px;
       flex-shrink: 0;
-      border-radius: 20px;
+      border-radius: 18px;
       overflow: hidden;
       border: 1px solid var(--border);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     }
 
     .hero-avatar img {
@@ -144,12 +145,12 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 5px 12px;
+      padding: 6px 14px;
       border-radius: 20px;
       background: rgba(0, 232, 198, 0.08);
       border: 1px solid rgba(0, 232, 198, 0.25);
       color: var(--teal);
-      font-size: 12px;
+      font-size: 13px;
       font-weight: 600;
       font-family: 'JetBrains Mono', monospace;
       margin-bottom: 12px;
@@ -157,8 +158,8 @@
 
     .status-badge::before {
       content: '';
-      width: 6px;
-      height: 6px;
+      width: 7px;
+      height: 7px;
       background: var(--teal);
       border-radius: 50%;
       box-shadow: 0 0 8px var(--teal);
@@ -171,8 +172,8 @@
     }
 
     .typing {
-      font-size: 38px;
-      font-weight: 700;
+      font-size: 42px;
+      font-weight: 800;
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
@@ -193,24 +194,24 @@
 
     .hero-bio {
       color: var(--muted);
-      font-size: 15px;
-      line-height: 1.7;
-      margin-bottom: 24px;
-      max-width: 680px;
+      font-size: 15.5px;
+      line-height: 1.75;
+      margin-bottom: 26px;
+      max-width: 900px;
     }
 
     .hero-actions {
       display: flex;
-      gap: 12px;
+      gap: 14px;
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 10px 22px;
+      padding: 11px 24px;
       border-radius: 8px;
-      font-size: 13.5px;
+      font-size: 14px;
       font-weight: 600;
       text-decoration: none;
       transition: all 0.2s ease;
@@ -238,34 +239,36 @@
       transform: translateY(-2px);
     }
 
-    /* Clean Section Framework */
+    /* Full Width Cards & Sections */
     section {
+      width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 16px;
     }
 
     .section-head {
       display: flex;
       align-items: center;
       gap: 10px;
-      font-size: 18px;
+      font-size: 19px;
       font-weight: 700;
       color: #fff;
     }
 
     .section-head i {
       color: var(--teal);
-      width: 20px;
-      height: 20px;
+      width: 21px;
+      height: 21px;
     }
 
-    /* Structured Container Block */
     .solid-card {
+      width: 100%;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 26px 30px;
+      border-radius: 18px;
+      padding: 32px 36px;
+      backdrop-filter: blur(14px);
       transition: border-color 0.2s ease;
     }
 
@@ -273,16 +276,16 @@
       border-color: var(--border-accent);
     }
 
-    /* Continuous Timeline for Experience */
+    /* Timeline */
     .timeline {
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 26px;
     }
 
     .timeline-entry {
-      border-left: 2px solid rgba(0, 232, 198, 0.3);
-      padding-left: 20px;
+      border-left: 2px solid rgba(0, 232, 198, 0.35);
+      padding-left: 22px;
       position: relative;
     }
 
@@ -295,10 +298,11 @@
       height: 10px;
       border-radius: 50%;
       background: var(--teal);
+      box-shadow: 0 0 8px var(--teal);
     }
 
     .entry-title {
-      font-size: 16px;
+      font-size: 16.5px;
       font-weight: 700;
       color: #fff;
       margin-bottom: 2px;
@@ -318,10 +322,10 @@
     .entry-bullets li {
       font-size: 14px;
       color: var(--muted);
-      margin-bottom: 6px;
+      margin-bottom: 7px;
       position: relative;
-      padding-left: 16px;
-      line-height: 1.6;
+      padding-left: 18px;
+      line-height: 1.65;
     }
 
     .entry-bullets li::before {
@@ -331,18 +335,25 @@
       color: var(--teal);
     }
 
-    /* Skills Grid Organized */
+    /* Full-Screen Two-Column Row */
+    .desktop-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      width: 100%;
+    }
+
+    /* Skills Cloud */
     .skills-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 28px;
     }
 
     .skill-category h4 {
       font-size: 13.5px;
       font-weight: 600;
-      color: #fff;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       text-transform: uppercase;
       letter-spacing: 0.8px;
       color: var(--teal);
@@ -351,81 +362,88 @@
     .tag-cloud {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 10px;
     }
 
     .tag-item {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--border);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 12.5px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
       color: var(--text);
+      transition: border-color 0.2s;
     }
 
-    /* Clean Project Rows */
+    .tag-item:hover {
+      border-color: var(--teal);
+    }
+
+    /* Wide Project Grid */
     .project-stack {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 18px;
     }
 
     .project-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 16px 20px;
+      padding: 20px 24px;
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
-      border-radius: 10px;
+      border-radius: 12px;
       transition: all 0.2s;
     }
 
     .project-row:hover {
       border-color: var(--teal);
       background: rgba(0, 232, 198, 0.03);
-      transform: translateX(4px);
+      transform: translateY(-2px);
     }
 
     .project-desc h4 {
-      font-size: 15px;
+      font-size: 15.5px;
       color: #fff;
       margin-bottom: 4px;
     }
 
     .project-desc p {
-      font-size: 13px;
+      font-size: 13.5px;
       color: var(--muted);
+      line-height: 1.5;
     }
 
     .project-action {
       color: var(--teal);
       text-decoration: none;
-      font-size: 12.5px;
+      font-size: 13px;
       font-weight: 600;
       font-family: 'JetBrains Mono', monospace;
       display: flex;
       align-items: center;
       gap: 4px;
+      flex-shrink: 0;
+      margin-left: 20px;
     }
 
     /* Contact Footbar */
     .contact-bar {
-      display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      width: 100%;
     }
 
     .contact-card {
-      flex: 1;
-      min-width: 220px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 16px;
+      gap: 14px;
+      padding: 18px 22px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 12px;
+      border-radius: 14px;
       text-decoration: none;
       color: var(--muted);
       transition: all 0.2s;
@@ -438,37 +456,40 @@
 
     .contact-card i {
       color: var(--teal);
-      width: 18px;
-      height: 18px;
+      width: 20px;
+      height: 20px;
     }
 
     .contact-card span {
-      font-size: 13.5px;
+      font-size: 14.5px;
       color: #fff;
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 992px) {
       .hero-block {
         flex-direction: column;
         align-items: flex-start;
       }
-      .skills-row {
+      .desktop-row, .skills-row {
         grid-template-columns: 1fr;
       }
       .project-row {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 12px;
+      }
+      .project-action {
+        margin-left: 0;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Matrix Canvas -->
+  <!-- Matrix Background Canvas -->
   <canvas id="matrix"></canvas>
 
-  <!-- Navigation -->
+  <!-- Full Width Header -->
   <header>
     <div class="brand-logo">Raghad<span>.IT</span></div>
     <nav>
@@ -482,7 +503,7 @@
 
   <div class="content-stream">
 
-    <!-- Profile Hero -->
+    <!-- Profile Hero (Full Screen Width) -->
     <div class="hero-block" id="about">
       <div class="hero-avatar">
         <img src="rodii.jpg" alt="Raghad Alyagoot" />
@@ -506,55 +527,64 @@
       </div>
     </div>
 
-    <!-- Experience Section (Continuous Flow) -->
-    <section id="experience">
-      <div class="section-head">
-        <i data-lucide="briefcase"></i> Practical Experience & Field Training
-      </div>
-      <div class="solid-card">
-        <div class="timeline">
-          <div class="timeline-entry">
-            <div class="entry-title">IT Technical Support Trainee (Field Internship)</div>
-            <div class="entry-meta">Hospital IT Infrastructure Department | Active (Completing in 3 Months)</div>
-            <ul class="entry-bullets">
-              <li>Delivering front-line technical support across hospital clinics, laboratories, and administrative workstations.</li>
-              <li>Performing on-site diagnostics, Windows OS configurations, startup troubleshooting, and software deployments.</li>
-              <li>Configuring network hardware, enterprise printers (Ricoh & HP), label machines, and peripheral integrations.</li>
-              <li>Handling service tickets under fast-paced healthcare operational pressure, ensuring minimal system downtime.</li>
-            </ul>
+    <!-- Experience & Education Side-by-Side on Desktop -->
+    <div class="desktop-row">
+      <!-- Experience Section -->
+      <section id="experience">
+        <div class="section-head">
+          <i data-lucide="briefcase"></i> Practical Experience & Field Training
+        </div>
+        <div class="solid-card" style="height: 100%;">
+          <div class="timeline">
+            <div class="timeline-entry">
+              <div class="entry-title">IT Technical Support Trainee (Field Internship)</div>
+              <div class="entry-meta">Hospital IT Infrastructure Department | Active (Completing in 3 Months)</div>
+              <ul class="entry-bullets">
+                <li>Delivering front-line technical support across hospital clinics, laboratories, and administrative workstations.</li>
+                <li>Performing on-site diagnostics, Windows OS configurations, startup troubleshooting, and software deployments.</li>
+                <li>Configuring network hardware, enterprise printers (Ricoh & HP), label machines, and peripheral integrations.</li>
+                <li>Handling service tickets under fast-paced healthcare operational pressure, ensuring minimal system downtime.</li>
+              </ul>
+            </div>
+
+            <div class="timeline-entry" style="margin-bottom: 0;">
+              <div class="entry-title">Networking Bootcamp Winner & Technical Projects</div>
+              <div class="entry-meta">Academic Milestones & Certifications</div>
+              <ul class="entry-bullets">
+                <li>🏆 1st Place Winner — Networking Bootcamp (Designed resilient multi-tier topologies using Cisco Packet Tracer).</li>
+                <li>Completed 7+ specialized technical courses covering networking basics, cloud concepts, and user experience.</li>
+              </ul>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div class="timeline-entry" style="margin-bottom: 0;">
-            <div class="entry-title">Networking Bootcamp Winner & Technical Projects</div>
-            <div class="entry-meta">Academic Milestones & Certifications</div>
-            <ul class="entry-bullets">
-              <li>🏆 1st Place Winner — Networking Bootcamp (Designed resilient multi-tier topologies using Cisco Packet Tracer).</li>
-              <li>Completed 7+ specialized technical courses covering networking basics, cloud concepts, and user experience.</li>
-            </ul>
+      <!-- Education Section -->
+      <section id="education">
+        <div class="section-head">
+          <i data-lucide="graduation-cap"></i> Academic Education
+        </div>
+        <div class="solid-card" style="height: 100%;">
+          <div style="font-weight: 700; color: #fff; font-size: 16.5px; margin-bottom: 3px;">
+            University of Tabuk — Bachelor of Science in Information Technology
+          </div>
+          <div style="color: var(--teal); font-family: 'JetBrains Mono', monospace; font-size: 13px; margin-bottom: 14px;">
+            Senior Year • Expected Graduation: 2026 | GPA: 3.8 / 4.0
+          </div>
+          <p style="font-size: 14px; color: var(--muted); line-height: 1.7; margin-bottom: 18px;">
+            Comprehensive academic curriculum spanning enterprise system design, database architecture, and network security protocols.
+          </p>
+          <div style="border-top: 1px solid var(--border); padding-top: 14px;">
+            <div style="font-size: 12.5px; color: var(--teal); font-weight: 600; text-transform: uppercase; margin-bottom: 8px;">Core Coursework</div>
+            <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6;">
+              Computer Networks & Security, Database Management Systems, Web Development, Operating Systems & Architecture, IT Service Management.
+            </p>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
-    <!-- Education Section -->
-    <section id="education">
-      <div class="section-head">
-        <i data-lucide="graduation-cap"></i> Education
-      </div>
-      <div class="solid-card">
-        <div style="font-weight: 700; color: #fff; font-size: 15.5px; margin-bottom: 2px;">
-          University of Tabuk — Bachelor of Science in Information Technology
-        </div>
-        <div style="color: var(--teal); font-family: 'JetBrains Mono', monospace; font-size: 12.5px; margin-bottom: 10px;">
-          Senior Year • Expected Graduation: 2026 | GPA: 3.8 / 4.0
-        </div>
-        <p style="font-size: 13.5px; color: var(--muted); line-height: 1.6;">
-          Core Coursework: Computer Networks & Security, Database Management Systems, Web Development, Operating Systems & Architecture, IT Service Management.
-        </p>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
+    <!-- Skills Section (Full Width) -->
     <section id="skills">
       <div class="section-head">
         <i data-lucide="cpu"></i> Skills & Competencies
@@ -590,7 +620,7 @@
       </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- Projects Section (Wide Responsive Grid) -->
     <section id="projects">
       <div class="section-head">
         <i data-lucide="folder"></i> Selected Projects
@@ -622,7 +652,7 @@
       </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Contact Section (Full Width Bar) -->
     <section id="contact">
       <div class="section-head">
         <i data-lucide="mail"></i> Contact
