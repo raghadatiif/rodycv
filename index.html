@@ -5,6 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Raghad Alyagoot | Portfolio & CV</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <!-- Lucide Icons Script -->
+  <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
       --bg-dark: #070b14;
@@ -66,7 +68,7 @@
       letter-spacing: 2px;
     }
 
-    /* Navigation */
+    /* Navigation with Icons */
     nav {
       display: flex;
       gap: 12px;
@@ -83,10 +85,13 @@
       border-radius: 50%;
       color: var(--accent-blue);
       text-decoration: none;
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 600;
-      font-size: 13px;
       position: relative;
+      transition: all 0.25s ease;
+    }
+    nav a i, nav a svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.2;
       transition: all 0.25s ease;
     }
     nav a:hover, nav a:focus {
@@ -94,6 +99,9 @@
       color: #050811;
       box-shadow: 0 0 16px rgba(0, 232, 198, 0.4);
       transform: translateY(-2px);
+    }
+    nav a:hover i, nav a:hover svg {
+      stroke: #050811;
     }
     nav a::after {
       content: attr(data-tooltip);
@@ -106,6 +114,7 @@
       padding: 3px 8px;
       border-radius: 6px;
       font-size: 11px;
+      font-family: 'JetBrains Mono', monospace;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.2s ease;
@@ -156,16 +165,34 @@
       font-size: 13px;
       font-weight: 600;
       letter-spacing: 1.5px;
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       text-transform: uppercase;
+    }
+
+    /* Typing Animation */
+    .typing-container {
+      width: fit-content;
+      margin-bottom: 20px;
     }
     .hero-content .typing {
       font-size: 38px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 16px;
-      line-height: 1.2;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid var(--accent-cyan);
+      width: 0;
+      animation: typing 2.8s steps(15) 0.5s forwards, blink 0.75s step-end infinite;
+      letter-spacing: 1px;
     }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      50% { border-color: transparent; }
+    }
+
     .hero-content p {
       font-size: 15px;
       margin-bottom: 28px;
@@ -187,7 +214,9 @@
       border-radius: 10px;
       transition: all 0.3s ease;
       box-shadow: 0 6px 20px rgba(0, 232, 198, 0.25);
-      display: inline-block;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
     }
     .btn:hover {
       transform: translateY(-2px);
@@ -224,14 +253,19 @@
       margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding-bottom: 14px;
     }
-    section.page-content h2::before {
-      content: '//';
+    section.page-content h2 .tag-slash {
       color: var(--accent-cyan);
       font-family: 'JetBrains Mono', monospace;
+    }
+    section.page-content h2 i, section.page-content h2 svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent-cyan);
+      margin-right: 4px;
     }
     section.page-content p {
       color: var(--text-muted);
@@ -388,11 +422,13 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       transition: color 0.2s;
     }
     .project-card a:hover {
       color: var(--accent-blue);
-      text-decoration: underline;
     }
 
     /* Hobbies Badges */
@@ -408,21 +444,37 @@
       border-radius: 30px;
       font-size: 13px;
       color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
       transition: all 0.2s;
+    }
+    .hobby-item i, .hobby-item svg {
+      width: 14px;
+      height: 14px;
+      stroke: var(--accent-blue);
     }
     .hobby-item:hover {
       border-color: var(--accent-cyan);
       color: var(--accent-cyan);
       background: rgba(0, 232, 198, 0.05);
     }
+    .hobby-item:hover i, .hobby-item:hover svg {
+      stroke: var(--accent-cyan);
+    }
 
     /* Contact Links */
     .contact-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       margin-bottom: 14px;
       font-size: 15px;
+    }
+    .contact-item i, .contact-item svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-cyan);
     }
     .contact-item a {
       color: var(--accent-blue);
@@ -444,10 +496,10 @@
       height: 44px;
       border: none;
       border-radius: 50%;
-      font-weight: 700;
-      font-size: 16px;
       cursor: pointer;
       display: none;
+      align-items: center;
+      justify-content: center;
       box-shadow: 0 4px 20px rgba(0, 232, 198, 0.4);
       z-index: 999;
       transition: transform 0.2s ease;
@@ -465,6 +517,17 @@
       }
       .hero-content {
         padding: 35px 25px;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-content .typing {
+        font-size: 28px;
+      }
+      .typing-container {
+        margin: 0 auto 20px auto;
+      }
+      .hero-btns {
+        justify-content: center;
       }
       header {
         padding: 15px 20px;
@@ -482,13 +545,13 @@
   <header>
     <div class="logo">&lt;Raghad /&gt;</div>
     <nav>
-      <a href="#home" data-tooltip="Home">01</a>
-      <a href="#about" data-tooltip="About">02</a>
-      <a href="#education" data-tooltip="Education">03</a>
-      <a href="#experience" data-tooltip="Experience">04</a>
-      <a href="#projects" data-tooltip="Projects">05</a>
-      <a href="#skills" data-tooltip="Skills">06</a>
-      <a href="#contact" data-tooltip="Contact">07</a>
+      <a href="#home" data-tooltip="Home"><i data-lucide="home"></i></a>
+      <a href="#about" data-tooltip="About"><i data-lucide="user"></i></a>
+      <a href="#education" data-tooltip="Education"><i data-lucide="graduation-cap"></i></a>
+      <a href="#experience" data-tooltip="Experience"><i data-lucide="briefcase"></i></a>
+      <a href="#projects" data-tooltip="Projects"><i data-lucide="folder-git-2"></i></a>
+      <a href="#skills" data-tooltip="Skills"><i data-lucide="cpu"></i></a>
+      <a href="#contact" data-tooltip="Contact"><i data-lucide="mail"></i></a>
     </nav>
   </header>
 
@@ -499,20 +562,22 @@
     </div>
     <div class="hero-content">
       <span class="hero-tag">IT Senior & Technical Support Specialist</span>
-      <div class="typing">Raghad Alyagoot</div>
+      <div class="typing-container">
+        <div class="typing">Raghad Alyagoot</div>
+      </div>
       <p>
         Senior IT student currently undergoing practical field training in Hospital IT & Technical Support. Experienced in diagnosing hardware/network issues, maintaining healthcare workstations, and ensuring high system uptime under demanding clinical operations.
       </p>
       <div class="hero-btns">
-        <a href="#experience" class="btn">View Field Training</a>
-        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        <a href="#experience" class="btn"><i data-lucide="activity" style="width: 16px; height: 16px;"></i> View Field Training</a>
+        <a href="#contact" class="btn btn-secondary"><i data-lucide="send" style="width: 16px; height: 16px;"></i> Contact Me</a>
       </div>
     </div>
   </main>
 
   <!-- About Section -->
   <section class="page-content" id="about">
-    <h2>About Me</h2>
+    <h2><span class="tag-slash">//</span> <i data-lucide="user"></i> About Me</h2>
     <p>
       Senior Information Technology student at the University of Tabuk, blending academic knowledge with intensive field experience in enterprise IT support and infrastructure maintenance.
     </p>
@@ -523,7 +588,7 @@
 
   <!-- Education Section -->
   <section class="page-content" id="education">
-    <h2>Education</h2>
+    <h2><span class="tag-slash">//</span> <i data-lucide="graduation-cap"></i> Education</h2>
     <p style="color: #fff; font-size: 16px; font-weight: 600;">
       University of Tabuk — Bachelor of Science in Information Technology
     </p>
@@ -537,7 +602,7 @@
 
   <!-- Experience Section -->
   <section class="page-content" id="experience">
-    <h2>Experience & Field Training</h2>
+    <h2><span class="tag-slash">//</span> <i data-lucide="briefcase"></i> Experience & Field Training</h2>
 
     <div class="experience-box">
       <div class="exp-title">IT Technical Support Trainee (Co-op / Field Internship)</div>
@@ -563,34 +628,34 @@
 
   <!-- Projects Section -->
   <section class="page-content" id="projects">
-    <h2>Projects & Research</h2>
+    <h2><span class="tag-slash">//</span> <i data-lucide="folder-git-2"></i> Projects & Research</h2>
     <div class="projects-grid">
       <div class="project-card">
         <h3>Tier-3 Enterprise Network Simulation</h3>
         <p>Architected and configured a scalable multi-tier network topology utilizing Cisco Packet Tracer, configuring VLAN routing, access control, and IP subnetting.</p>
-        <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Topology &rarr;</a>
+        <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Topology <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
       </div>
       <div class="project-card">
         <h3>Decentralized Web & Data Privacy Paper</h3>
         <p>Comprehensive research exploring decentralized web protocols, cryptographic identity security, and enterprise data privacy protections.</p>
-        <a href="#" target="_blank">Read Research &rarr;</a>
+        <a href="#" target="_blank">Read Research <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
       </div>
       <div class="project-card">
         <h3>Real-time Task Tracking Web App</h3>
         <p>Interactive web application built with React and Firebase backend for synchronous task management and team collaboration tracking.</p>
-        <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">Inspect Repo &rarr;</a>
+        <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">Inspect Repo <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
       </div>
       <div class="project-card">
         <h3>Custom Portfolio & Terminal Canvas</h3>
         <p>Engineered a responsive portfolio web application utilizing vanilla JavaScript for a real-time matrix animation canvas and modular CSS.</p>
-        <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Source &rarr;</a>
+        <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Source <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
       </div>
     </div>
   </section>
 
   <!-- Skills Section -->
   <section class="page-content" id="skills">
-    <h2>Skills & Competencies</h2>
+    <h2><span class="tag-slash">//</span> <i data-lucide="cpu"></i> Skills & Competencies</h2>
 
     <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">Technical Expertise</p>
     
@@ -623,19 +688,19 @@
     
     <div class="soft-skills-grid">
       <div class="soft-skill-card">
-        <div class="soft-skill-title">⚡ High-Pressure Troubleshooting</div>
+        <div class="soft-skill-title"><i data-lucide="zap" style="width: 18px; height: 18px;"></i> High-Pressure Troubleshooting</div>
         <div class="soft-skill-desc">Proven capacity to stay calm, prioritize incident tickets, and restore technical operations swiftly in critical healthcare environments.</div>
       </div>
       <div class="soft-skill-card">
-        <div class="soft-skill-title">🤝 Cross-Departmental Teamwork</div>
+        <div class="soft-skill-title"><i data-lucide="users" style="width: 18px; height: 18px;"></i> Cross-Departmental Teamwork</div>
         <div class="soft-skill-desc">Skilled in communicating technical instructions clearly to both end-users (medical staff) and core IT infrastructure teams.</div>
       </div>
       <div class="soft-skill-card">
-        <div class="soft-skill-title">🎯 Systematic Root-Cause Analysis</div>
+        <div class="soft-skill-title"><i data-lucide="shield-alert" style="width: 18px; height: 18px;"></i> Systematic Root-Cause Analysis</div>
         <div class="soft-skill-desc">Structured diagnostic approach to hardware failures, network disconnections, and endpoint security issues.</div>
       </div>
       <div class="soft-skill-card">
-        <div class="soft-skill-title">🔄 Adaptability & Fast Onboarding</div>
+        <div class="soft-skill-title"><i data-lucide="refresh-cw" style="width: 18px; height: 18px;"></i> Adaptability & Fast Onboarding</div>
         <div class="soft-skill-desc">Rapidly mastering enterprise software, hospital information systems (HIS), and novel IT maintenance procedures.</div>
       </div>
     </div>
@@ -643,38 +708,44 @@
 
   <!-- Hobbies Section -->
   <section class="page-content" id="hobbies">
-    <h2>Interests & Pursuits</h2>
+    <h2><span class="tag-slash">//</span> <i data-lucide="sparkles"></i> Interests & Pursuits</h2>
     <div class="hobbies-list">
-      <div class="hobby-item">IT Infrastructure & Support</div>
-      <div class="hobby-item">UI/UX Interface Design</div>
-      <div class="hobby-item">Network Architecture</div>
-      <div class="hobby-item">Drawing & Visual Arts</div>
-      <div class="hobby-item">Fitness & Well-being</div>
-      <div class="hobby-item">Emerging Tech Trends</div>
+      <div class="hobby-item"><i data-lucide="wrench"></i> IT Infrastructure & Support</div>
+      <div class="hobby-item"><i data-lucide="palette"></i> UI/UX Interface Design</div>
+      <div class="hobby-item"><i data-lucide="network"></i> Network Architecture</div>
+      <div class="hobby-item"><i data-lucide="brush"></i> Drawing & Visual Arts</div>
+      <div class="hobby-item"><i data-lucide="heart-pulse"></i> Fitness & Well-being</div>
+      <div class="hobby-item"><i data-lucide="compass"></i> Emerging Tech Trends</div>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section class="page-content" id="contact">
-    <h2>Contact</h2>
+    <h2><span class="tag-slash">//</span> <i data-lucide="mail"></i> Contact</h2>
     <div class="contact-item">
+      <i data-lucide="mail"></i>
       <span>Email:</span>
       <a href="mailto:ragad1alyagoot@gmail.com">ragad1alyagoot@gmail.com</a>
     </div>
     <div class="contact-item">
+      <i data-lucide="phone"></i>
       <span>Phone:</span>
       <a href="tel:+966545077990">0545077990</a>
     </div>
     <div class="contact-item" style="margin-top: 20px;">
       <a href="Raghad_Alyagoot_CV.pdf" class="btn" download style="padding: 10px 22px; font-size: 13px;">
-        Download CV (PDF) 📄
+        <i data-lucide="file-down" style="width: 16px; height: 16px;"></i> Download CV (PDF)
       </a>
     </div>
   </section>
 
-  <button id="topBtn" onclick="scrollToTop()">↑</button>
+  <button id="topBtn" onclick="scrollToTop()"><i data-lucide="arrow-up" style="width: 20px; height: 20px; stroke: #050811;"></i></button>
 
   <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Matrix Background Animation
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
@@ -716,7 +787,7 @@
 
     const topBtn = document.getElementById("topBtn");
     window.onscroll = () => {
-      topBtn.style.display = window.scrollY > 250 ? "block" : "none";
+      topBtn.style.display = window.scrollY > 250 ? "flex" : "none";
     };
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
