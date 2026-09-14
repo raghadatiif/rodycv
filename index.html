@@ -3,17 +3,29 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Raghad Alyagoot | Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <title>Raghad Alyagoot | Portfolio & CV</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-    /* Reset */
+    :root {
+      --bg-dark: #070b14;
+      --card-bg: rgba(15, 23, 42, 0.85);
+      --card-border: rgba(56, 189, 248, 0.15);
+      --card-border-hover: rgba(0, 232, 198, 0.4);
+      --accent-cyan: #00e8c6;
+      --accent-blue: #38bdf8;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+    }
+
     * {
-      margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; scroll-behavior: smooth;
+      margin: 0; padding: 0; box-sizing: border-box; 
+      font-family: 'Plus Jakarta Sans', sans-serif; 
+      scroll-behavior: smooth;
     }
 
     body {
-      background-color: #000;
-      color: #fff;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
@@ -22,293 +34,403 @@
       position: relative;
     }
 
-    /* Canvas for background matrix */
     canvas#matrix {
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       z-index: -1;
-      background: transparent;
+      opacity: 0.25;
     }
 
     /* Header */
     header {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1100px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 15px 40px;
-      background-color: rgba(0,0,0,0.85);
+      padding: 16px 30px;
+      background-color: rgba(7, 11, 20, 0.85);
       position: sticky;
       top: 0;
       z-index: 50;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 2px 6px rgba(0,0,0,0.7);
-      flex-wrap: wrap;
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
     header .logo {
+      font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
-      font-size: 20px;
-      color: #007a99;
+      font-size: 18px;
+      color: var(--accent-cyan);
       letter-spacing: 2px;
-      user-select: none;
     }
 
-    /* Navigation with circular blue buttons */
+    /* Navigation */
     nav {
       display: flex;
-      gap: 18px;
+      gap: 12px;
       flex-wrap: wrap;
     }
     nav a {
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 50px;
-      height: 50px;
-      background-color: #001f2f;
+      width: 42px;
+      height: 42px;
+      background-color: rgba(15, 23, 42, 0.9);
+      border: 1px solid var(--card-border);
       border-radius: 50%;
-      color: #007a99;
+      color: var(--accent-blue);
       text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
-      box-shadow: 0 0 10px #007a99aa;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 600;
+      font-size: 13px;
       position: relative;
-      transition: all 0.3s ease;
-      user-select: none;
+      transition: all 0.25s ease;
     }
     nav a:hover, nav a:focus {
-      background-color: #007a99;
-      color: #000;
-      box-shadow: 0 0 15px #00aaffcc;
-      transform: scale(1.1);
-      outline: none;
+      background-color: var(--accent-cyan);
+      color: #050811;
+      box-shadow: 0 0 16px rgba(0, 232, 198, 0.4);
+      transform: translateY(-2px);
     }
     nav a::after {
       content: attr(data-tooltip);
       position: absolute;
-      bottom: -30px;
+      bottom: -32px;
       white-space: nowrap;
-      background: #007a99cc;
-      color: #000;
-      padding: 4px 8px;
+      background: #0f172a;
+      border: 1px solid var(--card-border);
+      color: var(--accent-cyan);
+      padding: 3px 8px;
       border-radius: 6px;
-      font-size: 12px;
+      font-size: 11px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s ease;
+      transition: opacity 0.2s ease;
     }
-    nav a:hover::after, nav a:focus::after {
+    nav a:hover::after {
       opacity: 1;
     }
 
-    /* Main Hero */
+    /* Hero Section */
     main.hero {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1000px;
       display: flex;
       flex-wrap: wrap;
-      background-color: #053a52;
-      margin: 30px 0;
-      border-radius: 14px;
+      background: var(--card-bg);
+      margin: 40px 20px 20px 20px;
+      border-radius: 20px;
+      border: 1px solid var(--card-border);
       overflow: hidden;
-      box-shadow: 0 0 25px #000000bb;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(10px);
     }
     .hero-image {
-      flex: 1 1 450px;
-      min-width: 300px;
-      max-height: 450px;
+      flex: 1 1 380px;
+      min-width: 280px;
+      max-height: 440px;
       overflow: hidden;
     }
     .hero-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.6s ease;
-      border-radius: 0 0 0 14px;
+      transition: transform 0.5s ease;
     }
     .hero-image img:hover {
-      transform: scale(1.07);
+      transform: scale(1.04);
     }
     .hero-content {
-      flex: 1 1 450px;
-      padding: 60px 50px;
+      flex: 1 1 420px;
+      padding: 50px 45px;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      text-align: left;
+    }
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+      text-transform: uppercase;
     }
     .hero-content .typing {
-      font-size: 48px;
+      font-size: 38px;
       font-weight: 700;
-      border-right: 3px solid #007a99;
-      width: fit-content;
-      white-space: nowrap;
-      overflow: hidden;
-      animation: typing 3.5s steps(20), blink 0.6s step-end infinite;
-      margin-bottom: 30px;
-      color: #007a99;
-      letter-spacing: 2px;
-      user-select: none;
-    }
-    @keyframes typing {
-      from { width: 0 }
-      to { width: 100% }
-    }
-    @keyframes blink {
-      50% { border-color: transparent }
+      color: #fff;
+      margin-bottom: 16px;
+      line-height: 1.2;
     }
     .hero-content p {
-      font-size: 16px;
-      margin-bottom: 40px;
-      max-width: 480px;
-      line-height: 1.5;
-      color: #eee;
+      font-size: 15px;
+      margin-bottom: 28px;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+    .hero-btns {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
     }
     .btn {
-      background-color: #007a99;
-      color: #fff;
-      padding: 12px 28px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      color: #050811;
+      padding: 12px 24px;
       text-decoration: none;
       font-weight: 700;
       font-size: 14px;
-      border-radius: 8px;
-      width: fit-content;
-      box-shadow: 0 5px 15px #007a9988;
-      transition: background-color 0.3s ease;
-      user-select: none;
+      border-radius: 10px;
+      transition: all 0.3s ease;
+      box-shadow: 0 6px 20px rgba(0, 232, 198, 0.25);
+      display: inline-block;
     }
     .btn:hover {
-      background-color: #005f73;
-      box-shadow: 0 8px 25px #007a99cc;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(56, 189, 248, 0.4);
+    }
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid var(--card-border);
+      box-shadow: none;
+    }
+    .btn-secondary:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      box-shadow: 0 0 15px rgba(0, 232, 198, 0.2);
     }
 
-    /* Section styling */
+    /* Content Sections */
     section.page-content {
       width: 100%;
-      max-width: 800px;
-      background: #053a52;
-      border-radius: 14px;
-      box-shadow: 0 0 18px #000000cc;
-      margin: 60px 0;
-      padding: 30px 40px;
+      max-width: 1000px;
+      background: var(--card-bg);
+      border-radius: 18px;
+      border: 1px solid var(--card-border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      margin: 25px 20px;
+      padding: 35px 40px;
+      backdrop-filter: blur(8px);
     }
     section.page-content h2 {
-      color: #007a99;
-      margin-bottom: 25px;
+      color: #fff;
+      font-size: 22px;
       font-weight: 700;
-      font-size: 28px;
-      letter-spacing: 1.3px;
-      border-bottom: 3px solid #007a99;
-      padding-bottom: 12px;
-      user-select: none;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 14px;
     }
-    section.page-content p, section.page-content ul {
-      color: #ddd;
-      font-size: 16px;
-      margin-bottom: 22px;
-      line-height: 1.6;
+    section.page-content h2::before {
+      content: '//';
+      color: var(--accent-cyan);
+      font-family: 'JetBrains Mono', monospace;
     }
-    section.page-content ul {
+    section.page-content p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 14px;
+      line-height: 1.7;
+    }
+
+    /* Experience Timeline */
+    .experience-box {
+      border-left: 2px solid var(--accent-cyan);
+      padding-left: 22px;
+      margin-bottom: 26px;
+      position: relative;
+    }
+    .experience-box::before {
+      content: '';
+      position: absolute;
+      left: -6px;
+      top: 4px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 10px var(--accent-cyan);
+    }
+    .exp-title {
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .exp-meta {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: var(--accent-blue);
+      margin-bottom: 10px;
+    }
+    .exp-points {
       list-style-type: none;
       padding-left: 0;
     }
-    section.page-content ul li {
-      background: #005f73;
-      padding: 14px 22px;
-      margin-bottom: 14px;
-      border-radius: 14px;
-      box-shadow: inset 0 0 10px #004051;
-      font-weight: 700;
-      transition: background-color 0.3s ease;
-      cursor: default;
-      user-select: none;
+    .exp-points li {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-bottom: 6px;
+      position: relative;
+      padding-left: 18px;
+      line-height: 1.6;
     }
-    section.page-content ul li:hover {
-      background-color: #007a99;
-      box-shadow: 0 0 10px #007a99cc;
-      color: #fff;
+    .exp-points li::before {
+      content: '▹';
+      position: absolute;
+      left: 0;
+      color: var(--accent-cyan);
     }
 
-    /* Skills bars */
+    /* Skills: Technical Progress Bars */
+    .skill-wrapper {
+      margin-bottom: 18px;
+    }
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 13px;
+      margin-bottom: 6px;
+      color: var(--text-main);
+      font-weight: 600;
+    }
     .skills-bar {
-      background: #004051;
-      border-radius: 14px;
-      height: 24px;
-      margin-bottom: 22px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 20px;
+      height: 8px;
       overflow: hidden;
-      box-shadow: inset 0 0 10px #002832;
+      border: 1px solid rgba(255, 255, 255, 0.04);
     }
     .skills-bar div {
       height: 100%;
-      background: linear-gradient(90deg, #007a99, #00aacc);
-      text-align: right;
-      padding-right: 14px;
-      line-height: 24px;
-      color: #001f2f;
-      font-weight: 800;
-      font-size: 15px;
-      transition: width 0.8s ease;
-      border-radius: 14px 0 0 14px;
-      user-select: none;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
+      border-radius: 20px;
+      transition: width 1s ease-in-out;
     }
 
-    /* Projects cards */
+    /* Skills: Soft & Professional Skills Cards */
+    .soft-skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 25px;
+    }
+    .soft-skill-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px;
+      transition: all 0.3s ease;
+    }
+    .soft-skill-card:hover {
+      border-color: var(--card-border-hover);
+      transform: translateY(-2px);
+      background: rgba(0, 232, 198, 0.03);
+    }
+    .soft-skill-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--accent-cyan);
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .soft-skill-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    /* Projects Grid */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+    }
     .project-card {
-      background: #004051;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
       border-radius: 14px;
       padding: 22px;
-      margin: 20px 0;
-      box-shadow: 0 0 25px #003b50cc;
-      transition: transform 0.3s ease;
-      cursor: pointer;
-      user-select: none;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .project-card:hover {
-      transform: scale(1.05);
-      background-color: #006f90;
-      box-shadow: 0 0 30px #00b4ffdd;
+      transform: translateY(-4px);
+      border-color: var(--accent-cyan);
+      background: rgba(0, 232, 198, 0.03);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
     }
     .project-card h3 {
+      font-size: 17px;
+      color: #fff;
       margin-bottom: 10px;
-      color: #00b4ff;
-      font-size: 22px;
-      user-select: none;
     }
     .project-card p {
-      margin-bottom: 14px;
-      color: #cceeff;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
     }
     .project-card a {
-      color: #00b4ff;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--accent-cyan);
       text-decoration: none;
-      font-weight: 800;
-      font-size: 15px;
-      transition: color 0.3s ease;
-      user-select: text;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s;
     }
     .project-card a:hover {
-      color: #0099cc;
+      color: var(--accent-blue);
+      text-decoration: underline;
     }
 
-    /* Hobbies */
+    /* Hobbies Badges */
     .hobbies-list {
       display: flex;
       flex-wrap: wrap;
-      gap: 14px;
-      user-select: none;
+      gap: 10px;
     }
     .hobby-item {
-      background: #004051;
-      padding: 12px 22px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 8px 18px;
       border-radius: 30px;
-      font-weight: 700;
-      box-shadow: inset 0 0 12px #002832;
-      cursor: default;
+      font-size: 13px;
+      color: var(--text-muted);
+      transition: all 0.2s;
+    }
+    .hobby-item:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      background: rgba(0, 232, 198, 0.05);
+    }
+
+    /* Contact Links */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
       font-size: 15px;
-      color: #00b4ff;
+    }
+    .contact-item a {
+      color: var(--accent-blue);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-item a:hover {
+      color: var(--accent-cyan);
     }
 
     /* Scroll to top button */
@@ -316,66 +438,57 @@
       position: fixed;
       bottom: 25px;
       right: 25px;
-      background: #007a99;
-      color: #000;
-      padding: 14px 22px;
+      background: var(--accent-cyan);
+      color: #050811;
+      width: 44px;
+      height: 44px;
       border: none;
-      border-radius: 30px;
+      border-radius: 50%;
       font-weight: 700;
-      font-size: 15px;
+      font-size: 16px;
       cursor: pointer;
       display: none;
-      box-shadow: 0 8px 25px #00b4ffdd;
+      box-shadow: 0 4px 20px rgba(0, 232, 198, 0.4);
       z-index: 999;
-      transition: background-color 0.3s ease;
-      user-select: none;
+      transition: transform 0.2s ease;
     }
     #topBtn:hover {
-      background-color: #005f73;
+      transform: scale(1.1);
     }
 
-    /* Responsive */
     @media (max-width: 900px) {
       main.hero {
         flex-direction: column;
-        margin-top: 20px;
       }
-      .hero-image, .hero-content {
-        flex: none;
-        max-width: 100%;
-      }
-      .hero-image img {
-        height: 320px;
-        border-radius: 14px 14px 0 0;
+      .hero-image {
+        max-height: 280px;
       }
       .hero-content {
-        padding: 45px 25px;
-        text-align: center;
+        padding: 35px 25px;
       }
       header {
-        justify-content: center;
+        padding: 15px 20px;
       }
-      nav {
-        justify-content: center;
+      section.page-content {
+        padding: 25px 20px;
       }
     }
   </style>
 </head>
 <body>
-  <!-- Background Matrix -->
+
   <canvas id="matrix"></canvas>
 
-  <!-- Header with Logo and Navigation -->
   <header>
-    <div class="logo">RAGHAD</div>
+    <div class="logo">&lt;Raghad /&gt;</div>
     <nav>
-      <a href="#home" data-tooltip="Intro">IN</a>
-      <a href="#about" data-tooltip="About Me">AB</a>
-      <a href="#education" data-tooltip="Education">ED</a>
-      <a href="#experience" data-tooltip="Experience">EX</a>
-      <a href="#projects" data-tooltip="Projects">PR</a>
-      <a href="#skills" data-tooltip="Skills">SK</a>
-      <a href="#contact" data-tooltip="Contact">CT</a>
+      <a href="#home" data-tooltip="Home">01</a>
+      <a href="#about" data-tooltip="About">02</a>
+      <a href="#education" data-tooltip="Education">03</a>
+      <a href="#experience" data-tooltip="Experience">04</a>
+      <a href="#projects" data-tooltip="Projects">05</a>
+      <a href="#skills" data-tooltip="Skills">06</a>
+      <a href="#contact" data-tooltip="Contact">07</a>
     </nav>
   </header>
 
@@ -385,12 +498,15 @@
       <img src="rodii.jpg" alt="Raghad Alyagoot" />
     </div>
     <div class="hero-content">
+      <span class="hero-tag">IT Senior & Technical Support Specialist</span>
       <div class="typing">Raghad Alyagoot</div>
       <p>
-        A passionate IT student who thrives on curiosity and continuous learning. Driven by challenges and committed to personal growth, I enjoy exploring new technologies and developing practical skills to make a meaningful impact.
-
+        Senior IT student currently undergoing practical field training in Hospital IT & Technical Support. Experienced in diagnosing hardware/network issues, maintaining healthcare workstations, and ensuring high system uptime under demanding clinical operations.
       </p>
-      <a href="#about" class="btn">Explore Now</a>
+      <div class="hero-btns">
+        <a href="#experience" class="btn">View Field Training</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+      </div>
     </div>
   </main>
 
@@ -398,140 +514,209 @@
   <section class="page-content" id="about">
     <h2>About Me</h2>
     <p>
-      Passionate about technology, programming, and design, I am dedicated to developing innovative solutions that blend creativity and logic. I love collaborating on projects that challenge me and help me grow.
+      Senior Information Technology student at the University of Tabuk, blending academic knowledge with intensive field experience in enterprise IT support and infrastructure maintenance.
     </p>
     <p>
-      Currently a senior at the University of Tabuk, majoring in Information Technology, I am excited about building a career in software development and UI/UX design.
+      Currently completing my capstone field internship at a healthcare facility's IT Department (completing within 3 months). My primary focus revolves around Level 1/2 technical support, operational troubleshooting, network printer configurations, and maintaining flawless digital connectivity across critical departments.
     </p>
   </section>
 
   <!-- Education Section -->
   <section class="page-content" id="education">
     <h2>Education</h2>
-    <p><strong>University of Tabuk</strong> — Bachelor in Information Technology</p>
-    <p>Expected Graduation: 2026</p>
-    <ul>
-      <li>Relevant Courses: Data Structures, Web Development, Database Systems, Network Security</li>
-      <li>GPA: 3.8 / 4.0</li>
-    </ul>
+    <p style="color: #fff; font-size: 16px; font-weight: 600;">
+      University of Tabuk — Bachelor of Science in Information Technology
+    </p>
+    <p style="color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px;">
+      Senior Year • Expected Graduation: 2026 | GPA: 3.8 / 4.0
+    </p>
+    <p style="margin-top: 10px;">
+      Relevant Coursework: Computer Networks & Security, Database Management Systems, Web Development, Operating Systems & Architecture, IT Service Management principles.
+    </p>
   </section>
 
   <!-- Experience Section -->
   <section class="page-content" id="experience">
-    <h2>Experience & Achievements</h2>
-    <ul>
-      <li>🏆 1st Place Winner - Networking Bootcamp, 2024</li>
-      <li>📚 Completed 7 Professional Courses in IT and Design</li>
-      <li>💻 Internship at Tech Solutions Co. - Assisted in front-end development</li>
-    </ul>
+    <h2>Experience & Field Training</h2>
+
+    <div class="experience-box">
+      <div class="exp-title">IT Technical Support Trainee (Co-op / Field Internship)</div>
+      <div class="exp-meta">Hospital IT Department | Active Training (Completing in 3 Months)</div>
+      <ul class="exp-points">
+        <li>Delivering front-line technical support across clinical, administrative, and laboratory units to resolve urgent system disruptions.</li>
+        <li>Performing on-site diagnostics, OS maintenance (Windows), startup troubleshooting, and software deployments.</li>
+        <li>Configuring network hardware, Ricoh/HP enterprise printers, label machines, and essential clinical peripherals.</li>
+        <li>Handling service tickets under fast-paced healthcare operational pressure, ensuring minimal system downtime.</li>
+      </ul>
+    </div>
+
+    <div class="experience-box">
+      <div class="exp-title">Practical Experience & Technical Bootcamps</div>
+      <div class="exp-meta">Projects & Competitions</div>
+      <ul class="exp-points">
+        <li>🏆 1st Place Winner — Networking Bootcamp (Designed resilient multi-tier topologies using Cisco Packet Tracer, 2024).</li>
+        <li>Practical Web Development & Interface Prototyping during collaborative software projects.</li>
+        <li>Completed 7+ specialized technical courses covering networking basics, cloud concepts, and user experience.</li>
+      </ul>
+    </div>
   </section>
 
   <!-- Projects Section -->
   <section class="page-content" id="projects">
-    <h2>Projects</h2>
-    <div class="project-card">
-      <h3>Personal Portfolio Website</h3>
-      <p>Built with HTML, CSS, and JavaScript. Responsive and interactive design.</p>
-      <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>Task Tracking Web App</h3>
-      <p>React-based app with Firebase backend for real-time task management.</p>
-      <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">View Project</a>
-    </div>
-    <div class="project-card">
-      <h3>Networking Simulation</h3>
-      <p>Designed and implemented a tier 3 network topology using Cisco Packet Tracer.</p>
-      <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Project</a>
+    <h2>Projects & Research</h2>
+    <div class="projects-grid">
+      <div class="project-card">
+        <h3>Tier-3 Enterprise Network Simulation</h3>
+        <p>Architected and configured a scalable multi-tier network topology utilizing Cisco Packet Tracer, configuring VLAN routing, access control, and IP subnetting.</p>
+        <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Topology &rarr;</a>
+      </div>
+      <div class="project-card">
+        <h3>Decentralized Web & Data Privacy Paper</h3>
+        <p>Comprehensive research exploring decentralized web protocols, cryptographic identity security, and enterprise data privacy protections.</p>
+        <a href="#" target="_blank">Read Research &rarr;</a>
+      </div>
+      <div class="project-card">
+        <h3>Real-time Task Tracking Web App</h3>
+        <p>Interactive web application built with React and Firebase backend for synchronous task management and team collaboration tracking.</p>
+        <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">Inspect Repo &rarr;</a>
+      </div>
+      <div class="project-card">
+        <h3>Custom Portfolio & Terminal Canvas</h3>
+        <p>Engineered a responsive portfolio web application utilizing vanilla JavaScript for a real-time matrix animation canvas and modular CSS.</p>
+        <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Source &rarr;</a>
+      </div>
     </div>
   </section>
 
   <!-- Skills Section -->
   <section class="page-content" id="skills">
-    <h2>Technical Skills</h2>
-    <p>HTML</p>
-    <div class="skills-bar"><div style="width: 90%;">90%</div></div>
-    <p>CSS</p>
-    <div class="skills-bar"><div style="width: 85%;">85%</div></div>
-    <p>JavaScript</p>
-    <div class="skills-bar"><div style="width: 75%;">75%</div></div>
-    <p>UI/UX Design (Figma, Canva)</p>
-    <div class="skills-bar"><div style="width: 85%;">85%</div></div>
-    <p>MySQL & PHP</p>
-    <div class="skills-bar"><div style="width: 70%;">70%</div></div>
-    <p>Networking (Packet Tracer)</p>
-    <div class="skills-bar"><div style="width: 80%;">80%</div></div>
+    <h2>Skills & Competencies</h2>
+
+    <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">Technical Expertise</p>
+    
+    <div class="skill-wrapper">
+      <div class="skill-info"><span>IT Help Desk & Hardware Support (Printers, OS Diagnostics, Peripherals)</span><span>92%</span></div>
+      <div class="skills-bar"><div style="width: 92%;"></div></div>
+    </div>
+
+    <div class="skill-wrapper">
+      <div class="skill-info"><span>Computer Networking (Packet Tracer, VLANs, Subnetting, Routing)</span><span>85%</span></div>
+      <div class="skills-bar"><div style="width: 85%;"></div></div>
+    </div>
+
+    <div class="skill-wrapper">
+      <div class="skill-info"><span>Frontend Web Development (HTML5, CSS3, JavaScript)</span><span>80%</span></div>
+      <div class="skills-bar"><div style="width: 80%;"></div></div>
+    </div>
+
+    <div class="skill-wrapper">
+      <div class="skill-info"><span>Database Systems & Backend (MySQL, PHP)</span><span>70%</span></div>
+      <div class="skills-bar"><div style="width: 70%;"></div></div>
+    </div>
+
+    <div class="skill-wrapper">
+      <div class="skill-info"><span>UI/UX Prototyping (Figma, Canva)</span><span>85%</span></div>
+      <div class="skills-bar"><div style="width: 85%;"></div></div>
+    </div>
+
+    <p style="color: #fff; font-weight: 600; margin-top: 30px; margin-bottom: 8px;">Professional & Operational Strengths</p>
+    
+    <div class="soft-skills-grid">
+      <div class="soft-skill-card">
+        <div class="soft-skill-title">⚡ High-Pressure Troubleshooting</div>
+        <div class="soft-skill-desc">Proven capacity to stay calm, prioritize incident tickets, and restore technical operations swiftly in critical healthcare environments.</div>
+      </div>
+      <div class="soft-skill-card">
+        <div class="soft-skill-title">🤝 Cross-Departmental Teamwork</div>
+        <div class="soft-skill-desc">Skilled in communicating technical instructions clearly to both end-users (medical staff) and core IT infrastructure teams.</div>
+      </div>
+      <div class="soft-skill-card">
+        <div class="soft-skill-title">🎯 Systematic Root-Cause Analysis</div>
+        <div class="soft-skill-desc">Structured diagnostic approach to hardware failures, network disconnections, and endpoint security issues.</div>
+      </div>
+      <div class="soft-skill-card">
+        <div class="soft-skill-title">🔄 Adaptability & Fast Onboarding</div>
+        <div class="soft-skill-desc">Rapidly mastering enterprise software, hospital information systems (HIS), and novel IT maintenance procedures.</div>
+      </div>
+    </div>
   </section>
 
   <!-- Hobbies Section -->
   <section class="page-content" id="hobbies">
-    <h2>Hobbies & Interests</h2>
+    <h2>Interests & Pursuits</h2>
     <div class="hobbies-list">
-      <div class="hobby-item">Coding Challenges</div>
-      <div class="hobby-item">Reading Tech Blogs</div>
-      <div class="hobby-item">UI/UX Design</div>
-      <div class="hobby-item">Gaming</div>
-      <div class="hobby-item">Photography</div>
+      <div class="hobby-item">IT Infrastructure & Support</div>
+      <div class="hobby-item">UI/UX Interface Design</div>
+      <div class="hobby-item">Network Architecture</div>
+      <div class="hobby-item">Drawing & Visual Arts</div>
+      <div class="hobby-item">Fitness & Well-being</div>
+      <div class="hobby-item">Emerging Tech Trends</div>
     </div>
   </section>
 
   <!-- Contact Section -->
   <section class="page-content" id="contact">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:ragad1alyagoot@gmail.com" class="link">ragad1alyagoot@gmail.com</a></p>
-    <p>Phone: <a href="tel:+966545077990" class="link">0545077990</a></p>
-    <p>
-      Download CV:
-      <a href="Raghad_Alyagoot_CV.pdf" class="link" download>
-        <strong style="color:#007a99;">⬇️ PDF</strong>
+    <h2>Contact</h2>
+    <div class="contact-item">
+      <span>Email:</span>
+      <a href="mailto:ragad1alyagoot@gmail.com">ragad1alyagoot@gmail.com</a>
+    </div>
+    <div class="contact-item">
+      <span>Phone:</span>
+      <a href="tel:+966545077990">0545077990</a>
+    </div>
+    <div class="contact-item" style="margin-top: 20px;">
+      <a href="Raghad_Alyagoot_CV.pdf" class="btn" download style="padding: 10px 22px; font-size: 13px;">
+        Download CV (PDF) 📄
       </a>
-    </p>
+    </div>
   </section>
 
-  <!-- Scroll to Top Button -->
-  <button id="topBtn" onclick="scrollToTop()">Top ↑</button>
+  <button id="topBtn" onclick="scrollToTop()">↑</button>
 
   <script>
-    // Matrix background with blue 0 and 1 (your custom sequence)
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
 
-    const letters = "0101010101001"; // your long sequence
-    const fontSize = 16;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+
+    const letters = "0101100101";
+    const fontSize = 14;
+    let columns = Math.floor(canvas.width / fontSize);
+    let drops = Array(columns).fill(1);
 
     function draw() {
-      ctx.fillStyle = "rgba(0, 0, 0, 0.1)";
+      ctx.fillStyle = "rgba(7, 11, 20, 0.12)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      ctx.fillStyle = "#007a99";
-      ctx.font = fontSize + "px monospace";
+      ctx.fillStyle = "#00e8c6";
+      ctx.font = fontSize + "px 'JetBrains Mono', monospace";
 
-      for(let i = 0; i < drops.length; i++) {
+      for (let i = 0; i < drops.length; i++) {
         const text = letters.charAt(Math.floor(Math.random() * letters.length));
         ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 
-        if(drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.98) {
           drops[i] = 0;
         }
         drops[i]++;
       }
     }
-    setInterval(draw, 33);
+    setInterval(draw, 36);
 
-    // Handle window resize
     window.addEventListener('resize', () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
+      resizeCanvas();
+      columns = Math.floor(canvas.width / fontSize);
+      drops = Array(columns).fill(1);
     });
 
-    // Scroll to top button
     const topBtn = document.getElementById("topBtn");
     window.onscroll = () => {
-      topBtn.style.display = window.scrollY > 200 ? "block" : "none";
+      topBtn.style.display = window.scrollY > 250 ? "block" : "none";
     };
     function scrollToTop() {
       window.scrollTo({ top: 0, behavior: "smooth" });
