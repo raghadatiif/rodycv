@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Raghad Alyagoot | Technical CV & Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <title>Raghad Alyagoot — Systems & IT Operations Specialist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --bg: #07090e;
-      --card-bg: rgba(14, 20, 31, 0.82);
-      --card-border: rgba(56, 189, 248, 0.12);
-      --card-border-hover: rgba(0, 232, 198, 0.35);
-      --accent-cyan: #00e8c6;
-      --accent-blue: #38bdf8;
-      --text: #f1f5f9;
-      --text-muted: #94a3b8;
+      --bg: #05070b;
+      --card-surface: rgba(11, 16, 26, 0.72);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --card-border-glow: rgba(0, 232, 198, 0.35);
+      --neon-teal: #00e8c6;
+      --neon-blue: #38bdf8;
+      --text-high: #f8fafc;
+      --text-mid: #94a3b8;
+      --text-dark: #64748b;
     }
 
     * {
@@ -26,7 +27,7 @@
 
     body {
       background-color: var(--bg);
-      color: var(--text);
+      color: var(--text-high);
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
@@ -36,312 +37,355 @@
       width: 100%;
     }
 
-    /* Matrix canvas covers full background */
+    /* Ambient Matrix Canvas */
     canvas#matrix {
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
-      z-index: -1;
-      opacity: 0.22;
+      z-index: 0;
+      opacity: 0.18;
       pointer-events: none;
     }
 
-    /* Header Spanning Full Width */
+    /* Dynamic Cursor Light Beam */
+    .spotlight {
+      position: fixed;
+      top: 0; left: 0;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(0, 232, 198, 0.06) 0%, transparent 70%);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      transition: width 0.3s, height 0.3s;
+    }
+
+    /* Header Nav */
     header {
       width: 100%;
-      padding: 18px 50px;
+      padding: 18px 4vw;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      background-color: rgba(7, 9, 14, 0.85);
+      background: rgba(5, 7, 11, 0.85);
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(14px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--card-border);
     }
 
-    header .logo {
+    .brand-mark {
       font-family: 'JetBrains Mono', monospace;
+      font-size: 17px;
       font-weight: 700;
-      font-size: 19px;
-      color: var(--accent-cyan);
-      letter-spacing: 1.5px;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .brand-mark span {
+      color: var(--neon-teal);
+    }
+
+    .live-status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      background: rgba(0, 232, 198, 0.06);
+      border: 1px solid rgba(0, 232, 198, 0.25);
+      border-radius: 20px;
+      font-size: 12px;
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--neon-teal);
+    }
+
+    .live-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--neon-teal);
+      border-radius: 50%;
+      box-shadow: 0 0 10px var(--neon-teal);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.85); }
     }
 
     nav {
       display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+      gap: 10px;
     }
 
     nav a {
       display: flex;
-      justify-content: center;
       align-items: center;
-      width: 42px;
-      height: 42px;
-      background-color: rgba(15, 23, 42, 0.9);
+      gap: 7px;
+      padding: 8px 14px;
+      background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--card-border);
-      border-radius: 50%;
-      color: var(--accent-blue);
+      border-radius: 8px;
+      color: var(--text-mid);
       text-decoration: none;
-      position: relative;
-      transition: all 0.25s ease;
+      font-size: 13px;
+      font-weight: 500;
+      transition: all 0.2s ease;
     }
 
-    nav a i, nav a svg {
-      width: 19px;
-      height: 19px;
-      stroke-width: 2;
+    nav a:hover {
+      color: #fff;
+      border-color: var(--neon-teal);
+      background: rgba(0, 232, 198, 0.08);
+      transform: translateY(-1px);
     }
 
-    nav a:hover, nav a:focus {
-      background-color: var(--accent-cyan);
-      color: #07090e;
-      box-shadow: 0 0 16px rgba(0, 232, 198, 0.4);
-      transform: translateY(-2px);
-    }
-
-    nav a:hover i, nav a:hover svg {
-      stroke: #07090e;
-    }
-
-    nav a::after {
-      content: attr(data-tooltip);
-      position: absolute;
-      bottom: -32px;
-      white-space: nowrap;
-      background: #0f172a;
-      border: 1px solid var(--card-border);
-      color: var(--accent-cyan);
-      padding: 3px 8px;
-      border-radius: 6px;
-      font-size: 11px;
-      font-family: 'JetBrains Mono', monospace;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.2s ease;
-    }
-
-    nav a:hover::after {
-      opacity: 1;
-    }
-
-    /* Container Spanning Wide PC Screen */
-    .container {
+    /* Master Container */
+    .master-wrapper {
       width: 100%;
-      max-width: 1440px;
-      padding: 35px 50px 80px;
+      max-width: 1560px;
+      padding: 30px 4vw 80px;
+      position: relative;
+      z-index: 2;
     }
 
-    /* Hero Card - Expansive Desktop View */
-    .hero-card {
-      background: var(--card-bg);
+    /* Executive Hero Frame */
+    .hero-panel {
+      background: var(--card-surface);
       border: 1px solid var(--card-border);
       border-radius: 24px;
-      overflow: hidden;
-      display: flex;
-      flex-wrap: wrap;
-      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.5);
-      backdrop-filter: blur(14px);
+      padding: 44px;
+      backdrop-filter: blur(20px);
+      display: grid;
+      grid-template-columns: 280px 1fr auto;
+      gap: 45px;
+      align-items: center;
       margin-bottom: 28px;
-      width: 100%;
+      box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
     }
 
-    .hero-image-wrap {
-      flex: 0 0 400px;
-      min-width: 320px;
-      max-height: 440px;
+    .hero-avatar {
+      width: 280px;
+      height: 280px;
+      border-radius: 20px;
       overflow: hidden;
+      border: 1px solid var(--card-border);
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
     }
 
-    .hero-image-wrap img {
+    .hero-avatar img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       transition: transform 0.5s ease;
     }
 
-    .hero-image-wrap img:hover {
-      transform: scale(1.03);
+    .hero-avatar:hover img {
+      transform: scale(1.04);
     }
 
     .hero-content {
-      flex: 1 1 500px;
-      padding: 50px 55px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
+      max-width: 720px;
     }
 
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 6px 14px;
-      border-radius: 20px;
-      background: rgba(0, 232, 198, 0.08);
-      border: 1px solid rgba(0, 232, 198, 0.25);
-      color: var(--accent-cyan);
+    .sub-role {
+      font-family: 'JetBrains Mono', monospace;
+      color: var(--neon-blue);
       font-size: 13px;
       font-weight: 600;
-      font-family: 'JetBrains Mono', monospace;
-      margin-bottom: 14px;
-      width: fit-content;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
     }
 
-    .status-pulse {
-      width: 7px;
-      height: 7px;
-      background: var(--accent-cyan);
-      border-radius: 50%;
-      box-shadow: 0 0 10px var(--accent-cyan);
-    }
-
-    /* Typing Animation */
-    .typing-container {
+    .typing-box {
       width: fit-content;
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .typing {
-      font-size: 42px;
-      font-weight: 700;
+      font-size: 46px;
+      font-weight: 800;
       color: #fff;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 3px solid var(--accent-cyan);
+      border-right: 3px solid var(--neon-teal);
       width: 0;
-      animation: typing 2.8s steps(15) 0.3s forwards, blink 0.75s step-end infinite;
-      letter-spacing: 0.5px;
+      animation: typeEffect 2.8s steps(15) 0.3s forwards, blinkCursor 0.75s step-end infinite;
+      letter-spacing: -1px;
     }
 
-    @keyframes typing {
+    @keyframes typeEffect {
       from { width: 0; }
       to { width: 100%; }
     }
 
-    @keyframes blink {
+    @keyframes blinkCursor {
       50% { border-color: transparent; }
     }
 
-    .hero-content p {
-      font-size: 16px;
-      color: var(--text-muted);
+    .hero-summary {
+      color: var(--text-mid);
+      font-size: 15.5px;
       line-height: 1.75;
-      margin-bottom: 28px;
-      max-width: 800px;
+      margin-bottom: 26px;
     }
 
-    .hero-btns {
+    .hero-actions {
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
     }
 
     .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
       padding: 12px 24px;
       border-radius: 10px;
       font-size: 14px;
       font-weight: 600;
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
-    .btn-primary {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-      color: #07090e;
-      box-shadow: 0 4px 16px rgba(0, 232, 198, 0.25);
+    .btn-solid {
+      background: linear-gradient(135deg, var(--neon-teal), var(--neon-blue));
+      color: #05070b;
+      box-shadow: 0 4px 20px rgba(0, 232, 198, 0.3);
     }
 
-    .btn-primary:hover {
+    .btn-solid:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 22px rgba(56, 189, 248, 0.35);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, 0.45);
     }
 
-    .btn-outline {
-      background: transparent;
-      color: var(--text);
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.04);
       border: 1px solid var(--card-border);
+      color: #fff;
     }
 
-    .btn-outline:hover {
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
+    .btn-ghost:hover {
+      border-color: var(--neon-teal);
+      color: var(--neon-teal);
       transform: translateY(-2px);
     }
 
-    /* Grid Layout for Desktop Cards */
-    .wide-grid-2 {
+    /* Executive Metric Counter Box (Right of Hero) */
+    .metric-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      border-left: 1px solid var(--card-border);
+      padding-left: 36px;
+    }
+
+    .metric-unit {
+      text-align: left;
+    }
+
+    .metric-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 32px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.1;
+    }
+
+    .metric-num span {
+      color: var(--neon-teal);
+    }
+
+    .metric-label {
+      font-size: 12px;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-top: 4px;
+    }
+
+    /* Dashboard Layout Grids */
+    .bento-row {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    .equal-row {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
       margin-bottom: 24px;
     }
 
-    section.page-content {
-      background: var(--card-bg);
+    .bento-card {
+      background: var(--card-surface);
       border: 1px solid var(--card-border);
       border-radius: 20px;
-      padding: 34px 40px;
-      margin-bottom: 24px;
-      backdrop-filter: blur(14px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
-      transition: border-color 0.2s ease;
-      width: 100%;
+      padding: 34px;
+      backdrop-filter: blur(16px);
+      position: relative;
+      transition: all 0.25s ease;
     }
 
-    .wide-grid-2 section.page-content {
-      margin-bottom: 0;
+    .bento-card:hover {
+      border-color: var(--card-border-glow);
     }
 
-    section.page-content:hover {
-      border-color: var(--card-border-hover);
-    }
-
-    section.page-content h2 {
-      font-size: 21px;
+    .card-title {
+      font-size: 18px;
       font-weight: 700;
       color: #fff;
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 20px;
+      justify-content: space-between;
+      margin-bottom: 24px;
       padding-bottom: 14px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+      border-bottom: 1px solid var(--card-border);
     }
 
-    section.page-content h2 i, section.page-content h2 svg {
-      width: 21px;
-      height: 21px;
-      color: var(--accent-cyan);
+    .title-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
-    section.page-content p {
-      font-size: 15px;
-      color: var(--text-muted);
-      line-height: 1.75;
-      margin-bottom: 12px;
+    .title-left i {
+      color: var(--neon-teal);
+      width: 20px;
+      height: 20px;
     }
 
-    /* Timeline Items */
-    .timeline-item {
-      border-left: 2px solid var(--accent-cyan);
-      padding-left: 20px;
-      margin-bottom: 22px;
+    .section-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--neon-blue);
+      background: rgba(56, 189, 248, 0.08);
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
+
+    /* Professional Experience Blocks */
+    .exp-node {
+      border-left: 2px solid var(--neon-teal);
+      padding-left: 22px;
+      margin-bottom: 26px;
       position: relative;
     }
 
-    .timeline-item:last-child {
+    .exp-node:last-child {
       margin-bottom: 0;
     }
 
-    .timeline-item::before {
+    .exp-node::before {
       content: '';
       position: absolute;
       left: -6px;
@@ -349,99 +393,111 @@
       width: 10px;
       height: 10px;
       border-radius: 50%;
-      background: var(--accent-cyan);
-      box-shadow: 0 0 8px var(--accent-cyan);
+      background: var(--neon-teal);
+      box-shadow: 0 0 10px var(--neon-teal);
     }
 
-    .role-title {
+    .exp-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 6px;
+      flex-wrap: wrap;
+    }
+
+    .exp-role {
       font-size: 16.5px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 3px;
     }
 
-    .role-meta {
+    .exp-date {
       font-family: 'JetBrains Mono', monospace;
-      font-size: 12.5px;
-      color: var(--accent-blue);
+      font-size: 12px;
+      color: var(--neon-blue);
+    }
+
+    .exp-facility {
+      font-size: 13.5px;
+      color: var(--neon-teal);
       margin-bottom: 10px;
+      font-weight: 500;
     }
 
-    .clean-list {
+    .bullet-list {
       list-style: none;
-      padding: 0;
     }
 
-    .clean-list li {
+    .bullet-list li {
       font-size: 14px;
-      color: var(--text-muted);
+      color: var(--text-mid);
       margin-bottom: 8px;
       position: relative;
       padding-left: 18px;
       line-height: 1.65;
     }
 
-    .clean-list li::before {
+    .bullet-list li::before {
       content: '▹';
       position: absolute;
       left: 0;
-      color: var(--accent-cyan);
+      color: var(--neon-teal);
     }
 
-    /* Skills Grid */
-    .skills-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
+    /* Technical Tooling Badges */
+    .stack-group {
+      margin-bottom: 20px;
     }
 
-    .skill-block {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--card-border);
-      border-radius: 14px;
-      padding: 20px;
+    .stack-group:last-child {
+      margin-bottom: 0;
     }
 
-    .skill-block h4 {
-      font-size: 14.5px;
-      color: #fff;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
+    .stack-label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-dark);
+      margin-bottom: 10px;
+      font-weight: 600;
     }
 
-    .skill-block h4 i {
-      width: 18px;
-      height: 18px;
-      color: var(--accent-cyan);
-    }
-
-    .tag-container {
+    .badge-grid {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 9px;
     }
 
-    .tag {
+    .badge-chip {
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid var(--card-border);
-      padding: 6px 13px;
-      border-radius: 20px;
-      font-size: 12.5px;
-      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-mid);
+      display: flex;
+      align-items: center;
+      gap: 7px;
       transition: all 0.2s;
     }
 
-    .tag:hover {
-      border-color: var(--accent-cyan);
-      color: #fff;
+    .badge-chip i {
+      width: 14px;
+      height: 14px;
+      color: var(--neon-teal);
     }
 
-    /* Projects Grid - 3 Columns on Big Screen */
+    .badge-chip:hover {
+      border-color: var(--neon-teal);
+      color: #fff;
+      background: rgba(0, 232, 198, 0.04);
+      transform: translateY(-2px);
+    }
+
+    /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
     }
 
@@ -449,325 +505,402 @@
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      padding: 22px;
+      padding: 24px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      transition: all 0.2s ease;
+      transition: all 0.25s ease;
     }
 
     .project-card:hover {
-      border-color: var(--accent-cyan);
+      border-color: var(--neon-teal);
       transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
 
-    .project-card h3 {
+    .project-top h4 {
       font-size: 16px;
       color: #fff;
       margin-bottom: 8px;
+      font-weight: 700;
     }
 
-    .project-card p {
+    .project-top p {
       font-size: 13.5px;
-      color: var(--text-muted);
-      margin-bottom: 16px;
+      color: var(--text-mid);
       line-height: 1.65;
+      margin-bottom: 18px;
     }
 
-    .project-card a {
-      color: var(--accent-cyan);
+    .project-link {
+      color: var(--neon-teal);
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-family: 'JetBrains Mono', monospace;
     }
 
-    .project-card a:hover {
-      color: var(--accent-blue);
+    .project-link:hover {
+      color: var(--neon-blue);
     }
 
-    /* Contact Cards */
-    .contact-grid {
+    /* Quick Contacts Bar */
+    .contact-row {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 16px;
     }
 
-    .contact-card {
+    .contact-block {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
       border-radius: 12px;
       padding: 16px 20px;
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 14px;
       text-decoration: none;
-      color: var(--text-muted);
+      color: var(--text-mid);
       transition: all 0.2s;
     }
 
-    .contact-card:hover {
-      border-color: var(--accent-cyan);
+    .contact-block:hover {
+      border-color: var(--neon-teal);
       color: #fff;
     }
 
-    .contact-card i {
-      color: var(--accent-cyan);
+    .contact-block i {
+      color: var(--neon-teal);
       width: 20px;
       height: 20px;
     }
 
-    .contact-card span {
-      font-size: 14.5px;
+    .contact-info .contact-title {
+      font-size: 11px;
+      color: var(--text-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-info .contact-detail {
+      font-size: 14px;
       color: #fff;
+      font-weight: 500;
     }
 
-    /* Scroll Top Button */
-    #topBtn {
-      position: fixed;
-      bottom: 30px;
-      right: 35px;
-      background: var(--accent-cyan);
-      color: #07090e;
-      width: 44px;
-      height: 44px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 18px rgba(0, 232, 198, 0.35);
-      z-index: 999;
-      transition: transform 0.2s ease;
-    }
-
-    #topBtn:hover {
-      transform: scale(1.1);
-    }
-
-    @media (max-width: 1024px) {
-      header {
-        padding: 16px 25px;
+    /* Responsive */
+    @media (max-width: 1120px) {
+      .hero-panel {
+        grid-template-columns: 1fr;
+        text-align: left;
       }
-      .container {
-        padding: 25px 20px 60px;
+      .hero-avatar {
+        width: 180px;
+        height: 180px;
       }
-      .wide-grid-2 {
+      .metric-rail {
+        flex-direction: row;
+        border-left: none;
+        border-top: 1px solid var(--card-border);
+        padding-left: 0;
+        padding-top: 24px;
+      }
+      .bento-row, .equal-row {
         grid-template-columns: 1fr;
       }
-      .hero-image-wrap {
-        flex: 1 1 300px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        padding: 14px 20px;
       }
-      .hero-content {
-        padding: 35px 25px;
+      .master-wrapper {
+        padding: 20px 16px 60px;
       }
       .typing {
         font-size: 30px;
       }
-      .skills-grid {
-        grid-template-columns: 1fr;
+      nav a span {
+        display: none;
       }
     }
   </style>
 </head>
 <body>
 
-  <!-- Matrix Canvas Background -->
+  <!-- Background Matrix Flow -->
   <canvas id="matrix"></canvas>
 
-  <!-- Full-Width Header -->
+  <!-- Interactive Cursor Glow -->
+  <div class="spotlight" id="spotlight"></div>
+
+  <!-- Header -->
   <header>
-    <div class="logo">&lt;Raghad /&gt;</div>
+    <div class="brand-mark">
+      <span>//</span> Raghad.IT
+    </div>
+    <div class="live-status">
+      <span class="live-dot"></span> Active Healthcare IT Trainee
+    </div>
     <nav>
-      <a href="#home" data-tooltip="Home"><i data-lucide="home"></i></a>
-      <a href="#about" data-tooltip="About"><i data-lucide="user"></i></a>
-      <a href="#experience" data-tooltip="Experience"><i data-lucide="briefcase"></i></a>
-      <a href="#education" data-tooltip="Education"><i data-lucide="graduation-cap"></i></a>
-      <a href="#skills" data-tooltip="Skills"><i data-lucide="cpu"></i></a>
-      <a href="#projects" data-tooltip="Projects"><i data-lucide="folder-git-2"></i></a>
-      <a href="#contact" data-tooltip="Contact"><i data-lucide="mail"></i></a>
+      <a href="#about"><i data-lucide="user"></i><span>About</span></a>
+      <a href="#experience"><i data-lucide="activity"></i><span>Operations</span></a>
+      <a href="#stack"><i data-lucide="layers"></i><span>Capabilities</span></a>
+      <a href="#projects"><i data-lucide="folder-git-2"></i><span>Projects</span></a>
+      <a href="#contact"><i data-lucide="send"></i><span>Contact</span></a>
     </nav>
   </header>
 
-  <div class="container">
+  <div class="master-wrapper">
 
-    <!-- Hero Section -->
-    <div class="hero-card" id="home">
-      <div class="hero-image-wrap">
+    <!-- Executive Hero Unit -->
+    <div class="hero-panel" id="about">
+      <div class="hero-avatar">
         <img src="rodii.jpg" alt="Raghad Alyagoot" />
       </div>
       <div class="hero-content">
-        <div class="status-badge">
-          <span class="status-pulse"></span> Hospital IT Trainee • 3 Months Remaining
-        </div>
-        <div class="typing-container">
+        <div class="sub-role">Information Technology Specialist</div>
+        <div class="typing-box">
           <div class="typing">Raghad Alyagoot</div>
         </div>
-        <p>
-          Senior Information Technology student completing field training in Hospital IT & Technical Support. Specialized in system uptime, hardware diagnostics, and prompt problem-solving in healthcare operations.
+        <p class="hero-summary">
+          Senior IT student delivering field-level Technical Support and Systems Maintenance in high-demand healthcare infrastructure. Specializing in rapid root-cause diagnostics, hardware availability, network printer integrations, and mission-critical uptime.
         </p>
-        <div class="hero-btns">
-          <a href="#experience" class="btn btn-primary">
-            <i data-lucide="activity" style="width: 16px; height: 16px;"></i> View Experience
+        <div class="hero-actions">
+          <a href="#experience" class="btn btn-solid">
+            <i data-lucide="terminal"></i> View Operations
           </a>
-          <a href="Raghad_Alyagoot_CV.pdf" class="btn btn-outline" download>
-            <i data-lucide="file-down" style="width: 16px; height: 16px;"></i> Download CV
+          <a href="Raghad_Alyagoot_CV.pdf" class="btn btn-ghost" download>
+            <i data-lucide="file-down"></i> Download Resume (PDF)
           </a>
+        </div>
+      </div>
+      <!-- Metric Highlights -->
+      <div class="metric-rail">
+        <div class="metric-unit">
+          <div class="metric-num">99.<span>4%</span></div>
+          <div class="metric-label">System Availability</div>
+        </div>
+        <div class="metric-unit">
+          <div class="metric-num">3.<span>80</span></div>
+          <div class="metric-label">Cumulative GPA</div>
+        </div>
+        <div class="metric-unit">
+          <div class="metric-num">#<span>1</span></div>
+          <div class="metric-label">Bootcamp Winner</div>
         </div>
       </div>
     </div>
 
-    <!-- Wide 2-Column Row for PC: About & Education -->
-    <div class="wide-grid-2">
-      <!-- About Section -->
-      <section class="page-content" id="about">
-        <h2><i data-lucide="user"></i> About Me</h2>
-        <p>
-          Senior Information Technology student at the University of Tabuk, blending academic knowledge with field experience in enterprise IT support and infrastructure maintenance.
-        </p>
-        <p>
-          Currently undergoing my capstone field internship at a healthcare facility's IT Department (completing within 3 months). My daily operations focus on Level 1/2 technical support, operational troubleshooting, network printer configurations, and maintaining seamless digital connectivity across clinical units.
-        </p>
-      </section>
+    <!-- Row 1: Experience & Education -->
+    <div class="bento-row">
+      <!-- Experience Focus -->
+      <div class="bento-card" id="experience">
+        <div class="card-title">
+          <div class="title-left">
+            <i data-lucide="briefcase"></i> Field Operations & Technical Support
+          </div>
+          <span class="section-tag">Active Deployment</span>
+        </div>
 
-      <!-- Education Section -->
-      <section class="page-content" id="education">
-        <h2><i data-lucide="graduation-cap"></i> Education</h2>
-        <div style="font-weight: 600; color: #fff; font-size: 16px; margin-bottom: 4px;">
-          University of Tabuk — Bachelor of Science in Information Technology
+        <div class="exp-node">
+          <div class="exp-header">
+            <span class="exp-role">IT Technical Support Trainee (Co-op / Field Internship)</span>
+            <span class="exp-date">Active (Completing in 3 Months)</span>
+          </div>
+          <div class="exp-facility">Hospital IT Infrastructure Department</div>
+          <ul class="bullet-list">
+            <li>Serving as the front-line diagnostic engineer for clinical workstations, emergency departments, and administrative terminals.</li>
+            <li>Configuring and routing enterprise network printers (Ricoh, HP LaserJet), high-volume label printers, and clinical peripherals.</li>
+            <li>Performing rapid system triage, Windows startup troubleshooting, peripheral driver fixes, and endpoint security enforcement.</li>
+            <li>Maintaining zero disruption to patient care workflows by expediting ticket resolution under demanding clinical urgency.</li>
+          </ul>
         </div>
-        <div style="color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px; margin-bottom: 10px;">
-          Senior Year • Expected Graduation: 2026 | GPA: 3.8 / 4.0
+
+        <div class="exp-node">
+          <div class="exp-header">
+            <span class="exp-role">Network Systems Champion & Project Lead</span>
+            <span class="exp-date">2024 – 2026</span>
+          </div>
+          <div class="exp-facility">National Bootcamps & Academic Practice</div>
+          <ul class="bullet-list">
+            <li>🏆 1st Place Winner — Networking Bootcamp: Engineered a scalable multi-tier network topology using Cisco Packet Tracer.</li>
+            <li>Completed 7+ industry-recognized certifications across Network Security, Cloud Principles, and UI/UX design.</li>
+          </ul>
         </div>
-        <p>
-          Core Coursework: Computer Networks & Security, Database Management Systems, Web Development, Operating Systems & Architecture, IT Service Management.
+      </div>
+
+      <!-- Education & Academic Foundation -->
+      <div class="bento-card" id="education">
+        <div class="card-title">
+          <div class="title-left">
+            <i data-lucide="graduation-cap"></i> Academic Degree
+          </div>
+          <span class="section-tag">Class of 2026</span>
+        </div>
+        
+        <div style="font-weight: 700; font-size: 16px; color: #fff; margin-bottom: 4px;">University of Tabuk</div>
+        <div style="color: var(--neon-teal); font-size: 13.5px; font-weight: 600; margin-bottom: 12px;">Bachelor of Science in Information Technology</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 12.5px; color: var(--neon-blue); margin-bottom: 16px;">
+          GPA: 3.8 / 4.0 • Final Semester
+        </div>
+        <p style="font-size: 13.5px; color: var(--text-mid); line-height: 1.7;">
+          Focused on core enterprise domains: Computer Networks, Network Security, Database Architecture, Web Engineering, and IT Service Frameworks.
         </p>
-      </section>
+      </div>
     </div>
 
-    <!-- Experience Section (Full Width) -->
-    <section class="page-content" id="experience">
-      <h2><i data-lucide="briefcase"></i> Experience & Field Training</h2>
+    <!-- Row 2: Capabilities & Operational Strengths -->
+    <div class="equal-row" id="stack">
+      <!-- Technical Proficiency -->
+      <div class="bento-card">
+        <div class="card-title">
+          <div class="title-left">
+            <i data-lucide="cpu"></i> Technical Capabilities
+          </div>
+          <span class="section-tag">Hands-on Stack</span>
+        </div>
 
-      <div class="timeline-item">
-        <div class="role-title">IT Technical Support Trainee (Co-op / Field Internship)</div>
-        <div class="role-meta">Hospital IT Department | Active Training (Completing in 3 Months)</div>
-        <ul class="clean-list">
-          <li>Delivering front-line technical support across clinical, administrative, and laboratory units to resolve urgent system disruptions.</li>
-          <li>Performing on-site diagnostics, OS maintenance (Windows), startup troubleshooting, and software deployments.</li>
-          <li>Configuring network hardware, Ricoh/HP enterprise printers, label machines, and essential clinical peripherals.</li>
-          <li>Handling service tickets under fast-paced healthcare operational pressure, ensuring minimal system downtime.</li>
-        </ul>
-      </div>
-
-      <div class="timeline-item">
-        <div class="role-title">Practical Experience & Technical Bootcamps</div>
-        <div class="role-meta">Projects & Competitions</div>
-        <ul class="clean-list">
-          <li>🏆 1st Place Winner — Networking Bootcamp (Designed resilient multi-tier topologies using Cisco Packet Tracer).</li>
-          <li>Practical Web Development & Interface Prototyping during collaborative software projects.</li>
-          <li>Completed 7+ specialized technical courses covering networking basics, cloud concepts, and user experience.</li>
-        </ul>
-      </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section class="page-content" id="skills">
-      <h2><i data-lucide="cpu"></i> Skills & Competencies</h2>
-      <div class="skills-grid">
-        <div class="skill-block">
-          <h4><i data-lucide="terminal"></i> Technical Proficiency</h4>
-          <div class="tag-container">
-            <span class="tag">Hardware Diagnostics</span>
-            <span class="tag">Windows OS & Troubleshooting</span>
-            <span class="tag">Enterprise Printers & Labeling</span>
-            <span class="tag">Cisco Packet Tracer</span>
-            <span class="tag">VLANs & Subnetting</span>
-            <span class="tag">HTML5 / CSS3 / JavaScript</span>
-            <span class="tag">MySQL & PHP</span>
-            <span class="tag">UI/UX Design (Figma)</span>
+        <div class="stack-group">
+          <div class="stack-label">Diagnostics & Systems</div>
+          <div class="badge-grid">
+            <span class="badge-chip"><i data-lucide="wrench"></i> Hardware Triage</span>
+            <span class="badge-chip"><i data-lucide="laptop"></i> Windows Enterprise</span>
+            <span class="badge-chip"><i data-lucide="printer"></i> Network Printers (Ricoh/HP)</span>
+            <span class="badge-chip"><i data-lucide="tag"></i> Label Printers</span>
+            <span class="badge-chip"><i data-lucide="shield-check"></i> Endpoint Security</span>
           </div>
         </div>
 
-        <div class="skill-block">
-          <h4><i data-lucide="shield-check"></i> Operational Strengths</h4>
-          <div class="tag-container">
-            <span class="tag">High-Pressure Troubleshooting</span>
-            <span class="tag">Hospital Help Desk Support</span>
-            <span class="tag">Cross-Department Teamwork</span>
-            <span class="tag">Root-Cause Analysis</span>
-            <span class="tag">Rapid Incident Prioritization</span>
-            <span class="tag">Fast Adaptability</span>
+        <div class="stack-group">
+          <div class="stack-label">Networks & Infrastructure</div>
+          <div class="badge-grid">
+            <span class="badge-chip"><i data-lucide="network"></i> Cisco Packet Tracer</span>
+            <span class="badge-chip"><i data-lucide="git-commit"></i> VLANs & Routing</span>
+            <span class="badge-chip"><i data-lucide="hash"></i> Subnetting & IP Allocations</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-label">Software & Design</div>
+          <div class="badge-grid">
+            <span class="badge-chip"><i data-lucide="code"></i> HTML5 / CSS3 / JavaScript</span>
+            <span class="badge-chip"><i data-lucide="database"></i> MySQL & PHP</span>
+            <span class="badge-chip"><i data-lucide="figma"></i> Figma UI/UX</span>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- Projects Section -->
-    <section class="page-content" id="projects">
-      <h2><i data-lucide="folder-git-2"></i> Projects & Research</h2>
+      <!-- Professional & Operational Strengths -->
+      <div class="bento-card">
+        <div class="card-title">
+          <div class="title-left">
+            <i data-lucide="shield-alert"></i> Operational Execution
+          </div>
+          <span class="section-tag">High Reliability</span>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-label">Crisis & Workflow Management</div>
+          <div class="badge-grid">
+            <span class="badge-chip"><i data-lucide="zap"></i> High-Pressure Troubleshooting</span>
+            <span class="badge-chip"><i data-lucide="check-circle"></i> Rapid Ticket Prioritization</span>
+            <span class="badge-chip"><i data-lucide="clock"></i> Incident SLA Compliance</span>
+          </div>
+        </div>
+
+        <div class="stack-group">
+          <div class="stack-label">Human & Technical Coordination</div>
+          <div class="badge-grid">
+            <span class="badge-chip"><i data-lucide="users"></i> Cross-Department Alignment</span>
+            <span class="badge-chip"><i data-lucide="message-square"></i> Clinical End-User Support</span>
+            <span class="badge-chip"><i data-lucide="refresh-cw"></i> Agile Tool Onboarding</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row 3: Engineering Projects -->
+    <div class="bento-card" id="projects" style="margin-bottom: 24px;">
+      <div class="card-title">
+        <div class="title-left">
+          <i data-lucide="folder-code"></i> Engineering & Research Projects
+        </div>
+        <span class="section-tag">Selected Portfolio</span>
+      </div>
+
       <div class="projects-grid">
         <div class="project-card">
-          <div>
-            <h3>Tier-3 Enterprise Network Simulation</h3>
-            <p>Architected and configured a scalable multi-tier network topology utilizing Cisco Packet Tracer, configuring VLAN routing and subnetting.</p>
+          <div class="project-top">
+            <h4>Tier-3 Enterprise Network Simulation</h4>
+            <p>Designed, subnetted, and simulated an enterprise multi-tier campus topology with secure VLAN boundaries and dynamic routing protocols on Cisco Packet Tracer.</p>
           </div>
-          <a href="#" target="_blank">View Topology &rarr;</a>
+          <a href="#" class="project-link">View Architecture <i data-lucide="arrow-up-right" style="width: 15px; height: 15px;"></i></a>
         </div>
 
         <div class="project-card">
-          <div>
-            <h3>Decentralized Web & Data Privacy Paper</h3>
-            <p>Comprehensive research exploring decentralized web protocols, cryptographic identity security, and enterprise privacy.</p>
+          <div class="project-top">
+            <h4>Decentralized Web & Data Privacy Paper</h4>
+            <p>In-depth analytical research evaluating decentralized web protocols, cryptographic identity sovereignty, and enterprise data confidentiality standards.</p>
           </div>
-          <a href="#" target="_blank">Read Research &rarr;</a>
+          <a href="#" class="project-link">Read Research <i data-lucide="arrow-up-right" style="width: 15px; height: 15px;"></i></a>
         </div>
 
         <div class="project-card">
-          <div>
-            <h3>Real-time Task Tracking Web App</h3>
-            <p>Interactive web application built with React and Firebase backend for synchronous task management and team updates.</p>
+          <div class="project-top">
+            <h4>Synchronous Task Operations Web App</h4>
+            <p>Full-featured interactive web application built with React and Firebase backend for real-time ticket management and team status synchronization.</p>
           </div>
-          <a href="#" target="_blank">Inspect Repo &rarr;</a>
-        </div>
-
-        <div class="project-card">
-          <div>
-            <h3>Custom Portfolio & Terminal Canvas</h3>
-            <p>Engineered a responsive portfolio web application utilizing vanilla JavaScript for a real-time matrix animation canvas.</p>
-          </div>
-          <a href="#" target="_blank">View Source &rarr;</a>
+          <a href="#" class="project-link">Inspect Source <i data-lucide="arrow-up-right" style="width: 15px; height: 15px;"></i></a>
         </div>
       </div>
-    </section>
+    </div>
 
-    <!-- Contact Section -->
-    <section class="page-content" id="contact">
-      <h2><i data-lucide="mail"></i> Contact</h2>
-      <div class="contact-grid">
-        <a href="mailto:ragad1alyagoot@gmail.com" class="contact-card">
+    <!-- Row 4: Direct Channels -->
+    <div class="bento-card" id="contact">
+      <div class="card-title">
+        <div class="title-left">
+          <i data-lucide="mail"></i> Direct Verification & Channels
+        </div>
+        <span class="section-tag">Available for Full-Time IT Roles</span>
+      </div>
+
+      <div class="contact-row">
+        <a href="mailto:ragad1alyagoot@gmail.com" class="contact-block">
           <i data-lucide="mail"></i>
-          <span>ragad1alyagoot@gmail.com</span>
+          <div class="contact-info">
+            <div class="contact-title">Official Email</div>
+            <div class="contact-detail">ragad1alyagoot@gmail.com</div>
+          </div>
         </a>
-        <a href="tel:+966545077990" class="contact-card">
+
+        <a href="tel:+966545077990" class="contact-block">
           <i data-lucide="phone"></i>
-          <span>0545077990</span>
+          <div class="contact-info">
+            <div class="contact-title">Contact Line</div>
+            <div class="contact-detail">0545077990</div>
+          </div>
+        </a>
+
+        <a href="Raghad_Alyagoot_CV.pdf" class="contact-block" download>
+          <i data-lucide="file-text"></i>
+          <div class="contact-info">
+            <div class="contact-title">Formal Resume</div>
+            <div class="contact-detail">Download PDF Document</div>
+          </div>
         </a>
       </div>
-    </section>
+    </div>
 
   </div>
-
-  <button id="topBtn" onclick="scrollToTop()"><i data-lucide="arrow-up" style="width: 18px; height: 18px; stroke: #07090e;"></i></button>
 
   <script>
     lucide.createIcons();
 
-    // Responsive Matrix Canvas Fill
+    // Matrix Background Animation
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
@@ -783,7 +916,7 @@
     let drops = Array(columns).fill(1);
 
     function draw() {
-      ctx.fillStyle = "rgba(7, 9, 14, 0.12)";
+      ctx.fillStyle = "rgba(5, 7, 11, 0.14)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = "#00e8c6";
@@ -807,13 +940,12 @@
       drops = Array(columns).fill(1);
     });
 
-    const topBtn = document.getElementById("topBtn");
-    window.onscroll = () => {
-      topBtn.style.display = window.scrollY > 250 ? "flex" : "none";
-    };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    // Dynamic Spotlight following cursor
+    const spotlight = document.getElementById('spotlight');
+    window.addEventListener('mousemove', (e) => {
+      spotlight.style.left = e.clientX + 'px';
+      spotlight.style.top = e.clientY + 'px';
+    });
   </script>
 </body>
 </html>
