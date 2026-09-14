@@ -3,31 +3,31 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Raghad Alyagoot | Portfolio & CV</title>
+  <title>Raghad Alyagoot | Technical CV & Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- Lucide Icons Script -->
+  <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
   <style>
     :root {
-      --bg-dark: #070b14;
-      --card-bg: rgba(15, 23, 42, 0.78);
+      --bg: #06090e;
+      --card-bg: rgba(13, 18, 28, 0.82);
       --card-border: rgba(56, 189, 248, 0.12);
       --card-border-hover: rgba(0, 232, 198, 0.35);
       --accent-cyan: #00e8c6;
       --accent-blue: #38bdf8;
-      --text-main: #f8fafc;
-      --text-muted: #94a3b8;
+      --text: #f3f4f6;
+      --text-dim: #94a3b8;
     }
 
     * {
-      margin: 0; padding: 0; box-sizing: border-box; 
-      font-family: 'Plus Jakarta Sans', sans-serif; 
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       scroll-behavior: smooth;
     }
 
     body {
-      background-color: var(--bg-dark);
-      color: var(--text-main);
+      background-color: var(--bg);
+      color: var(--text);
       overflow-x: hidden;
       min-height: 100vh;
       display: flex;
@@ -36,30 +36,32 @@
       position: relative;
     }
 
+    /* Matrix 01 Background Canvas */
     canvas#matrix {
       position: fixed;
       top: 0; left: 0;
       width: 100vw;
       height: 100vh;
       z-index: -1;
-      opacity: 0.2;
+      opacity: 0.22;
     }
 
-    /* Header */
+    /* Header Nav */
     header {
       width: 100%;
       max-width: 1050px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 14px 28px;
-      background-color: rgba(7, 11, 20, 0.85);
+      padding: 16px 28px;
+      background-color: rgba(6, 9, 14, 0.85);
       position: sticky;
       top: 0;
-      z-index: 50;
+      z-index: 100;
       backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
+
     header .logo {
       font-family: 'JetBrains Mono', monospace;
       font-weight: 700;
@@ -68,12 +70,12 @@
       letter-spacing: 1.5px;
     }
 
-    /* Navigation */
     nav {
       display: flex;
       gap: 10px;
       flex-wrap: wrap;
     }
+
     nav a {
       display: flex;
       justify-content: center;
@@ -88,21 +90,24 @@
       position: relative;
       transition: all 0.25s ease;
     }
+
     nav a i, nav a svg {
       width: 18px;
       height: 18px;
       stroke-width: 2;
-      transition: stroke 0.25s ease;
     }
+
     nav a:hover, nav a:focus {
       background-color: var(--accent-cyan);
-      color: #050811;
-      box-shadow: 0 0 16px rgba(0, 232, 198, 0.35);
+      color: #06090e;
+      box-shadow: 0 0 16px rgba(0, 232, 198, 0.4);
       transform: translateY(-2px);
     }
+
     nav a:hover i, nav a:hover svg {
-      stroke: #050811;
+      stroke: #06090e;
     }
+
     nav a::after {
       content: attr(data-tooltip);
       position: absolute;
@@ -119,63 +124,89 @@
       pointer-events: none;
       transition: opacity 0.2s ease;
     }
+
     nav a:hover::after {
       opacity: 1;
     }
 
-    /* Hero Section */
-    main.hero {
+    /* Main Container */
+    .container {
       width: 100%;
-      max-width: 1050px;
+      max-width: 1000px;
+      padding: 30px 20px 80px;
+    }
+
+    /* Hero Card */
+    .hero-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      overflow: hidden;
       display: flex;
       flex-wrap: wrap;
-      background: var(--card-bg);
-      margin: 35px 20px 20px 20px;
-      border-radius: 20px;
-      border: 1px solid var(--card-border);
-      overflow: hidden;
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.45);
-      backdrop-filter: blur(12px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(14px);
+      margin-bottom: 26px;
     }
-    .hero-image {
-      flex: 1 1 380px;
+
+    .hero-image-wrap {
+      flex: 1 1 340px;
       min-width: 280px;
-      max-height: 440px;
+      max-height: 420px;
       overflow: hidden;
-      background: rgba(0, 0, 0, 0.2);
     }
-    .hero-image img {
+
+    .hero-image-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
+      transition: transform 0.6s ease;
     }
-    .hero-image img:hover {
-      transform: scale(1.03);
+
+    .hero-image-wrap img:hover {
+      transform: scale(1.04);
     }
+
     .hero-content {
       flex: 1 1 420px;
-      padding: 48px 42px;
+      padding: 45px 40px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
-    .hero-tag {
-      font-family: 'JetBrains Mono', monospace;
+
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 5px 12px;
+      border-radius: 20px;
+      background: rgba(0, 232, 198, 0.08);
+      border: 1px solid rgba(0, 232, 198, 0.2);
       color: var(--accent-cyan);
       font-size: 12px;
       font-weight: 600;
-      letter-spacing: 1.5px;
+      font-family: 'JetBrains Mono', monospace;
       margin-bottom: 12px;
-      text-transform: uppercase;
+      width: fit-content;
     }
 
-    /* Typing Animation */
+    .status-badge::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      background: var(--accent-cyan);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-cyan);
+    }
+
+    /* Typing Animation for Name */
     .typing-container {
       width: fit-content;
       margin-bottom: 18px;
     }
-    .hero-content .typing {
+
+    .typing {
       font-size: 36px;
       font-weight: 700;
       color: #fff;
@@ -183,102 +214,117 @@
       overflow: hidden;
       border-right: 3px solid var(--accent-cyan);
       width: 0;
-      animation: typing 2.8s steps(15) 0.4s forwards, blink 0.75s step-end infinite;
+      animation: typing 2.8s steps(15) 0.3s forwards, blink 0.75s step-end infinite;
       letter-spacing: 0.5px;
     }
+
     @keyframes typing {
       from { width: 0; }
       to { width: 100%; }
     }
+
     @keyframes blink {
       50% { border-color: transparent; }
     }
 
     .hero-content p {
       font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.7;
       margin-bottom: 26px;
-      line-height: 1.75;
-      color: var(--text-muted);
     }
+
     .hero-btns {
       display: flex;
       gap: 12px;
       flex-wrap: wrap;
     }
+
     .btn {
-      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
-      color: #050811;
       padding: 11px 22px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 13.5px;
       border-radius: 10px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 18px rgba(0, 232, 198, 0.22);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.25s ease;
     }
-    .btn:hover {
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue));
+      color: #06090e;
+      box-shadow: 0 4px 18px rgba(0, 232, 198, 0.25);
+    }
+
+    .btn-primary:hover {
       transform: translateY(-2px);
       box-shadow: 0 6px 22px rgba(56, 189, 248, 0.35);
     }
-    .btn-secondary {
+
+    .btn-outline {
       background: transparent;
-      color: var(--text-main);
+      color: var(--text);
       border: 1px solid var(--card-border);
-      box-shadow: none;
-    }
-    .btn-secondary:hover {
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      box-shadow: 0 0 14px rgba(0, 232, 198, 0.15);
     }
 
-    /* Content Sections */
-    section.page-content {
-      width: 100%;
-      max-width: 1050px;
-      background: var(--card-bg);
-      border-radius: 18px;
-      border: 1px solid var(--card-border);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
-      margin: 20px;
-      padding: 35px 40px;
-      backdrop-filter: blur(10px);
+    .btn-outline:hover {
+      border-color: var(--accent-cyan);
+      color: var(--accent-cyan);
+      transform: translateY(-2px);
     }
+
+    /* Section Styles */
+    section.page-content {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 32px 36px;
+      margin-bottom: 24px;
+      backdrop-filter: blur(14px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
+      transition: border-color 0.2s ease;
+    }
+
+    section.page-content:hover {
+      border-color: var(--card-border-hover);
+    }
+
     section.page-content h2 {
-      color: #fff;
-      font-size: 21px;
+      font-size: 20px;
       font-weight: 700;
-      margin-bottom: 22px;
+      color: #fff;
       display: flex;
       align-items: center;
       gap: 10px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.07);
-      padding-bottom: 14px;
-      letter-spacing: 0.5px;
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
     }
+
     section.page-content h2 i, section.page-content h2 svg {
       width: 20px;
       height: 20px;
-      stroke: var(--accent-cyan);
-    }
-    section.page-content p {
-      color: var(--text-muted);
-      font-size: 15px;
-      margin-bottom: 14px;
-      line-height: 1.75;
+      color: var(--accent-cyan);
     }
 
-    /* Experience Timeline */
-    .experience-box {
+    section.page-content p {
+      font-size: 14.5px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 14px;
+    }
+
+    /* Timeline Items */
+    .timeline-item {
       border-left: 2px solid var(--accent-cyan);
-      padding-left: 22px;
-      margin-bottom: 24px;
+      padding-left: 20px;
+      margin-bottom: 22px;
       position: relative;
     }
-    .experience-box::before {
+
+    .timeline-item::before {
       content: '';
       position: absolute;
       left: -6px;
@@ -287,208 +333,188 @@
       height: 10px;
       border-radius: 50%;
       background: var(--accent-cyan);
-      box-shadow: 0 0 10px var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
     }
-    .exp-title {
-      font-size: 16.5px;
+
+    .role-title {
+      font-size: 16px;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
-    .exp-meta {
+
+    .role-meta {
       font-family: 'JetBrains Mono', monospace;
       font-size: 12px;
       color: var(--accent-blue);
       margin-bottom: 10px;
     }
-    .exp-points {
-      list-style-type: none;
-      padding-left: 0;
+
+    .clean-list {
+      list-style: none;
+      padding: 0;
     }
-    .exp-points li {
-      color: var(--text-muted);
-      font-size: 14px;
-      margin-bottom: 7px;
+
+    .clean-list li {
+      font-size: 13.5px;
+      color: var(--text-dim);
+      margin-bottom: 6px;
       position: relative;
-      padding-left: 18px;
-      line-height: 1.65;
+      padding-left: 16px;
+      line-height: 1.6;
     }
-    .exp-points li::before {
+
+    .clean-list li::before {
       content: '▹';
       position: absolute;
       left: 0;
       color: var(--accent-cyan);
     }
 
-    /* Skills: Technical Progress Bars */
-    .skill-wrapper {
-      margin-bottom: 18px;
-    }
-    .skill-info {
-      display: flex;
-      justify-content: space-between;
-      font-size: 13.5px;
-      margin-bottom: 6px;
-      color: var(--text-main);
-      font-weight: 600;
-    }
-    .skills-bar {
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      height: 7px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.03);
-    }
-    .skills-bar div {
-      height: 100%;
-      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-blue));
-      border-radius: 20px;
-      transition: width 1s ease-in-out;
+    /* Skills: Tags */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
 
-    /* Skills: Soft & Professional Skills Cards */
-    .soft-skills-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 16px;
-      margin-top: 24px;
-    }
-    .soft-skill-card {
+    .skill-block {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
-      border-radius: 12px;
+      border-radius: 14px;
       padding: 18px;
-      transition: all 0.25s ease;
     }
-    .soft-skill-card:hover {
-      border-color: var(--card-border-hover);
-      transform: translateY(-2px);
-      background: rgba(0, 232, 198, 0.03);
-    }
-    .soft-skill-title {
-      font-size: 14.5px;
-      font-weight: 700;
-      color: var(--accent-cyan);
-      margin-bottom: 6px;
+
+    .skill-block h4 {
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
       gap: 8px;
     }
-    .soft-skill-desc {
-      font-size: 13px;
-      color: var(--text-muted);
-      line-height: 1.6;
+
+    .skill-block h4 i {
+      width: 16px;
+      height: 16px;
+      color: var(--accent-cyan);
+    }
+
+    .tag-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 12.5px;
+      color: var(--text-dim);
+      transition: all 0.2s;
+    }
+
+    .tag:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
     }
 
     /* Projects Grid */
     .projects-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 20px;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
     }
+
     .project-card {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--card-border);
       border-radius: 14px;
-      padding: 22px;
-      transition: all 0.25s ease;
+      padding: 20px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      transition: all 0.2s ease;
     }
+
     .project-card:hover {
-      transform: translateY(-3px);
       border-color: var(--accent-cyan);
-      background: rgba(0, 232, 198, 0.03);
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      transform: translateY(-2px);
     }
+
     .project-card h3 {
-      font-size: 16.5px;
+      font-size: 16px;
       color: #fff;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
+
     .project-card p {
-      font-size: 14px;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 18px;
+      font-size: 13px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+      line-height: 1.6;
     }
+
     .project-card a {
-      font-family: 'JetBrains Mono', monospace;
       color: var(--accent-cyan);
       text-decoration: none;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 600;
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      transition: color 0.2s;
+      font-family: 'JetBrains Mono', monospace;
     }
+
     .project-card a:hover {
       color: var(--accent-blue);
     }
 
-    /* Hobbies Badges */
-    .hobbies-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .hobby-item {
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.07);
-      padding: 8px 18px;
-      border-radius: 30px;
-      font-size: 13px;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: all 0.2s;
-    }
-    .hobby-item i, .hobby-item svg {
-      width: 14px;
-      height: 14px;
-      stroke: var(--accent-blue);
-    }
-    .hobby-item:hover {
-      border-color: var(--accent-cyan);
-      color: var(--accent-cyan);
-      background: rgba(0, 232, 198, 0.05);
-    }
-    .hobby-item:hover i, .hobby-item:hover svg {
-      stroke: var(--accent-cyan);
+    /* Contact Links */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
     }
 
-    /* Contact Links */
-    .contact-item {
+    .contact-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 14px;
-      font-size: 15px;
-    }
-    .contact-item i, .contact-item svg {
-      width: 18px;
-      height: 18px;
-      stroke: var(--accent-cyan);
-    }
-    .contact-item a {
-      color: var(--accent-blue);
       text-decoration: none;
-      transition: color 0.2s;
-    }
-    .contact-item a:hover {
-      color: var(--accent-cyan);
+      color: var(--text-dim);
+      transition: all 0.2s;
     }
 
-    /* Scroll to top button */
+    .contact-card:hover {
+      border-color: var(--accent-cyan);
+      color: #fff;
+    }
+
+    .contact-card i {
+      color: var(--accent-cyan);
+      width: 18px;
+      height: 18px;
+    }
+
+    .contact-card span {
+      font-size: 13.5px;
+      color: #fff;
+    }
+
+    /* Scroll Top Button */
     #topBtn {
       position: fixed;
       bottom: 25px;
       right: 25px;
       background: var(--accent-cyan);
-      color: #050811;
+      color: #06090e;
       width: 42px;
       height: 42px;
       border: none;
@@ -501,247 +527,219 @@
       z-index: 999;
       transition: transform 0.2s ease;
     }
+
     #topBtn:hover {
       transform: scale(1.1);
     }
 
-    @media (max-width: 900px) {
-      main.hero {
+    @media (max-width: 820px) {
+      .hero-card {
         flex-direction: column;
       }
-      .hero-image {
+      .hero-image-wrap {
         max-height: 280px;
       }
       .hero-content {
-        padding: 35px 25px;
-        align-items: center;
-        text-align: center;
+        padding: 30px 22px;
       }
-      .hero-content .typing {
-        font-size: 27px;
+      .typing {
+        font-size: 28px;
       }
-      .typing-container {
-        margin: 0 auto 18px auto;
-      }
-      .hero-btns {
-        justify-content: center;
-      }
-      header {
-        padding: 14px 20px;
-      }
-      section.page-content {
-        padding: 25px 20px;
-        margin: 15px;
+      .skills-grid, .projects-grid {
+        grid-template-columns: 1fr;
       }
     }
   </style>
 </head>
 <body>
 
+  <!-- Matrix Background Canvas -->
   <canvas id="matrix"></canvas>
 
+  <!-- Header -->
   <header>
     <div class="logo">&lt;Raghad /&gt;</div>
     <nav>
       <a href="#home" data-tooltip="Home"><i data-lucide="home"></i></a>
       <a href="#about" data-tooltip="About"><i data-lucide="user"></i></a>
-      <a href="#education" data-tooltip="Education"><i data-lucide="graduation-cap"></i></a>
       <a href="#experience" data-tooltip="Experience"><i data-lucide="briefcase"></i></a>
-      <a href="#projects" data-tooltip="Projects"><i data-lucide="folder-git-2"></i></a>
+      <a href="#education" data-tooltip="Education"><i data-lucide="graduation-cap"></i></a>
       <a href="#skills" data-tooltip="Skills"><i data-lucide="cpu"></i></a>
+      <a href="#projects" data-tooltip="Projects"><i data-lucide="folder-git-2"></i></a>
       <a href="#contact" data-tooltip="Contact"><i data-lucide="mail"></i></a>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <main class="hero" id="home">
-    <div class="hero-image">
-      <img src="rodii.jpg" alt="Raghad Alyagoot" />
-    </div>
-    <div class="hero-content">
-      <span class="hero-tag">IT Senior & Technical Support Specialist</span>
-      <div class="typing-container">
-        <div class="typing">Raghad Alyagoot</div>
+  <div class="container">
+
+    <!-- Hero Card -->
+    <div class="hero-card" id="home">
+      <div class="hero-image-wrap">
+        <img src="rodii.jpg" alt="Raghad Alyagoot" />
       </div>
+      <div class="hero-content">
+        <div class="status-badge">Hospital IT Trainee • 3 Months Remaining</div>
+        <div class="typing-container">
+          <div class="typing">Raghad Alyagoot</div>
+        </div>
+        <p>
+          Senior Information Technology student combining academic knowledge with hands-on field training in Hospital IT & Technical Support. Specialized in system uptime, hardware diagnostics, and prompt problem-solving under healthcare operations.
+        </p>
+        <div class="hero-btns">
+          <a href="#experience" class="btn btn-primary">
+            <i data-lucide="activity" style="width: 16px; height: 16px;"></i> View Experience
+          </a>
+          <a href="Raghad_Alyagoot_CV.pdf" class="btn btn-outline" download>
+            <i data-lucide="file-down" style="width: 16px; height: 16px;"></i> Download CV
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="page-content" id="about">
+      <h2><i data-lucide="user"></i> About Me</h2>
       <p>
-        Senior IT student completing field training in Hospital IT & Technical Support. Experienced in rapid hardware/network diagnostics, workstation availability, and operational support in healthcare environments.
+        Senior Information Technology student at the University of Tabuk, blending academic rigor with intensive field experience in enterprise IT support and infrastructure maintenance.
       </p>
-      <div class="hero-btns">
-        <a href="#experience" class="btn"><i data-lucide="activity" style="width: 16px; height: 16px;"></i> View Field Training</a>
-        <a href="#contact" class="btn btn-secondary"><i data-lucide="send" style="width: 16px; height: 16px;"></i> Contact Me</a>
+      <p>
+        Currently undergoing my capstone field internship at a healthcare facility's IT Department (completing within 3 months). My primary focus revolves around Level 1/2 technical support, operational troubleshooting, network printer configurations, and maintaining flawless digital connectivity across clinical units.
+      </p>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="page-content" id="experience">
+      <h2><i data-lucide="briefcase"></i> Experience & Field Training</h2>
+
+      <div class="timeline-item">
+        <div class="role-title">IT Technical Support Trainee (Co-op / Field Internship)</div>
+        <div class="role-meta">Hospital IT Department | Active Training (Completing in 3 Months)</div>
+        <ul class="clean-list">
+          <li>Delivering front-line technical support across clinical, administrative, and laboratory units to resolve urgent system disruptions.</li>
+          <li>Performing on-site diagnostics, OS maintenance (Windows), startup troubleshooting, and software deployments.</li>
+          <li>Configuring network hardware, Ricoh/HP enterprise printers, label machines, and essential clinical peripherals.</li>
+          <li>Handling service tickets under fast-paced healthcare operational pressure, ensuring minimal system downtime.</li>
+        </ul>
       </div>
-    </div>
-  </main>
 
-  <!-- About Section -->
-  <section class="page-content" id="about">
-    <h2><i data-lucide="user"></i> About Me</h2>
-    <p>
-      Senior Information Technology student at the University of Tabuk, combining academic rigor with hands-on enterprise IT support and infrastructure maintenance.
-    </p>
-    <p>
-      Currently undergoing field internship training in a hospital IT Department (completing within 3 months). My daily operations focus on Level 1/2 technical support, operational troubleshooting, enterprise printer routing, and maintaining system uptime across healthcare clinics.
-    </p>
-  </section>
-
-  <!-- Education Section -->
-  <section class="page-content" id="education">
-    <h2><i data-lucide="graduation-cap"></i> Education</h2>
-    <p style="color: #fff; font-size: 16px; font-weight: 600;">
-      University of Tabuk — Bachelor of Science in Information Technology
-    </p>
-    <p style="color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px;">
-      Senior Year • Expected Graduation: 2026 | GPA: 3.8 / 4.0
-    </p>
-    <p style="margin-top: 10px;">
-      Relevant Coursework: Computer Networks & Security, Database Management Systems, Web Development, Operating Systems & Architecture, IT Service Principles.
-    </p>
-  </section>
-
-  <!-- Experience Section -->
-  <section class="page-content" id="experience">
-    <h2><i data-lucide="briefcase"></i> Experience & Field Training</h2>
-
-    <div class="experience-box">
-      <div class="exp-title">IT Technical Support Trainee (Field Internship)</div>
-      <div class="exp-meta">Hospital IT Department | Active Training (Completing in 3 Months)</div>
-      <ul class="exp-points">
-        <li>Delivering front-line technical support across hospital units, labs, and administrative departments.</li>
-        <li>Performing diagnostics, OS maintenance (Windows), startup troubleshooting, and software deployments.</li>
-        <li>Configuring network hardware, enterprise printers (Ricoh/HP), label machines, and clinical peripherals.</li>
-        <li>Resolving IT service tickets in a fast-paced environment to ensure zero disruption to medical workflows.</li>
-      </ul>
-    </div>
-
-    <div class="experience-box">
-      <div class="exp-title">Practical Experience & Technical Bootcamps</div>
-      <div class="exp-meta">Projects & Competitions</div>
-      <ul class="exp-points">
-        <li>🏆 1st Place Winner — Networking Bootcamp (Designed resilient multi-tier topologies using Cisco Packet Tracer, 2024).</li>
-        <li>Collaborative Web Development & UI Prototyping across academic team projects.</li>
-        <li>Completed 7+ specialized technical courses covering networking basics, cloud concepts, and user experience.</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Projects Section -->
-  <section class="page-content" id="projects">
-    <h2><i data-lucide="folder-git-2"></i> Projects & Research</h2>
-    <div class="projects-grid">
-      <div class="project-card">
-        <h3>Tier-3 Enterprise Network Simulation</h3>
-        <p>Architected a scalable multi-tier network topology utilizing Cisco Packet Tracer, configuring VLAN routing, access control, and IP subnetting.</p>
-        <a href="https://github.com/username/network-simulation" target="_blank" rel="noopener noreferrer">View Topology <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
+      <div class="timeline-item">
+        <div class="role-title">Practical Experience & Technical Bootcamps</div>
+        <div class="role-meta">Projects & Competitions</div>
+        <ul class="clean-list">
+          <li>🏆 1st Place Winner — Networking Bootcamp (Designed resilient multi-tier topologies using Cisco Packet Tracer).</li>
+          <li>Practical Web Development & Interface Prototyping during collaborative software projects.</li>
+          <li>Completed 7+ specialized technical courses covering networking basics, cloud concepts, and user experience.</li>
+        </ul>
       </div>
-      <div class="project-card">
-        <h3>Decentralized Web & Data Privacy Paper</h3>
-        <p>Comprehensive research exploring decentralized web protocols, cryptographic identity security, and enterprise data privacy protections.</p>
-        <a href="#" target="_blank">Read Research <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
+    </section>
+
+    <!-- Education Section -->
+    <section class="page-content" id="education">
+      <h2><i data-lucide="graduation-cap"></i> Education</h2>
+      <div style="font-weight: 600; color: #fff; font-size: 15.5px; margin-bottom: 4px;">
+        University of Tabuk — Bachelor of Science in Information Technology
       </div>
-      <div class="project-card">
-        <h3>Real-time Task Tracking Web App</h3>
-        <p>Interactive web application built with React and Firebase backend for synchronous task management and team collaboration tracking.</p>
-        <a href="https://github.com/username/task-tracker" target="_blank" rel="noopener noreferrer">Inspect Repo <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
+      <div style="color: var(--accent-cyan); font-family: 'JetBrains Mono', monospace; font-size: 13px; margin-bottom: 8px;">
+        Senior Year • Expected Graduation: 2026 | GPA: 3.8 / 4.0
       </div>
-      <div class="project-card">
-        <h3>Custom Portfolio & Terminal Canvas</h3>
-        <p>Engineered a responsive portfolio web application utilizing vanilla JavaScript for a real-time matrix animation canvas and modular CSS.</p>
-        <a href="https://github.com/username/portfolio" target="_blank" rel="noopener noreferrer">View Source <i data-lucide="arrow-up-right" style="width: 14px; height: 14px;"></i></a>
+      <p style="font-size: 13.5px; margin-bottom: 0;">
+        Core Coursework: Computer Networks & Security, Database Management Systems, Web Development, Operating Systems & Architecture, IT Service Management.
+      </p>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="page-content" id="skills">
+      <h2><i data-lucide="cpu"></i> Skills & Competencies</h2>
+      <div class="skills-grid">
+        <div class="skill-block">
+          <h4><i data-lucide="terminal"></i> Technical Proficiency</h4>
+          <div class="tag-container">
+            <span class="tag">Hardware Diagnostics</span>
+            <span class="tag">Windows OS & Troubleshooting</span>
+            <span class="tag">Enterprise Printers & Labeling</span>
+            <span class="tag">Cisco Packet Tracer</span>
+            <span class="tag">VLANs & Subnetting</span>
+            <span class="tag">HTML5 / CSS3 / JavaScript</span>
+            <span class="tag">MySQL & PHP</span>
+            <span class="tag">UI/UX Design (Figma)</span>
+          </div>
+        </div>
+
+        <div class="skill-block">
+          <h4><i data-lucide="shield-check"></i> Operational Strengths</h4>
+          <div class="tag-container">
+            <span class="tag">High-Pressure Troubleshooting</span>
+            <span class="tag">Hospital Help Desk Support</span>
+            <span class="tag">Cross-Department Teamwork</span>
+            <span class="tag">Root-Cause Analysis</span>
+            <span class="tag">Rapid Incident Prioritization</span>
+            <span class="tag">Fast Adaptability</span>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Skills Section -->
-  <section class="page-content" id="skills">
-    <h2><i data-lucide="cpu"></i> Skills & Competencies</h2>
+    <!-- Projects Section -->
+    <section class="page-content" id="projects">
+      <h2><i data-lucide="folder-git-2"></i> Projects & Research</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div>
+            <h3>Tier-3 Enterprise Network Simulation</h3>
+            <p>Architected and configured a scalable multi-tier network topology utilizing Cisco Packet Tracer, configuring VLAN routing and subnetting.</p>
+          </div>
+          <a href="#" target="_blank">View Topology &rarr;</a>
+        </div>
 
-    <p style="color: #fff; font-weight: 600; margin-bottom: 14px;">Technical Expertise</p>
-    
-    <div class="skill-wrapper">
-      <div class="skill-info"><span>IT Help Desk & Hardware Support (Printers, OS Diagnostics, Peripherals)</span><span>92%</span></div>
-      <div class="skills-bar"><div style="width: 92%;"></div></div>
-    </div>
+        <div class="project-card">
+          <div>
+            <h3>Decentralized Web & Data Privacy Paper</h3>
+            <p>Comprehensive research exploring decentralized web protocols, cryptographic identity security, and enterprise privacy.</p>
+          </div>
+          <a href="#" target="_blank">Read Research &rarr;</a>
+        </div>
 
-    <div class="skill-wrapper">
-      <div class="skill-info"><span>Computer Networking (Packet Tracer, VLANs, Subnetting, Routing)</span><span>85%</span></div>
-      <div class="skills-bar"><div style="width: 85%;"></div></div>
-    </div>
+        <div class="project-card">
+          <div>
+            <h3>Real-time Task Tracking Web App</h3>
+            <p>Interactive web application built with React and Firebase backend for synchronous task management and team updates.</p>
+          </div>
+          <a href="#" target="_blank">Inspect Repo &rarr;</a>
+        </div>
 
-    <div class="skill-wrapper">
-      <div class="skill-info"><span>Frontend Web Development (HTML5, CSS3, JavaScript)</span><span>80%</span></div>
-      <div class="skills-bar"><div style="width: 80%;"></div></div>
-    </div>
-
-    <div class="skill-wrapper">
-      <div class="skill-info"><span>Database Systems & Backend (MySQL, PHP)</span><span>70%</span></div>
-      <div class="skills-bar"><div style="width: 70%;"></div></div>
-    </div>
-
-    <div class="skill-wrapper">
-      <div class="skill-info"><span>UI/UX Prototyping (Figma, Canva)</span><span>85%</span></div>
-      <div class="skills-bar"><div style="width: 85%;"></div></div>
-    </div>
-
-    <p style="color: #fff; font-weight: 600; margin-top: 30px; margin-bottom: 8px;">Professional Strengths</p>
-    
-    <div class="soft-skills-grid">
-      <div class="soft-skill-card">
-        <div class="soft-skill-title"><i data-lucide="zap" style="width: 17px; height: 17px;"></i> High-Pressure Troubleshooting</div>
-        <div class="soft-skill-desc">Proven capacity to stay calm, prioritize incident tickets, and restore technical operations swiftly in critical healthcare environments.</div>
+        <div class="project-card">
+          <div>
+            <h3>Custom Portfolio & Terminal Canvas</h3>
+            <p>Engineered a responsive portfolio web application utilizing vanilla JavaScript for a real-time matrix animation canvas.</p>
+          </div>
+          <a href="#" target="_blank">View Source &rarr;</a>
+        </div>
       </div>
-      <div class="soft-skill-card">
-        <div class="soft-skill-title"><i data-lucide="users" style="width: 17px; height: 17px;"></i> Cross-Departmental Teamwork</div>
-        <div class="soft-skill-desc">Skilled in communicating technical instructions clearly to both end-users (medical staff) and core IT infrastructure teams.</div>
-      </div>
-      <div class="soft-skill-card">
-        <div class="soft-skill-title"><i data-lucide="shield-alert" style="width: 17px; height: 17px;"></i> Systematic Root-Cause Analysis</div>
-        <div class="soft-skill-desc">Structured diagnostic approach to hardware failures, network disconnections, and endpoint security issues.</div>
-      </div>
-      <div class="soft-skill-card">
-        <div class="soft-skill-title"><i data-lucide="refresh-cw" style="width: 17px; height: 17px;"></i> Adaptability & Fast Onboarding</div>
-        <div class="soft-skill-desc">Rapidly mastering enterprise software, hospital information systems (HIS), and novel IT maintenance procedures.</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Hobbies Section -->
-  <section class="page-content" id="hobbies">
-    <h2><i data-lucide="sparkles"></i> Interests & Pursuits</h2>
-    <div class="hobbies-list">
-      <div class="hobby-item"><i data-lucide="wrench"></i> IT Infrastructure & Support</div>
-      <div class="hobby-item"><i data-lucide="palette"></i> UI/UX Interface Design</div>
-      <div class="hobby-item"><i data-lucide="network"></i> Network Architecture</div>
-      <div class="hobby-item"><i data-lucide="brush"></i> Drawing & Visual Arts</div>
-      <div class="hobby-item"><i data-lucide="heart-pulse"></i> Fitness & Well-being</div>
-      <div class="hobby-item"><i data-lucide="compass"></i> Emerging Tech Trends</div>
-    </div>
-  </section>
+    <!-- Contact Section -->
+    <section class="page-content" id="contact">
+      <h2><i data-lucide="mail"></i> Contact</h2>
+      <div class="contact-grid">
+        <a href="mailto:ragad1alyagoot@gmail.com" class="contact-card">
+          <i data-lucide="mail"></i>
+          <span>ragad1alyagoot@gmail.com</span>
+        </a>
+        <a href="tel:+966545077990" class="contact-card">
+          <i data-lucide="phone"></i>
+          <span>0545077990</span>
+        </a>
+      </div>
+    </section>
 
-  <!-- Contact Section -->
-  <section class="page-content" id="contact">
-    <h2><i data-lucide="mail"></i> Contact</h2>
-    <div class="contact-item">
-      <i data-lucide="mail"></i>
-      <span>Email:</span>
-      <a href="mailto:ragad1alyagoot@gmail.com">ragad1alyagoot@gmail.com</a>
-    </div>
-    <div class="contact-item">
-      <i data-lucide="phone"></i>
-      <span>Phone:</span>
-      <a href="tel:+966545077990">0545077990</a>
-    </div>
-    <div class="contact-item" style="margin-top: 20px;">
-      <a href="Raghad_Alyagoot_CV.pdf" class="btn" download style="padding: 10px 22px; font-size: 13px;">
-        <i data-lucide="file-down" style="width: 16px; height: 16px;"></i> Download CV (PDF)
-      </a>
-    </div>
-  </section>
+  </div>
 
-  <button id="topBtn" onclick="scrollToTop()"><i data-lucide="arrow-up" style="width: 18px; height: 18px; stroke: #050811;"></i></button>
+  <button id="topBtn" onclick="scrollToTop()"><i data-lucide="arrow-up" style="width: 18px; height: 18px; stroke: #06090e;"></i></button>
 
   <script>
     lucide.createIcons();
 
+    // Matrix Background Animation (0 and 1)
     const canvas = document.getElementById('matrix');
     const ctx = canvas.getContext('2d');
 
@@ -757,7 +755,7 @@
     let drops = Array(columns).fill(1);
 
     function draw() {
-      ctx.fillStyle = "rgba(7, 11, 20, 0.12)";
+      ctx.fillStyle = "rgba(6, 9, 14, 0.12)";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.fillStyle = "#00e8c6";
