@@ -63,7 +63,7 @@
         }
 
         /* =========================
-           BACKGROUND
+           MATRIX BACKGROUND
         ========================= */
 
         #matrixCanvas {
@@ -114,7 +114,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            background: rgba(7, 11, 18, 0.75);
+            background: rgba(7, 11, 18, 0.78);
             backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
@@ -122,7 +122,7 @@
         nav {
             max-width: 1200px;
             margin: auto;
-            padding: 18px 8%;
+            padding: 16px 8%;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -132,44 +132,126 @@
             font-size: 20px;
             font-weight: 700;
             letter-spacing: 1px;
+            white-space: nowrap;
         }
 
         .logo span {
             color: #00e8c6;
         }
 
+        /* =========================
+           ICON + LABEL NAVIGATION
+        ========================= */
+
         .nav-links {
             display: flex;
-            gap: 28px;
+            align-items: flex-start;
+            gap: 12px;
             list-style: none;
         }
 
-        .nav-links a {
-            color: #94a3b8;
-            font-size: 14px;
-            transition: 0.3s ease;
-            position: relative;
+        .nav-links li {
+            display: flex;
+            justify-content: center;
         }
 
-        .nav-links a:hover,
+        .nav-links a {
+            width: 65px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+
+            gap: 6px;
+
+            color: #64748b;
+
+            font-size: 10px;
+            font-weight: 500;
+
+            transition: all 0.3s ease;
+        }
+
+        /* Icon circle */
+
+        .nav-links a i {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 50%;
+
+            background: rgba(255,255,255,0.025);
+
+            border: 1px solid rgba(56,189,248,0.12);
+
+            transition: all 0.3s ease;
+        }
+
+        /* Icon size */
+
+        .nav-links a svg {
+            width: 19px;
+            height: 19px;
+            stroke-width: 1.8;
+        }
+
+        /* Section name */
+
+        .nav-links a span {
+            opacity: 1;
+            transform: translateY(0);
+
+            white-space: nowrap;
+
+            transition: all 0.25s ease;
+        }
+
+        /* Hover */
+
+        .nav-links a:hover {
+            color: #00e8c6;
+        }
+
+        .nav-links a:hover i {
+            color: #06110f;
+
+            background: #00e8c6;
+
+            border-color: #00e8c6;
+
+            box-shadow:
+                0 0 20px rgba(0,232,198,0.25);
+
+            transform: translateY(-2px);
+        }
+
+        /* Active section */
+
         .nav-links a.active {
             color: #00e8c6;
         }
 
-        .nav-links a::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -7px;
-            width: 0;
-            height: 2px;
+        .nav-links a.active i {
+            color: #06110f;
+
             background: #00e8c6;
-            transition: 0.3s ease;
+
+            border-color: #00e8c6;
+
+            box-shadow:
+                0 0 20px rgba(0,232,198,0.28);
         }
 
-        .nav-links a:hover::after,
-        .nav-links a.active::after {
-            width: 100%;
+        /* Remove old underline */
+
+        .nav-links a::after,
+        .nav-links a::before {
+            display: none;
         }
 
         /* =========================
@@ -180,15 +262,17 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
-            padding-top: 130px;
+            padding-top: 140px;
         }
 
         .hero-content {
             max-width: 1200px;
             width: 100%;
             margin: auto;
+
             display: grid;
             grid-template-columns: 1.2fr 0.8fr;
+
             gap: 70px;
             align-items: center;
         }
@@ -201,53 +285,71 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
+
             padding: 8px 15px;
+
             border-radius: 50px;
+
             border: 1px solid rgba(0,232,198,0.2);
+
             background: rgba(0,232,198,0.06);
+
             color: #00e8c6;
+
             font-size: 13px;
+
             margin-bottom: 25px;
         }
 
         .status-dot {
             width: 8px;
             height: 8px;
+
             border-radius: 50%;
+
             background: #00e8c6;
+
             box-shadow: 0 0 12px #00e8c6;
         }
 
-        /*
-           IMPORTANT:
-           الاسم صار أصغر ومتجاوب مع حجم الشاشة
-           و nowrap يمنع نزول الاسم لسطر ثاني
-        */
+        /* =========================
+           NAME
+        ========================= */
 
         .hero h1 {
             font-size: clamp(2.4rem, 5vw, 4.6rem);
-            line-height: 1.05;
-            font-weight: 700;
-            letter-spacing: -2px;
-            margin-bottom: 18px;
-            white-space: nowrap;
-        }
 
-        .hero h1 .highlight {
-            color: #00e8c6;
+            line-height: 1.05;
+
+            font-weight: 700;
+
+            letter-spacing: -2px;
+
+            margin-bottom: 18px;
+
+            /*
+              يمنع الاسم من النزول لسطر ثاني
+            */
+            white-space: nowrap;
         }
 
         .cursor {
             display: inline-block;
+
             width: 3px;
             height: 0.9em;
+
             background: #00e8c6;
+
             margin-left: 6px;
+
             animation: blink 0.8s infinite;
+
             vertical-align: -2px;
         }
 
         @keyframes blink {
+
             0%, 45% {
                 opacity: 1;
             }
@@ -255,59 +357,83 @@
             46%, 100% {
                 opacity: 0;
             }
+
         }
 
         .hero-title {
             font-size: 22px;
+
             color: #cbd5e1;
+
             font-weight: 500;
+
             margin-bottom: 15px;
         }
 
         .hero-description {
             max-width: 700px;
+
             color: #94a3b8;
+
             font-size: 16px;
+
             margin-bottom: 30px;
         }
 
         .hero-buttons {
             display: flex;
+
             gap: 15px;
+
             flex-wrap: wrap;
+
             margin-bottom: 40px;
         }
 
         .btn {
             display: inline-flex;
+
             align-items: center;
+
             gap: 9px;
+
             padding: 13px 21px;
+
             border-radius: 9px;
+
             font-size: 14px;
+
             font-weight: 600;
+
             transition: 0.3s ease;
         }
 
         .btn-primary {
             background: #00e8c6;
+
             color: #06110f;
         }
 
         .btn-primary:hover {
             transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(0,232,198,0.18);
+
+            box-shadow:
+                0 12px 30px rgba(0,232,198,0.18);
         }
 
         .btn-secondary {
             border: 1px solid rgba(255,255,255,0.1);
+
             background: rgba(255,255,255,0.03);
+
             color: #e2e8f0;
         }
 
         .btn-secondary:hover {
             border-color: rgba(0,232,198,0.4);
+
             color: #00e8c6;
+
             transform: translateY(-3px);
         }
 
@@ -317,19 +443,25 @@
 
         .hero-stats {
             display: flex;
+
             gap: 40px;
+
             flex-wrap: wrap;
         }
 
         .stat-number {
             font-size: 22px;
+
             font-weight: 700;
+
             color: #f8fafc;
         }
 
         .stat-label {
             color: #64748b;
+
             font-size: 12px;
+
             margin-top: 2px;
         }
 
@@ -339,16 +471,23 @@
 
         .hero-image-wrapper {
             position: relative;
+
             display: flex;
+
             justify-content: center;
         }
 
         .hero-image {
             width: 350px;
+
             height: 430px;
+
             object-fit: cover;
+
             border-radius: 22px;
+
             border: 1px solid rgba(255,255,255,0.1);
+
             box-shadow:
                 0 30px 80px rgba(0,0,0,0.45),
                 0 0 50px rgba(0,232,198,0.08);
@@ -356,26 +495,39 @@
 
         .image-overlay {
             position: absolute;
+
             bottom: 22px;
+
             left: 50%;
+
             transform: translateX(-50%);
+
             width: 85%;
+
             padding: 13px 18px;
+
             border-radius: 12px;
+
             background: rgba(7,11,18,0.85);
+
             backdrop-filter: blur(15px);
+
             border: 1px solid rgba(255,255,255,0.08);
         }
 
         .image-overlay strong {
             display: block;
+
             color: #00e8c6;
+
             font-size: 13px;
+
             margin-bottom: 3px;
         }
 
         .image-overlay span {
             font-size: 11px;
+
             color: #94a3b8;
         }
 
@@ -389,21 +541,29 @@
 
         .section-number {
             font-size: 12px;
+
             color: #00e8c6;
+
             letter-spacing: 2px;
+
             margin-bottom: 8px;
+
             font-weight: 600;
         }
 
         .section-title {
             font-size: 34px;
+
             font-weight: 700;
+
             margin-bottom: 12px;
         }
 
         .section-description {
             color: #64748b;
+
             max-width: 650px;
+
             font-size: 14px;
         }
 
@@ -413,17 +573,25 @@
 
         .glass-card {
             background: rgba(255,255,255,0.025);
+
             border: 1px solid rgba(255,255,255,0.07);
+
             border-radius: 18px;
+
             padding: 28px;
+
             backdrop-filter: blur(12px);
+
             transition: 0.35s ease;
         }
 
         .glass-card:hover {
             transform: translateY(-5px);
+
             border-color: rgba(0,232,198,0.22);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+
+            box-shadow:
+                0 20px 50px rgba(0,0,0,0.2);
         }
 
         /* =========================
@@ -432,40 +600,55 @@
 
         .about-grid {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 25px;
         }
 
         .about-card h3 {
             font-size: 18px;
+
             margin-bottom: 14px;
         }
 
         .about-card p {
             color: #94a3b8;
+
             font-size: 14px;
+
             margin-bottom: 14px;
         }
 
         .about-list {
             list-style: none;
+
             display: grid;
+
             gap: 12px;
+
             margin-top: 15px;
         }
 
         .about-list li {
             display: flex;
+
             align-items: flex-start;
+
             gap: 10px;
+
             color: #cbd5e1;
+
             font-size: 13px;
         }
 
         .about-list i {
             color: #00e8c6;
+
             width: 18px;
+
             min-width: 18px;
+
             margin-top: 3px;
         }
 
@@ -475,57 +658,82 @@
 
         .timeline {
             position: relative;
+
             max-width: 900px;
         }
 
         .timeline::before {
             content: "";
+
             position: absolute;
+
             left: 8px;
+
             top: 0;
+
             bottom: 0;
+
             width: 1px;
+
             background: rgba(255,255,255,0.1);
         }
 
         .timeline-item {
             position: relative;
+
             padding-left: 45px;
+
             margin-bottom: 40px;
         }
 
         .timeline-dot {
             position: absolute;
+
             left: 2px;
+
             top: 8px;
+
             width: 13px;
+
             height: 13px;
+
             border-radius: 50%;
+
             background: #00e8c6;
-            box-shadow: 0 0 15px rgba(0,232,198,0.5);
+
+            box-shadow:
+                0 0 15px rgba(0,232,198,0.5);
         }
 
         .timeline-date {
             color: #00e8c6;
+
             font-size: 12px;
+
             font-weight: 600;
+
             margin-bottom: 5px;
         }
 
         .timeline-title {
             font-size: 19px;
+
             font-weight: 600;
+
             margin-bottom: 4px;
         }
 
         .timeline-company {
             color: #64748b;
+
             font-size: 13px;
+
             margin-bottom: 13px;
         }
 
         .timeline-description {
             color: #94a3b8;
+
             font-size: 13px;
         }
 
@@ -535,35 +743,49 @@
 
         .education-card {
             display: flex;
+
             align-items: flex-start;
+
             gap: 20px;
         }
 
         .icon-box {
             width: 52px;
+
             height: 52px;
+
             min-width: 52px;
+
             display: grid;
+
             place-items: center;
+
             border-radius: 12px;
+
             background: rgba(0,232,198,0.07);
+
             color: #00e8c6;
+
             border: 1px solid rgba(0,232,198,0.12);
         }
 
         .education-card h3 {
             font-size: 18px;
+
             margin-bottom: 4px;
         }
 
         .education-card .university {
             color: #00e8c6;
+
             font-size: 14px;
+
             margin-bottom: 5px;
         }
 
         .education-card p {
             color: #94a3b8;
+
             font-size: 13px;
         }
 
@@ -573,7 +795,9 @@
 
         .skills-grid {
             display: grid;
+
             grid-template-columns: 1fr 1fr;
+
             gap: 22px;
         }
 
@@ -587,8 +811,11 @@
 
         .skill-top {
             display: flex;
+
             justify-content: space-between;
+
             margin-bottom: 8px;
+
             font-size: 13px;
         }
 
@@ -598,32 +825,53 @@
 
         .skill-bar {
             height: 6px;
+
             background: rgba(255,255,255,0.06);
+
             border-radius: 10px;
+
             overflow: hidden;
         }
 
         .skill-progress {
             height: 100%;
+
             width: 0;
-            background: linear-gradient(90deg, #00e8c6, #38bdf8);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    #00e8c6,
+                    #38bdf8
+                );
+
             border-radius: 10px;
-            transition: width 1.2s ease;
+
+            transition:
+                width 1.2s ease;
         }
 
         .skill-tags {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 8px;
+
             margin-top: 28px;
         }
 
         .skill-tag {
             padding: 7px 11px;
+
             border-radius: 7px;
+
             font-size: 11px;
+
             color: #94a3b8;
+
             background: rgba(255,255,255,0.035);
+
             border: 1px solid rgba(255,255,255,0.07);
         }
 
@@ -633,54 +881,75 @@
 
         .projects-grid {
             display: grid;
+
             grid-template-columns: repeat(2, 1fr);
+
             gap: 22px;
         }
 
         .project-card {
             position: relative;
+
             overflow: hidden;
         }
 
         .project-number {
             font-size: 12px;
+
             color: #00e8c6;
+
             font-weight: 600;
+
             margin-bottom: 15px;
         }
 
         .project-card h3 {
             font-size: 18px;
+
             margin-bottom: 8px;
         }
 
         .project-card p {
             color: #94a3b8;
+
             font-size: 13px;
+
             margin-bottom: 18px;
         }
 
         .project-tech {
             display: flex;
+
             flex-wrap: wrap;
+
             gap: 7px;
+
             margin-bottom: 20px;
         }
 
         .project-tech span {
             font-size: 10px;
+
             padding: 5px 8px;
+
             border-radius: 5px;
+
             background: rgba(56,189,248,0.07);
+
             color: #7dd3fc;
         }
 
         .project-link {
             display: inline-flex;
+
             align-items: center;
+
             gap: 6px;
+
             color: #00e8c6;
+
             font-size: 12px;
+
             font-weight: 600;
         }
 
@@ -690,7 +959,9 @@
 
         .courses-grid {
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 18px;
         }
 
@@ -700,16 +971,19 @@
 
         .course-icon {
             color: #00e8c6;
+
             margin-bottom: 14px;
         }
 
         .course-card h3 {
             font-size: 15px;
+
             margin-bottom: 6px;
         }
 
         .course-card p {
             color: #64748b;
+
             font-size: 12px;
         }
 
@@ -719,24 +993,35 @@
 
         .interests-grid {
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 15px;
         }
 
         .interest {
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
             padding: 18px;
+
             border-radius: 12px;
+
             background: rgba(255,255,255,0.025);
+
             border: 1px solid rgba(255,255,255,0.06);
+
             color: #cbd5e1;
+
             font-size: 13px;
         }
 
         .interest i {
             color: #00e8c6;
+
             width: 20px;
         }
 
@@ -750,29 +1035,36 @@
 
         .contact-grid {
             display: grid;
+
             grid-template-columns: repeat(3, 1fr);
+
             gap: 15px;
         }
 
         .contact-item {
             text-align: center;
+
             padding: 25px 15px;
         }
 
         .contact-item i {
             color: #00e8c6;
+
             margin-bottom: 12px;
         }
 
         .contact-item h4 {
             font-size: 13px;
+
             margin-bottom: 5px;
         }
 
         .contact-item p,
         .contact-item a {
             color: #64748b;
+
             font-size: 12px;
+
             word-break: break-word;
         }
 
@@ -786,9 +1078,13 @@
 
         footer {
             padding: 35px 8%;
+
             border-top: 1px solid rgba(255,255,255,0.06);
+
             text-align: center;
+
             color: #475569;
+
             font-size: 12px;
         }
 
@@ -802,68 +1098,119 @@
 
         #scrollTop {
             position: fixed;
+
             right: 25px;
+
             bottom: 25px;
+
             width: 42px;
+
             height: 42px;
+
             border: 1px solid rgba(0,232,198,0.2);
+
             background: rgba(7,11,18,0.85);
+
             color: #00e8c6;
+
             border-radius: 10px;
+
             display: grid;
+
             place-items: center;
+
             cursor: pointer;
+
             opacity: 0;
+
             pointer-events: none;
+
             transition: 0.3s ease;
+
             z-index: 999;
         }
 
         #scrollTop.show {
             opacity: 1;
+
             pointer-events: auto;
         }
 
         /* =========================
-           ANIMATIONS
+           REVEAL ANIMATIONS
         ========================= */
 
         .reveal {
             opacity: 0;
+
             transform: translateY(25px);
+
             transition: 0.7s ease;
         }
 
         .reveal.visible {
             opacity: 1;
+
             transform: translateY(0);
         }
 
         @keyframes fadeUp {
+
             from {
                 opacity: 0;
+
                 transform: translateY(20px);
             }
 
             to {
                 opacity: 1;
+
                 transform: translateY(0);
             }
+
         }
 
         /* =========================
-           RESPONSIVE
+           TABLET
+        ========================= */
+
+        @media (max-width: 1000px) {
+
+            .nav-links {
+                gap: 7px;
+            }
+
+            .nav-links a {
+                width: 58px;
+            }
+
+            .nav-links a i {
+                width: 44px;
+                height: 44px;
+            }
+
+            .nav-links a svg {
+                width: 17px;
+                height: 17px;
+            }
+
+        }
+
+        /* =========================
+           900px
         ========================= */
 
         @media (max-width: 900px) {
 
             .hero-content {
                 grid-template-columns: 1fr;
+
                 text-align: center;
             }
 
             .hero-description {
                 margin-left: auto;
+
                 margin-right: auto;
             }
 
@@ -878,6 +1225,7 @@
 
             .hero-image {
                 width: 300px;
+
                 height: 370px;
             }
 
@@ -896,10 +1244,11 @@
                 grid-template-columns: 1fr;
             }
 
-            .nav-links {
-                gap: 15px;
-            }
         }
+
+        /* =========================
+           MOBILE
+        ========================= */
 
         @media (max-width: 700px) {
 
@@ -908,28 +1257,52 @@
             }
 
             nav {
-                padding: 15px 6%;
+                padding: 12px 5%;
+
+                flex-direction: column;
+
+                gap: 12px;
             }
 
             .logo {
-                font-size: 17px;
+                font-size: 18px;
             }
 
             .nav-links {
-                display: none;
+                width: 100%;
+
+                justify-content: center;
+
+                gap: 3px;
+            }
+
+            .nav-links a {
+                width: 48px;
+
+                font-size: 8px;
+
+                gap: 4px;
+            }
+
+            .nav-links a i {
+                width: 38px;
+
+                height: 38px;
+            }
+
+            .nav-links a svg {
+                width: 15px;
+
+                height: 15px;
             }
 
             .hero {
-                padding-top: 110px;
+                padding-top: 190px;
             }
-
-            /*
-              على الجوال الاسم يصغر أكثر
-              حتى يظل في سطر واحد
-            */
 
             .hero h1 {
                 font-size: clamp(2rem, 9vw, 3.2rem);
+
                 letter-spacing: -1.5px;
             }
 
@@ -943,6 +1316,7 @@
 
             .hero-image {
                 width: 260px;
+
                 height: 330px;
             }
 
@@ -954,17 +1328,46 @@
             .hero-stats {
                 gap: 25px;
             }
+
         }
+
+        /* =========================
+           SMALL MOBILE
+        ========================= */
 
         @media (max-width: 450px) {
 
+            .nav-links {
+                gap: 0;
+            }
+
+            .nav-links a {
+                width: 43px;
+
+                font-size: 7px;
+            }
+
+            .nav-links a i {
+                width: 35px;
+
+                height: 35px;
+            }
+
+            .nav-links a svg {
+                width: 14px;
+
+                height: 14px;
+            }
+
             .hero h1 {
                 font-size: 1.8rem;
+
                 letter-spacing: -1px;
             }
 
             .hero-image {
                 width: 230px;
+
                 height: 290px;
             }
 
@@ -974,12 +1377,14 @@
 
             .btn {
                 width: 100%;
+
                 justify-content: center;
             }
 
             .hero-buttons {
                 width: 100%;
             }
+
         }
 
         /* =========================
@@ -996,67 +1401,132 @@
             *::before,
             *::after {
                 animation-duration: 0.01ms !important;
+
                 animation-iteration-count: 1 !important;
+
                 transition-duration: 0.01ms !important;
             }
 
             #matrixCanvas {
                 display: none;
             }
+
         }
 
     </style>
 </head>
 
+
 <body>
 
     <!-- Matrix Background -->
+
     <canvas id="matrixCanvas"></canvas>
+
 
     <!-- =========================
          NAVBAR
     ========================= -->
 
     <header>
+
         <nav>
 
             <a href="#home" class="logo">
                 Raghad<span>.</span>
             </a>
 
+
             <ul class="nav-links">
 
                 <li>
-                    <a href="#home" class="active">Home</a>
+                    <a href="#home"
+                       class="active"
+                       title="Home">
+
+                        <i data-lucide="house"></i>
+
+                        <span>Home</span>
+
+                    </a>
                 </li>
 
-                <li>
-                    <a href="#about">About</a>
-                </li>
 
                 <li>
-                    <a href="#experience">Experience</a>
+                    <a href="#about"
+                       title="About">
+
+                        <i data-lucide="user-round"></i>
+
+                        <span>About</span>
+
+                    </a>
                 </li>
 
-                <li>
-                    <a href="#education">Education</a>
-                </li>
 
                 <li>
-                    <a href="#skills">Skills</a>
+                    <a href="#experience"
+                       title="Experience">
+
+                        <i data-lucide="briefcase-business"></i>
+
+                        <span>Experience</span>
+
+                    </a>
                 </li>
 
-                <li>
-                    <a href="#projects">Projects</a>
-                </li>
 
                 <li>
-                    <a href="#contact">Contact</a>
+                    <a href="#education"
+                       title="Education">
+
+                        <i data-lucide="graduation-cap"></i>
+
+                        <span>Education</span>
+
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#skills"
+                       title="Skills">
+
+                        <i data-lucide="code-2"></i>
+
+                        <span>Skills</span>
+
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#projects"
+                       title="Projects">
+
+                        <i data-lucide="folder-git-2"></i>
+
+                        <span>Projects</span>
+
+                    </a>
+                </li>
+
+
+                <li>
+                    <a href="#contact"
+                       title="Contact">
+
+                        <i data-lucide="mail"></i>
+
+                        <span>Contact</span>
+
+                    </a>
                 </li>
 
             </ul>
 
         </nav>
+
     </header>
 
 
@@ -1068,49 +1538,76 @@
 
         <div class="hero-content">
 
+
             <div class="hero-text">
 
                 <div class="status">
+
                     <span class="status-dot"></span>
+
                     IT Technical Support Trainee
+
                 </div>
 
-                <!-- Name -->
+
                 <h1>
+
                     <span id="typingName"></span>
+
                     <span class="cursor"></span>
+
                 </h1>
 
+
                 <div class="hero-title">
+
                     Information Technology Student
+
                 </div>
 
+
                 <p class="hero-description">
-                    Senior Information Technology student at the University of Tabuk
-                    with practical experience in IT technical support, networking,
-                    hardware troubleshooting, and enterprise systems.
+
+                    Senior Information Technology student at the University
+                    of Tabuk with practical experience in IT technical
+                    support, networking, hardware troubleshooting,
+                    and enterprise systems.
+
                 </p>
+
 
                 <div class="hero-buttons">
 
-                    <a href="#experience" class="btn btn-primary">
+                    <a href="#experience"
+                       class="btn btn-primary">
+
                         <i data-lucide="briefcase"></i>
+
                         View Experience
+
                     </a>
+
 
                     <a href="Raghad_Alyagoot_CV.pdf"
                        class="btn btn-secondary"
                        target="_blank">
+
                         <i data-lucide="download"></i>
+
                         Download CV
+
                     </a>
 
                 </div>
 
-                <!-- Stats -->
+
+                <!-- STATS -->
+
                 <div class="hero-stats">
 
+
                     <div>
+
                         <div class="stat-number">
                             3.22 / 5.00
                         </div>
@@ -1118,9 +1615,12 @@
                         <div class="stat-label">
                             GPA
                         </div>
+
                     </div>
 
+
                     <div>
+
                         <div class="stat-number">
                             IT Support
                         </div>
@@ -1128,9 +1628,12 @@
                         <div class="stat-label">
                             Field Training
                         </div>
+
                     </div>
 
+
                     <div>
+
                         <div class="stat-number">
                             1st Place
                         </div>
@@ -1138,6 +1641,7 @@
                         <div class="stat-label">
                             Networking Bootcamp
                         </div>
+
                     </div>
 
                 </div>
@@ -1145,7 +1649,7 @@
             </div>
 
 
-            <!-- Hero Image -->
+            <!-- HERO IMAGE -->
 
             <div class="hero-image-wrapper">
 
@@ -1154,6 +1658,7 @@
                     alt="Raghad Alyagoot - Information Technology Student"
                     class="hero-image"
                 >
+
 
                 <div class="image-overlay">
 
@@ -1193,14 +1698,17 @@
                 </h2>
 
                 <p class="section-description">
+
                     A focused IT student interested in technical support,
                     infrastructure, networking, and practical problem solving.
+
                 </p>
 
             </div>
 
 
             <div class="about-grid">
+
 
                 <div class="glass-card about-card reveal">
 
@@ -1209,16 +1717,20 @@
                     </h3>
 
                     <p>
+
                         I am a Senior Information Technology student at the
                         University of Tabuk with practical experience in
                         enterprise IT support and infrastructure.
+
                     </p>
 
                     <p>
+
                         My experience includes troubleshooting hardware and
                         software issues, Windows maintenance, network
                         configuration, service tickets, and supporting
                         enterprise systems.
+
                     </p>
 
                 </div>
@@ -1230,31 +1742,51 @@
                         Professional Focus
                     </h3>
 
+
                     <ul class="about-list">
 
                         <li>
+
                             <i data-lucide="headphones"></i>
+
                             IT Technical Support & Help Desk
+
                         </li>
 
+
                         <li>
+
                             <i data-lucide="network"></i>
+
                             Computer Networking & Infrastructure
+
                         </li>
 
+
                         <li>
+
                             <i data-lucide="wrench"></i>
+
                             Hardware & Software Troubleshooting
+
                         </li>
 
+
                         <li>
+
                             <i data-lucide="search-check"></i>
+
                             Root-Cause Analysis
+
                         </li>
 
+
                         <li>
+
                             <i data-lucide="code-2"></i>
+
                             Web Development
+
                         </li>
 
                     </ul>
@@ -1276,6 +1808,7 @@
 
         <div class="container">
 
+
             <div class="section-heading reveal">
 
                 <div class="section-number">
@@ -1287,8 +1820,10 @@
                 </h2>
 
                 <p class="section-description">
+
                     Practical training and technical activities that developed
                     my IT support, networking, and troubleshooting skills.
+
                 </p>
 
             </div>
@@ -1296,7 +1831,6 @@
 
             <div class="timeline">
 
-                <!-- Experience 1 -->
 
                 <div class="timeline-item reveal">
 
@@ -1315,18 +1849,18 @@
                     </div>
 
                     <p class="timeline-description">
+
                         Providing Level 1 and Level 2 technical support,
                         hardware and software troubleshooting, Windows
                         maintenance, startup troubleshooting, software
                         deployments, network printer configuration,
                         clinical peripherals support, and service ticket
                         management.
+
                     </p>
 
                 </div>
 
-
-                <!-- Experience 2 -->
 
                 <div class="timeline-item reveal">
 
@@ -1345,16 +1879,16 @@
                     </div>
 
                     <p class="timeline-description">
+
                         Achieved first place in a networking bootcamp,
                         demonstrating practical skills in network design,
                         configuration, troubleshooting, subnetting,
                         and Cisco Packet Tracer simulations.
+
                     </p>
 
                 </div>
 
-
-                <!-- Experience 3 -->
 
                 <div class="timeline-item reveal">
 
@@ -1373,9 +1907,11 @@
                     </div>
 
                     <p class="timeline-description">
+
                         Worked on academic and personal projects involving
                         frontend development, networking, databases,
                         user interface design, and practical IT concepts.
+
                     </p>
 
                 </div>
@@ -1395,6 +1931,7 @@
 
         <div class="container">
 
+
             <div class="section-heading reveal">
 
                 <div class="section-number">
@@ -1411,8 +1948,11 @@
             <div class="glass-card education-card reveal">
 
                 <div class="icon-box">
+
                     <i data-lucide="graduation-cap"></i>
+
                 </div>
+
 
                 <div>
 
@@ -1449,6 +1989,7 @@
 
         <div class="container">
 
+
             <div class="section-heading reveal">
 
                 <div class="section-number">
@@ -1460,8 +2001,10 @@
                 </h2>
 
                 <p class="section-description">
+
                     Technical competencies developed through university,
                     training, projects, and practical experience.
+
                 </p>
 
             </div>
@@ -1469,17 +2012,31 @@
 
             <div class="skills-grid">
 
+
                 <div class="glass-card reveal">
 
+
                     <div class="skill">
 
                         <div class="skill-top">
-                            <span>IT Help Desk & Hardware Support</span>
-                            <span>92%</span>
+
+                            <span>
+                                IT Help Desk & Hardware Support
+                            </span>
+
+                            <span>
+                                92%
+                            </span>
+
                         </div>
 
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="92%"></div>
+
+                            <div
+                                class="skill-progress"
+                                data-width="92%">
+                            </div>
+
                         </div>
 
                     </div>
@@ -1488,12 +2045,24 @@
                     <div class="skill">
 
                         <div class="skill-top">
-                            <span>Computer Networking</span>
-                            <span>85%</span>
+
+                            <span>
+                                Computer Networking
+                            </span>
+
+                            <span>
+                                85%
+                            </span>
+
                         </div>
 
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="85%"></div>
+
+                            <div
+                                class="skill-progress"
+                                data-width="85%">
+                            </div>
+
                         </div>
 
                     </div>
@@ -1502,12 +2071,24 @@
                     <div class="skill">
 
                         <div class="skill-top">
-                            <span>Frontend Web Development</span>
-                            <span>80%</span>
+
+                            <span>
+                                Frontend Web Development
+                            </span>
+
+                            <span>
+                                80%
+                            </span>
+
                         </div>
 
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="80%"></div>
+
+                            <div
+                                class="skill-progress"
+                                data-width="80%">
+                            </div>
+
                         </div>
 
                     </div>
@@ -1516,12 +2097,24 @@
                     <div class="skill">
 
                         <div class="skill-top">
-                            <span>UI/UX Design</span>
-                            <span>85%</span>
+
+                            <span>
+                                UI/UX Design
+                            </span>
+
+                            <span>
+                                85%
+                            </span>
+
                         </div>
 
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="85%"></div>
+
+                            <div
+                                class="skill-progress"
+                                data-width="85%">
+                            </div>
+
                         </div>
 
                     </div>
@@ -1531,15 +2124,28 @@
 
                 <div class="glass-card reveal">
 
+
                     <div class="skill">
 
                         <div class="skill-top">
-                            <span>Databases & Backend</span>
-                            <span>70%</span>
+
+                            <span>
+                                Databases & Backend
+                            </span>
+
+                            <span>
+                                70%
+                            </span>
+
                         </div>
 
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="70%"></div>
+
+                            <div
+                                class="skill-progress"
+                                data-width="70%">
+                            </div>
+
                         </div>
 
                     </div>
@@ -1548,12 +2154,24 @@
                     <div class="skill">
 
                         <div class="skill-top">
-                            <span>Technical Problem Solving</span>
-                            <span>90%</span>
+
+                            <span>
+                                Technical Problem Solving
+                            </span>
+
+                            <span>
+                                90%
+                            </span>
+
                         </div>
 
                         <div class="skill-bar">
-                            <div class="skill-progress" data-width="90%"></div>
+
+                            <div
+                                class="skill-progress"
+                                data-width="90%">
+                            </div>
+
                         </div>
 
                     </div>
@@ -1561,21 +2179,65 @@
 
                     <div class="skill-tags">
 
-                        <span class="skill-tag">Windows Support</span>
-                        <span class="skill-tag">Hardware Troubleshooting</span>
-                        <span class="skill-tag">Cisco Packet Tracer</span>
-                        <span class="skill-tag">VLANs</span>
-                        <span class="skill-tag">Subnetting</span>
-                        <span class="skill-tag">HTML</span>
-                        <span class="skill-tag">CSS</span>
-                        <span class="skill-tag">JavaScript</span>
-                        <span class="skill-tag">React</span>
-                        <span class="skill-tag">MySQL</span>
-                        <span class="skill-tag">PHP</span>
-                        <span class="skill-tag">Figma</span>
-                        <span class="skill-tag">Canva</span>
-                        <span class="skill-tag">Root-Cause Analysis</span>
-                        <span class="skill-tag">Teamwork</span>
+                        <span class="skill-tag">
+                            Windows Support
+                        </span>
+
+                        <span class="skill-tag">
+                            Hardware Troubleshooting
+                        </span>
+
+                        <span class="skill-tag">
+                            Cisco Packet Tracer
+                        </span>
+
+                        <span class="skill-tag">
+                            VLANs
+                        </span>
+
+                        <span class="skill-tag">
+                            Subnetting
+                        </span>
+
+                        <span class="skill-tag">
+                            HTML
+                        </span>
+
+                        <span class="skill-tag">
+                            CSS
+                        </span>
+
+                        <span class="skill-tag">
+                            JavaScript
+                        </span>
+
+                        <span class="skill-tag">
+                            React
+                        </span>
+
+                        <span class="skill-tag">
+                            MySQL
+                        </span>
+
+                        <span class="skill-tag">
+                            PHP
+                        </span>
+
+                        <span class="skill-tag">
+                            Figma
+                        </span>
+
+                        <span class="skill-tag">
+                            Canva
+                        </span>
+
+                        <span class="skill-tag">
+                            Root-Cause Analysis
+                        </span>
+
+                        <span class="skill-tag">
+                            Teamwork
+                        </span>
 
                     </div>
 
@@ -1596,6 +2258,7 @@
 
         <div class="container">
 
+
             <div class="section-heading reveal">
 
                 <div class="section-number">
@@ -1607,8 +2270,10 @@
                 </h2>
 
                 <p class="section-description">
+
                     A selection of academic and personal projects demonstrating
                     technical and problem-solving capabilities.
+
                 </p>
 
             </div>
@@ -1616,7 +2281,6 @@
 
             <div class="projects-grid">
 
-                <!-- Project 1 -->
 
                 <div class="glass-card project-card reveal">
 
@@ -1629,29 +2293,38 @@
                     </h3>
 
                     <p>
+
                         Designed and simulated an enterprise network using
                         Cisco Packet Tracer with VLAN configuration,
                         subnetting, and network connectivity.
+
                     </p>
 
                     <div class="project-tech">
+
                         <span>Cisco Packet Tracer</span>
+
                         <span>VLAN</span>
+
                         <span>Subnetting</span>
+
                         <span>Networking</span>
+
                     </div>
 
-                    <a href="https://github.com/username/network-simulation"
-                       target="_blank"
-                       class="project-link">
+                    <a
+                        href="https://github.com/username/network-simulation"
+                        target="_blank"
+                        class="project-link">
+
                         View Project
+
                         <i data-lucide="arrow-up-right"></i>
+
                     </a>
 
                 </div>
 
-
-                <!-- Project 2 -->
 
                 <div class="glass-card project-card reveal">
 
@@ -1664,28 +2337,36 @@
                     </h3>
 
                     <p>
+
                         Research-focused project exploring decentralized
                         technologies, data privacy, security, and modern
                         Web3 concepts.
+
                     </p>
 
                     <div class="project-tech">
+
                         <span>Research</span>
+
                         <span>Privacy</span>
+
                         <span>Security</span>
+
                         <span>Web3</span>
+
                     </div>
 
                     <a href="#"
                        class="project-link">
+
                         Research Details
+
                         <i data-lucide="arrow-up-right"></i>
+
                     </a>
 
                 </div>
 
-
-                <!-- Project 3 -->
 
                 <div class="glass-card project-card reveal">
 
@@ -1698,29 +2379,38 @@
                     </h3>
 
                     <p>
+
                         Developed a web application for tracking tasks
                         in real time with a focus on usability and
                         responsive interface design.
+
                     </p>
 
                     <div class="project-tech">
+
                         <span>React</span>
+
                         <span>Firebase</span>
+
                         <span>JavaScript</span>
+
                         <span>Web App</span>
+
                     </div>
 
-                    <a href="https://github.com/username/task-tracker"
-                       target="_blank"
-                       class="project-link">
+                    <a
+                        href="https://github.com/username/task-tracker"
+                        target="_blank"
+                        class="project-link">
+
                         View Project
+
                         <i data-lucide="arrow-up-right"></i>
+
                     </a>
 
                 </div>
 
-
-                <!-- Project 4 -->
 
                 <div class="glass-card project-card reveal">
 
@@ -1733,23 +2423,34 @@
                     </h3>
 
                     <p>
+
                         Designed and developed a responsive professional
                         portfolio website using modern HTML, CSS,
                         JavaScript, and UI/UX principles.
+
                     </p>
 
                     <div class="project-tech">
+
                         <span>HTML</span>
+
                         <span>CSS</span>
+
                         <span>JavaScript</span>
+
                         <span>UI/UX</span>
+
                     </div>
 
-                    <a href="https://github.com/username/portfolio"
-                       target="_blank"
-                       class="project-link">
+                    <a
+                        href="https://github.com/username/portfolio"
+                        target="_blank"
+                        class="project-link">
+
                         View Project
+
                         <i data-lucide="arrow-up-right"></i>
+
                     </a>
 
                 </div>
@@ -1769,6 +2470,7 @@
 
         <div class="container">
 
+
             <div class="section-heading reveal">
 
                 <div class="section-number">
@@ -1784,10 +2486,13 @@
 
             <div class="courses-grid">
 
+
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
+
                         <i data-lucide="network"></i>
+
                     </div>
 
                     <h3>
@@ -1804,7 +2509,9 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
+
                         <i data-lucide="cloud"></i>
+
                     </div>
 
                     <h3>
@@ -1821,7 +2528,9 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
+
                         <i data-lucide="code"></i>
+
                     </div>
 
                     <h3>
@@ -1838,7 +2547,9 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
+
                         <i data-lucide="palette"></i>
+
                     </div>
 
                     <h3>
@@ -1855,7 +2566,9 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
+
                         <i data-lucide="database"></i>
+
                     </div>
 
                     <h3>
@@ -1872,7 +2585,9 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
+
                         <i data-lucide="server"></i>
+
                     </div>
 
                     <h3>
@@ -1900,6 +2615,7 @@
 
         <div class="container">
 
+
             <div class="section-heading reveal">
 
                 <div class="section-number">
@@ -1915,34 +2631,58 @@
 
             <div class="interests-grid">
 
+
                 <div class="interest reveal">
+
                     <i data-lucide="bug"></i>
+
                     Technical Problem Solving
+
                 </div>
 
+
                 <div class="interest reveal">
+
                     <i data-lucide="figma"></i>
+
                     UI/UX Design
+
                 </div>
 
+
                 <div class="interest reveal">
+
                     <i data-lucide="network"></i>
+
                     Network Architecture
+
                 </div>
 
+
                 <div class="interest reveal">
+
                     <i data-lucide="brush"></i>
+
                     Drawing & Visual Arts
+
                 </div>
 
+
                 <div class="interest reveal">
+
                     <i data-lucide="heart-pulse"></i>
+
                     Fitness & Well-being
+
                 </div>
 
+
                 <div class="interest reveal">
+
                     <i data-lucide="gamepad-2"></i>
+
                     Gaming
+
                 </div>
 
             </div>
@@ -1960,6 +2700,7 @@
 
         <div class="container contact-wrapper">
 
+
             <div class="section-heading reveal">
 
                 <div class="section-number">
@@ -1971,14 +2712,17 @@
                 </h2>
 
                 <p class="section-description">
+
                     Open to internship, graduate, and entry-level opportunities
                     in IT support, networking, and related technology roles.
+
                 </p>
 
             </div>
 
 
             <div class="contact-grid">
+
 
                 <div class="glass-card contact-item reveal">
 
@@ -1989,7 +2733,9 @@
                     </h4>
 
                     <a href="mailto:ragad1alyagoot@gmail.com">
+
                         ragad1alyagoot@gmail.com
+
                     </a>
 
                 </div>
@@ -2004,7 +2750,9 @@
                     </h4>
 
                     <a href="tel:0545077990">
+
                         0545077990
+
                     </a>
 
                 </div>
@@ -2038,15 +2786,21 @@
     <footer>
 
         © 2026
-        <span>Raghad Alyagoot</span>.
+
+        <span>
+            Raghad Alyagoot
+        </span>.
+
         All rights reserved.
 
     </footer>
 
 
-    <!-- Scroll Top -->
+    <!-- SCROLL TOP -->
 
-    <button id="scrollTop" aria-label="Scroll to top">
+    <button
+        id="scrollTop"
+        aria-label="Scroll to top">
 
         <i data-lucide="arrow-up"></i>
 
@@ -2067,12 +2821,14 @@
 
 
         /* =========================
-           TYPEWRITER NAME
+           TYPEWRITER
         ========================= */
 
-        const nameElement = document.getElementById("typingName");
+        const nameElement =
+            document.getElementById("typingName");
 
-        const fullName = "Raghad Alyagoot";
+        const fullName =
+            "Raghad Alyagoot";
 
         let nameIndex = 0;
 
@@ -2086,18 +2842,24 @@
 
                 nameIndex++;
 
-                setTimeout(typeName, 100);
+                setTimeout(
+                    typeName,
+                    100
+                );
 
             }
 
         }
 
 
-        setTimeout(typeName, 450);
+        setTimeout(
+            typeName,
+            450
+        );
 
 
         /* =========================
-           REVEAL ANIMATIONS
+           REVEAL
         ========================= */
 
         const revealElements =
@@ -2106,22 +2868,27 @@
 
         const revealObserver =
             new IntersectionObserver(
+
                 (entries) => {
 
                     entries.forEach(entry => {
 
                         if (entry.isIntersecting) {
 
-                            entry.target.classList.add("visible");
+                            entry.target
+                                .classList
+                                .add("visible");
 
                         }
 
                     });
 
                 },
+
                 {
                     threshold: 0.12
                 }
+
             );
 
 
@@ -2133,15 +2900,18 @@
 
 
         /* =========================
-           SKILL BARS
+           SKILLS
         ========================= */
 
         const skillBars =
-            document.querySelectorAll(".skill-progress");
+            document.querySelectorAll(
+                ".skill-progress"
+            );
 
 
         const skillObserver =
             new IntersectionObserver(
+
                 (entries) => {
 
                     entries.forEach(entry => {
@@ -2151,18 +2921,23 @@
                             const width =
                                 entry.target.dataset.width;
 
-                            entry.target.style.width = width;
+                            entry.target.style.width =
+                                width;
 
-                            skillObserver.unobserve(entry.target);
+                            skillObserver.unobserve(
+                                entry.target
+                            );
 
                         }
 
                     });
 
                 },
+
                 {
                     threshold: 0.3
                 }
+
             );
 
 
@@ -2174,18 +2949,24 @@
 
 
         /* =========================
-           ACTIVE NAVIGATION
+           ACTIVE NAV
         ========================= */
 
         const sections =
-            document.querySelectorAll("section[id]");
+            document.querySelectorAll(
+                "section[id]"
+            );
+
 
         const navLinks =
-            document.querySelectorAll(".nav-links a");
+            document.querySelectorAll(
+                ".nav-links a"
+            );
 
 
         const navObserver =
             new IntersectionObserver(
+
                 (entries) => {
 
                     entries.forEach(entry => {
@@ -2194,7 +2975,9 @@
 
                             navLinks.forEach(link => {
 
-                                link.classList.remove("active");
+                                link.classList.remove(
+                                    "active"
+                                );
 
                             });
 
@@ -2207,7 +2990,9 @@
 
                             if (activeLink) {
 
-                                activeLink.classList.add("active");
+                                activeLink.classList.add(
+                                    "active"
+                                );
 
                             }
 
@@ -2216,9 +3001,11 @@
                     });
 
                 },
+
                 {
                     threshold: 0.35
                 }
+
             );
 
 
@@ -2230,82 +3017,115 @@
 
 
         /* =========================
-           SCROLL TO TOP
+           SCROLL TOP
         ========================= */
 
         const scrollTopButton =
-            document.getElementById("scrollTop");
+            document.getElementById(
+                "scrollTop"
+            );
 
 
-        window.addEventListener("scroll", () => {
+        window.addEventListener(
+            "scroll",
+            () => {
 
-            if (window.scrollY > 500) {
+                if (window.scrollY > 500) {
 
-                scrollTopButton.classList.add("show");
+                    scrollTopButton
+                        .classList
+                        .add("show");
 
-            } else {
+                } else {
 
-                scrollTopButton.classList.remove("show");
+                    scrollTopButton
+                        .classList
+                        .remove("show");
+
+                }
 
             }
+        );
 
-        });
 
+        scrollTopButton.addEventListener(
+            "click",
+            () => {
 
-        scrollTopButton.addEventListener("click", () => {
+                window.scrollTo({
 
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+                    top: 0,
 
-        });
+                    behavior: "smooth"
+
+                });
+
+            }
+        );
 
 
         /* =========================
-           PREVENT EMPTY LINKS
+           EMPTY LINKS
         ========================= */
 
-        document.querySelectorAll('a[href="#"]').forEach(link => {
+        document
+            .querySelectorAll('a[href="#"]')
+            .forEach(link => {
 
-            link.addEventListener("click", (event) => {
+                link.addEventListener(
+                    "click",
+                    (event) => {
 
-                event.preventDefault();
+                        event.preventDefault();
+
+                    }
+                );
 
             });
 
-        });
-
 
         /* =========================
-           MATRIX BACKGROUND
+           MATRIX
         ========================= */
 
         const canvas =
-            document.getElementById("matrixCanvas");
+            document.getElementById(
+                "matrixCanvas"
+            );
+
 
         const ctx =
             canvas.getContext("2d");
 
 
         let width;
+
         let height;
+
         let columns;
+
         let drops;
 
 
         function resizeCanvas() {
 
-            width = canvas.width =
-                window.innerWidth;
+            width =
+                canvas.width =
+                    window.innerWidth;
 
-            height = canvas.height =
-                window.innerHeight;
+            height =
+                canvas.height =
+                    window.innerHeight;
+
 
             const fontSize = 14;
 
+
             columns =
-                Math.floor(width / fontSize);
+                Math.floor(
+                    width / fontSize
+                );
+
 
             drops =
                 Array(columns).fill(1);
@@ -2331,6 +3151,7 @@
             ctx.fillStyle =
                 "rgba(7, 11, 18, 0.08)";
 
+
             ctx.fillRect(
                 0,
                 0,
@@ -2339,10 +3160,15 @@
             );
 
 
-            ctx.font = "14px monospace";
+            ctx.font =
+                "14px monospace";
 
 
-            for (let i = 0; i < drops.length; i++) {
+            for (
+                let i = 0;
+                i < drops.length;
+                i++
+            ) {
 
                 const text =
                     characters[
@@ -2353,13 +3179,17 @@
                     ];
 
 
-                const x = i * 14;
+                const x =
+                    i * 14;
 
-                const y = drops[i] * 14;
+
+                const y =
+                    drops[i] * 14;
 
 
                 ctx.fillStyle =
                     "#00e8c6";
+
 
                 ctx.fillText(
                     text,
