@@ -9,20 +9,19 @@
     <meta name="description"
           content="Raghad Alyagoot - Information Technology Student | IT Technical Support | Networking | Web Development">
 
-    <!-- Google Font -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
 
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
 
     <style>
 
-        /* =========================
+        /* =====================================================
            GLOBAL
-        ========================= */
+        ===================================================== */
 
         * {
             margin: 0;
@@ -62,9 +61,10 @@
             margin: auto;
         }
 
-        /* =========================
+
+        /* =====================================================
            MATRIX BACKGROUND
-        ========================= */
+        ===================================================== */
 
         #matrixCanvas {
             position: fixed;
@@ -72,7 +72,7 @@
             width: 100%;
             height: 100%;
             z-index: -3;
-            opacity: 0.07;
+            opacity: 0.075;
             pointer-events: none;
         }
 
@@ -104,9 +104,10 @@
             pointer-events: none;
         }
 
-        /* =========================
+
+        /* =====================================================
            NAVBAR
-        ========================= */
+        ===================================================== */
 
         header {
             position: fixed;
@@ -114,15 +115,20 @@
             left: 0;
             width: 100%;
             z-index: 1000;
+
             background: rgba(7, 11, 18, 0.78);
+
             backdrop-filter: blur(18px);
+
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
 
         nav {
             max-width: 1200px;
             margin: auto;
-            padding: 16px 8%;
+
+            padding: 14px 8%;
+
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -139,45 +145,48 @@
             color: #00e8c6;
         }
 
-        /* =========================
-           ICON + LABEL NAVIGATION
-        ========================= */
+
+        /* =====================================================
+           NAV ICONS
+           ICON ONLY
+           LABEL APPEARS ON HOVER
+        ===================================================== */
 
         .nav-links {
             display: flex;
-            align-items: flex-start;
-            gap: 12px;
+            align-items: center;
+
+            gap: 10px;
+
             list-style: none;
         }
 
         .nav-links li {
-            display: flex;
-            justify-content: center;
+            position: relative;
         }
 
         .nav-links a {
-            width: 65px;
+            position: relative;
+
+            width: 48px;
+            height: 48px;
 
             display: flex;
-            flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
-
-            gap: 6px;
+            justify-content: center;
 
             color: #64748b;
 
-            font-size: 10px;
-            font-weight: 500;
+            border-radius: 50%;
 
-            transition: all 0.3s ease;
+            transition:
+                color 0.3s ease,
+                transform 0.3s ease;
         }
 
-        /* Icon circle */
-
         .nav-links a i {
-            width: 48px;
-            height: 48px;
+            width: 44px;
+            height: 44px;
 
             display: flex;
             align-items: center;
@@ -189,32 +198,73 @@
 
             border: 1px solid rgba(56,189,248,0.12);
 
-            transition: all 0.3s ease;
+            transition:
+                all 0.3s ease;
         }
 
-        /* Icon size */
-
         .nav-links a svg {
-            width: 19px;
-            height: 19px;
+            width: 18px;
+            height: 18px;
+
             stroke-width: 1.8;
         }
 
-        /* Section name */
+        /* TOOLTIP */
 
         .nav-links a span {
-            opacity: 1;
-            transform: translateY(0);
+            position: absolute;
+
+            top: calc(100% + 12px);
+            left: 50%;
+
+            transform:
+                translateX(-50%)
+                translateY(-5px);
+
+            padding: 6px 10px;
+
+            border-radius: 7px;
+
+            background: rgba(7,11,18,0.96);
+
+            border: 1px solid rgba(0,232,198,0.18);
+
+            color: #cbd5e1;
+
+            font-size: 10px;
+            font-weight: 500;
 
             white-space: nowrap;
 
-            transition: all 0.25s ease;
+            opacity: 0;
+            visibility: hidden;
+
+            pointer-events: none;
+
+            box-shadow:
+                0 10px 25px rgba(0,0,0,0.3);
+
+            transition:
+                opacity 0.25s ease,
+                transform 0.25s ease,
+                visibility 0.25s ease;
+
+            z-index: 20;
         }
 
-        /* Hover */
+        .nav-links a:hover span {
+            opacity: 1;
+            visibility: visible;
+
+            transform:
+                translateX(-50%)
+                translateY(0);
+        }
 
         .nav-links a:hover {
             color: #00e8c6;
+
+            transform: translateY(-2px);
         }
 
         .nav-links a:hover i {
@@ -225,12 +275,8 @@
             border-color: #00e8c6;
 
             box-shadow:
-                0 0 20px rgba(0,232,198,0.25);
-
-            transform: translateY(-2px);
+                0 0 20px rgba(0,232,198,0.28);
         }
-
-        /* Active section */
 
         .nav-links a.active {
             color: #00e8c6;
@@ -244,55 +290,61 @@
             border-color: #00e8c6;
 
             box-shadow:
-                0 0 20px rgba(0,232,198,0.28);
+                0 0 20px rgba(0,232,198,0.25);
         }
 
-        /* Remove old underline */
 
-        .nav-links a::after,
-        .nav-links a::before {
-            display: none;
-        }
-
-        /* =========================
+        /* =====================================================
            HERO
-        ========================= */
+        ===================================================== */
 
         .hero {
             min-height: 100vh;
+
             display: flex;
             align-items: center;
-            padding-top: 140px;
+
+            padding-top: 130px;
         }
 
         .hero-content {
             max-width: 1200px;
             width: 100%;
+
             margin: auto;
 
             display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+
+            grid-template-columns:
+                1.2fr
+                0.8fr;
 
             gap: 70px;
+
             align-items: center;
         }
 
         .hero-text {
-            animation: fadeUp 1s ease forwards;
+            animation:
+                fadeUp 1s ease forwards;
         }
 
         .status {
             display: inline-flex;
             align-items: center;
+
             gap: 10px;
 
             padding: 8px 15px;
 
             border-radius: 50px;
 
-            border: 1px solid rgba(0,232,198,0.2);
+            border:
+                1px solid
+                rgba(0,232,198,0.2);
 
-            background: rgba(0,232,198,0.06);
+            background:
+                rgba(0,232,198,0.06);
 
             color: #00e8c6;
 
@@ -309,15 +361,17 @@
 
             background: #00e8c6;
 
-            box-shadow: 0 0 12px #00e8c6;
+            box-shadow:
+                0 0 12px #00e8c6;
         }
 
-        /* =========================
-           NAME
-        ========================= */
-
         .hero h1 {
-            font-size: clamp(2.4rem, 5vw, 4.6rem);
+            font-size:
+                clamp(
+                    2.4rem,
+                    5vw,
+                    4.6rem
+                );
 
             line-height: 1.05;
 
@@ -327,9 +381,6 @@
 
             margin-bottom: 18px;
 
-            /*
-              يمنع الاسم من النزول لسطر ثاني
-            */
             white-space: nowrap;
         }
 
@@ -343,7 +394,8 @@
 
             margin-left: 6px;
 
-            animation: blink 0.8s infinite;
+            animation:
+                blink 0.8s infinite;
 
             vertical-align: -2px;
         }
@@ -405,7 +457,11 @@
 
             font-weight: 600;
 
-            transition: 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease,
+                color 0.3s ease;
         }
 
         .btn-primary {
@@ -415,31 +471,41 @@
         }
 
         .btn-primary:hover {
-            transform: translateY(-3px);
+            transform:
+                translateY(-3px)
+                scale(1.02);
 
             box-shadow:
-                0 12px 30px rgba(0,232,198,0.18);
+                0 12px 30px
+                rgba(0,232,198,0.18);
         }
 
         .btn-secondary {
-            border: 1px solid rgba(255,255,255,0.1);
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
 
-            background: rgba(255,255,255,0.03);
+            background:
+                rgba(255,255,255,0.03);
 
             color: #e2e8f0;
         }
 
         .btn-secondary:hover {
-            border-color: rgba(0,232,198,0.4);
+            border-color:
+                rgba(0,232,198,0.4);
 
             color: #00e8c6;
 
-            transform: translateY(-3px);
+            transform:
+                translateY(-3px)
+                scale(1.02);
         }
 
-        /* =========================
+
+        /* =====================================================
            HERO STATS
-        ========================= */
+        ===================================================== */
 
         .hero-stats {
             display: flex;
@@ -465,9 +531,10 @@
             margin-top: 2px;
         }
 
-        /* =========================
+
+        /* =====================================================
            HERO IMAGE
-        ========================= */
+        ===================================================== */
 
         .hero-image-wrapper {
             position: relative;
@@ -479,28 +546,49 @@
 
         .hero-image {
             width: 350px;
-
             height: 430px;
 
             object-fit: cover;
 
             border-radius: 22px;
 
-            border: 1px solid rgba(255,255,255,0.1);
+            border:
+                1px solid
+                rgba(255,255,255,0.1);
 
             box-shadow:
-                0 30px 80px rgba(0,0,0,0.45),
-                0 0 50px rgba(0,232,198,0.08);
+                0 30px 80px
+                rgba(0,0,0,0.45),
+
+                0 0 50px
+                rgba(0,232,198,0.08);
+
+            transition:
+                transform 0.45s ease,
+                box-shadow 0.45s ease;
+        }
+
+        .hero-image:hover {
+            transform:
+                scale(1.015)
+                translateY(-4px);
+
+            box-shadow:
+                0 35px 90px
+                rgba(0,0,0,0.5),
+
+                0 0 55px
+                rgba(0,232,198,0.13);
         }
 
         .image-overlay {
             position: absolute;
 
             bottom: 22px;
-
             left: 50%;
 
-            transform: translateX(-50%);
+            transform:
+                translateX(-50%);
 
             width: 85%;
 
@@ -508,11 +596,15 @@
 
             border-radius: 12px;
 
-            background: rgba(7,11,18,0.85);
+            background:
+                rgba(7,11,18,0.85);
 
-            backdrop-filter: blur(15px);
+            backdrop-filter:
+                blur(15px);
 
-            border: 1px solid rgba(255,255,255,0.08);
+            border:
+                1px solid
+                rgba(255,255,255,0.08);
         }
 
         .image-overlay strong {
@@ -531,9 +623,10 @@
             color: #94a3b8;
         }
 
-        /* =========================
+
+        /* =====================================================
            SECTION HEADINGS
-        ========================= */
+        ===================================================== */
 
         .section-heading {
             margin-bottom: 50px;
@@ -567,41 +660,101 @@
             font-size: 14px;
         }
 
-        /* =========================
-           GLASS CARD
-        ========================= */
+
+        /* =====================================================
+           PROFESSIONAL CARD SYSTEM
+        ===================================================== */
 
         .glass-card {
-            background: rgba(255,255,255,0.025);
+            position: relative;
 
-            border: 1px solid rgba(255,255,255,0.07);
+            overflow: hidden;
+
+            background:
+                rgba(255,255,255,0.025);
+
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
 
             border-radius: 18px;
 
             padding: 28px;
 
-            backdrop-filter: blur(12px);
+            backdrop-filter:
+                blur(12px);
 
-            transition: 0.35s ease;
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        /* Soft mouse-following highlight */
+
+        .glass-card::before {
+            content: "";
+
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            left:
+                var(--mouse-x, -100px);
+
+            top:
+                var(--mouse-y, -100px);
+
+            transform:
+                translate(-50%, -50%);
+
+            background:
+                radial-gradient(
+                    circle,
+                    rgba(0,232,198,0.10),
+                    transparent 70%
+                );
+
+            pointer-events: none;
+
+            opacity: 0;
+
+            transition:
+                opacity 0.3s ease;
+        }
+
+        .glass-card:hover::before {
+            opacity: 1;
         }
 
         .glass-card:hover {
-            transform: translateY(-5px);
+            transform:
+                translateY(-7px)
+                scale(1.015);
 
-            border-color: rgba(0,232,198,0.22);
+            border-color:
+                rgba(0,232,198,0.28);
 
             box-shadow:
-                0 20px 50px rgba(0,0,0,0.2);
+                0 22px 55px
+                rgba(0,0,0,0.25),
+
+                0 0 30px
+                rgba(0,232,198,0.05);
         }
 
-        /* =========================
+
+        /* =====================================================
            ABOUT
-        ========================= */
+        ===================================================== */
 
         .about-grid {
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr
+                1fr;
 
             gap: 25px;
         }
@@ -640,6 +793,17 @@
             color: #cbd5e1;
 
             font-size: 13px;
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease;
+        }
+
+        .about-list li:hover {
+            transform:
+                translateX(5px);
+
+            color: #f1f5f9;
         }
 
         .about-list i {
@@ -652,9 +816,10 @@
             margin-top: 3px;
         }
 
-        /* =========================
+
+        /* =====================================================
            EXPERIENCE
-        ========================= */
+        ===================================================== */
 
         .timeline {
             position: relative;
@@ -670,12 +835,12 @@
             left: 8px;
 
             top: 0;
-
             bottom: 0;
 
             width: 1px;
 
-            background: rgba(255,255,255,0.1);
+            background:
+                rgba(255,255,255,0.1);
         }
 
         .timeline-item {
@@ -684,17 +849,23 @@
             padding-left: 45px;
 
             margin-bottom: 40px;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            transform:
+                translateX(5px);
         }
 
         .timeline-dot {
             position: absolute;
 
             left: 2px;
-
             top: 8px;
 
             width: 13px;
-
             height: 13px;
 
             border-radius: 50%;
@@ -702,7 +873,22 @@
             background: #00e8c6;
 
             box-shadow:
-                0 0 15px rgba(0,232,198,0.5);
+                0 0 15px
+                rgba(0,232,198,0.5);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .timeline-item:hover
+        .timeline-dot {
+            transform:
+                scale(1.25);
+
+            box-shadow:
+                0 0 22px
+                rgba(0,232,198,0.75);
         }
 
         .timeline-date {
@@ -737,9 +923,10 @@
             font-size: 13px;
         }
 
-        /* =========================
+
+        /* =====================================================
            EDUCATION
-        ========================= */
+        ===================================================== */
 
         .education-card {
             display: flex;
@@ -751,7 +938,6 @@
 
         .icon-box {
             width: 52px;
-
             height: 52px;
 
             min-width: 52px;
@@ -762,11 +948,28 @@
 
             border-radius: 12px;
 
-            background: rgba(0,232,198,0.07);
+            background:
+                rgba(0,232,198,0.07);
 
             color: #00e8c6;
 
-            border: 1px solid rgba(0,232,198,0.12);
+            border:
+                1px solid
+                rgba(0,232,198,0.12);
+
+            transition:
+                transform 0.3s ease,
+                background 0.3s ease;
+        }
+
+        .education-card:hover
+        .icon-box {
+            transform:
+                scale(1.08)
+                rotate(-2deg);
+
+            background:
+                rgba(0,232,198,0.12);
         }
 
         .education-card h3 {
@@ -789,14 +992,17 @@
             font-size: 13px;
         }
 
-        /* =========================
+
+        /* =====================================================
            SKILLS
-        ========================= */
+        ===================================================== */
 
         .skills-grid {
             display: grid;
 
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns:
+                1fr
+                1fr;
 
             gap: 22px;
         }
@@ -826,7 +1032,8 @@
         .skill-bar {
             height: 6px;
 
-            background: rgba(255,255,255,0.06);
+            background:
+                rgba(255,255,255,0.06);
 
             border-radius: 10px;
 
@@ -870,19 +1077,43 @@
 
             color: #94a3b8;
 
-            background: rgba(255,255,255,0.035);
+            background:
+                rgba(255,255,255,0.035);
 
-            border: 1px solid rgba(255,255,255,0.07);
+            border:
+                1px solid
+                rgba(255,255,255,0.07);
+
+            transition:
+                transform 0.25s ease,
+                color 0.25s ease,
+                border-color 0.25s ease,
+                background 0.25s ease;
         }
 
-        /* =========================
+        .skill-tag:hover {
+            transform:
+                translateY(-3px);
+
+            color: #00e8c6;
+
+            border-color:
+                rgba(0,232,198,0.28);
+
+            background:
+                rgba(0,232,198,0.06);
+        }
+
+
+        /* =====================================================
            PROJECTS
-        ========================= */
+        ===================================================== */
 
         .projects-grid {
             display: grid;
 
-            grid-template-columns: repeat(2, 1fr);
+            grid-template-columns:
+                repeat(2, 1fr);
 
             gap: 22px;
         }
@@ -891,6 +1122,31 @@
             position: relative;
 
             overflow: hidden;
+        }
+
+        .project-card::after {
+            content: "";
+
+            position: absolute;
+
+            left: 0;
+            top: 0;
+
+            width: 3px;
+            height: 0;
+
+            background:
+                linear-gradient(
+                    #00e8c6,
+                    #38bdf8
+                );
+
+            transition:
+                height 0.35s ease;
+        }
+
+        .project-card:hover::after {
+            height: 100%;
         }
 
         .project-number {
@@ -934,9 +1190,18 @@
 
             border-radius: 5px;
 
-            background: rgba(56,189,248,0.07);
+            background:
+                rgba(56,189,248,0.07);
 
             color: #7dd3fc;
+
+            transition:
+                transform 0.25s ease;
+        }
+
+        .project-tech span:hover {
+            transform:
+                translateY(-2px);
         }
 
         .project-link {
@@ -951,16 +1216,28 @@
             font-size: 12px;
 
             font-weight: 600;
+
+            transition:
+                gap 0.25s ease,
+                color 0.25s ease;
         }
 
-        /* =========================
+        .project-link:hover {
+            gap: 10px;
+
+            color: #5eead4;
+        }
+
+
+        /* =====================================================
            COURSES
-        ========================= */
+        ===================================================== */
 
         .courses-grid {
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, 1fr);
 
             gap: 18px;
         }
@@ -973,6 +1250,15 @@
             color: #00e8c6;
 
             margin-bottom: 14px;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        .course-card:hover
+        .course-icon {
+            transform:
+                scale(1.12);
         }
 
         .course-card h3 {
@@ -987,19 +1273,23 @@
             font-size: 12px;
         }
 
-        /* =========================
+
+        /* =====================================================
            INTERESTS
-        ========================= */
+        ===================================================== */
 
         .interests-grid {
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, 1fr);
 
             gap: 15px;
         }
 
         .interest {
+            position: relative;
+
             display: flex;
 
             align-items: center;
@@ -1010,24 +1300,58 @@
 
             border-radius: 12px;
 
-            background: rgba(255,255,255,0.025);
+            background:
+                rgba(255,255,255,0.025);
 
-            border: 1px solid rgba(255,255,255,0.06);
+            border:
+                1px solid
+                rgba(255,255,255,0.06);
 
             color: #cbd5e1;
 
             font-size: 13px;
+
+            transition:
+                transform 0.3s ease,
+                border-color 0.3s ease,
+                background 0.3s ease,
+                box-shadow 0.3s ease;
+        }
+
+        .interest:hover {
+            transform:
+                translateY(-5px)
+                scale(1.015);
+
+            border-color:
+                rgba(0,232,198,0.25);
+
+            background:
+                rgba(0,232,198,0.045);
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,0.2);
         }
 
         .interest i {
             color: #00e8c6;
 
             width: 20px;
+
+            transition:
+                transform 0.3s ease;
         }
 
-        /* =========================
+        .interest:hover i {
+            transform:
+                scale(1.15);
+        }
+
+
+        /* =====================================================
            CONTACT
-        ========================= */
+        ===================================================== */
 
         .contact-wrapper {
             max-width: 850px;
@@ -1036,7 +1360,8 @@
         .contact-grid {
             display: grid;
 
-            grid-template-columns: repeat(3, 1fr);
+            grid-template-columns:
+                repeat(3, 1fr);
 
             gap: 15px;
         }
@@ -1051,6 +1376,14 @@
             color: #00e8c6;
 
             margin-bottom: 12px;
+
+            transition:
+                transform 0.3s ease;
+        }
+
+        .contact-item:hover i {
+            transform:
+                scale(1.12);
         }
 
         .contact-item h4 {
@@ -1072,14 +1405,17 @@
             color: #00e8c6;
         }
 
-        /* =========================
+
+        /* =====================================================
            FOOTER
-        ========================= */
+        ===================================================== */
 
         footer {
             padding: 35px 8%;
 
-            border-top: 1px solid rgba(255,255,255,0.06);
+            border-top:
+                1px solid
+                rgba(255,255,255,0.06);
 
             text-align: center;
 
@@ -1092,24 +1428,26 @@
             color: #00e8c6;
         }
 
-        /* =========================
+
+        /* =====================================================
            SCROLL TOP
-        ========================= */
+        ===================================================== */
 
         #scrollTop {
             position: fixed;
 
             right: 25px;
-
             bottom: 25px;
 
             width: 42px;
-
             height: 42px;
 
-            border: 1px solid rgba(0,232,198,0.2);
+            border:
+                1px solid
+                rgba(0,232,198,0.2);
 
-            background: rgba(7,11,18,0.85);
+            background:
+                rgba(7,11,18,0.85);
 
             color: #00e8c6;
 
@@ -1125,7 +1463,10 @@
 
             pointer-events: none;
 
-            transition: 0.3s ease;
+            transition:
+                transform 0.3s ease,
+                opacity 0.3s ease,
+                background 0.3s ease;
 
             z-index: 999;
         }
@@ -1136,22 +1477,35 @@
             pointer-events: auto;
         }
 
-        /* =========================
+        #scrollTop:hover {
+            transform:
+                translateY(-4px);
+
+            background:
+                rgba(0,232,198,0.08);
+        }
+
+
+        /* =====================================================
            REVEAL ANIMATIONS
-        ========================= */
+        ===================================================== */
 
         .reveal {
             opacity: 0;
 
-            transform: translateY(25px);
+            transform:
+                translateY(25px);
 
-            transition: 0.7s ease;
+            transition:
+                opacity 0.7s ease,
+                transform 0.7s ease;
         }
 
         .reveal.visible {
             opacity: 1;
 
-            transform: translateY(0);
+            transform:
+                translateY(0);
         }
 
         @keyframes fadeUp {
@@ -1159,46 +1513,45 @@
             from {
                 opacity: 0;
 
-                transform: translateY(20px);
+                transform:
+                    translateY(20px);
             }
 
             to {
                 opacity: 1;
 
-                transform: translateY(0);
+                transform:
+                    translateY(0);
             }
 
         }
 
-        /* =========================
+
+        /* =====================================================
            TABLET
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 1000px) {
 
             .nav-links {
-                gap: 7px;
+                gap: 6px;
             }
 
             .nav-links a {
-                width: 58px;
+                width: 44px;
             }
 
             .nav-links a i {
-                width: 44px;
-                height: 44px;
-            }
-
-            .nav-links a svg {
-                width: 17px;
-                height: 17px;
+                width: 40px;
+                height: 40px;
             }
 
         }
 
-        /* =========================
+
+        /* =====================================================
            900px
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 900px) {
 
@@ -1210,7 +1563,6 @@
 
             .hero-description {
                 margin-left: auto;
-
                 margin-right: auto;
             }
 
@@ -1225,7 +1577,6 @@
 
             .hero-image {
                 width: 300px;
-
                 height: 370px;
             }
 
@@ -1237,7 +1588,8 @@
 
             .courses-grid,
             .interests-grid {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns:
+                    repeat(2, 1fr);
             }
 
             .contact-grid {
@@ -1246,22 +1598,25 @@
 
         }
 
-        /* =========================
+
+        /* =====================================================
            MOBILE
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 700px) {
 
             section {
-                padding: 75px 6%;
+                padding:
+                    75px 6%;
             }
 
             nav {
-                padding: 12px 5%;
+                padding:
+                    12px 5%;
 
                 flex-direction: column;
 
-                gap: 12px;
+                gap: 10px;
             }
 
             .logo {
@@ -1273,35 +1628,40 @@
 
                 justify-content: center;
 
-                gap: 3px;
+                gap: 2px;
             }
 
             .nav-links a {
-                width: 48px;
-
-                font-size: 8px;
-
-                gap: 4px;
+                width: 42px;
+                height: 42px;
             }
 
             .nav-links a i {
-                width: 38px;
-
-                height: 38px;
+                width: 37px;
+                height: 37px;
             }
 
             .nav-links a svg {
                 width: 15px;
-
                 height: 15px;
             }
 
+            .nav-links a span {
+                top:
+                    calc(100% + 9px);
+            }
+
             .hero {
-                padding-top: 190px;
+                padding-top: 185px;
             }
 
             .hero h1 {
-                font-size: clamp(2rem, 9vw, 3.2rem);
+                font-size:
+                    clamp(
+                        2rem,
+                        9vw,
+                        3.2rem
+                    );
 
                 letter-spacing: -1.5px;
             }
@@ -1316,7 +1676,6 @@
 
             .hero-image {
                 width: 260px;
-
                 height: 330px;
             }
 
@@ -1331,9 +1690,10 @@
 
         }
 
-        /* =========================
+
+        /* =====================================================
            SMALL MOBILE
-        ========================= */
+        ===================================================== */
 
         @media (max-width: 450px) {
 
@@ -1342,20 +1702,17 @@
             }
 
             .nav-links a {
-                width: 43px;
-
-                font-size: 7px;
+                width: 39px;
+                height: 39px;
             }
 
             .nav-links a i {
-                width: 35px;
-
-                height: 35px;
+                width: 34px;
+                height: 34px;
             }
 
             .nav-links a svg {
                 width: 14px;
-
                 height: 14px;
             }
 
@@ -1367,7 +1724,6 @@
 
             .hero-image {
                 width: 230px;
-
                 height: 290px;
             }
 
@@ -1387,9 +1743,10 @@
 
         }
 
-        /* =========================
+
+        /* =====================================================
            REDUCED MOTION
-        ========================= */
+        ===================================================== */
 
         @media (prefers-reduced-motion: reduce) {
 
@@ -1400,11 +1757,14 @@
             *,
             *::before,
             *::after {
-                animation-duration: 0.01ms !important;
+                animation-duration:
+                    0.01ms !important;
 
-                animation-iteration-count: 1 !important;
+                animation-iteration-count:
+                    1 !important;
 
-                transition-duration: 0.01ms !important;
+                transition-duration:
+                    0.01ms !important;
             }
 
             #matrixCanvas {
@@ -1419,14 +1779,17 @@
 
 <body>
 
-    <!-- Matrix Background -->
+    <!-- =====================================================
+         MATRIX BACKGROUND
+         ONLY 0 AND 1
+    ===================================================== -->
 
     <canvas id="matrixCanvas"></canvas>
 
 
-    <!-- =========================
+    <!-- =====================================================
          NAVBAR
-    ========================= -->
+    ===================================================== -->
 
     <header>
 
@@ -1436,13 +1799,12 @@
                 Raghad<span>.</span>
             </a>
 
-
             <ul class="nav-links">
 
                 <li>
                     <a href="#home"
                        class="active"
-                       title="Home">
+                       aria-label="Home">
 
                         <i data-lucide="house"></i>
 
@@ -1451,10 +1813,9 @@
                     </a>
                 </li>
 
-
                 <li>
                     <a href="#about"
-                       title="About">
+                       aria-label="About">
 
                         <i data-lucide="user-round"></i>
 
@@ -1463,10 +1824,9 @@
                     </a>
                 </li>
 
-
                 <li>
                     <a href="#experience"
-                       title="Experience">
+                       aria-label="Experience">
 
                         <i data-lucide="briefcase-business"></i>
 
@@ -1475,10 +1835,9 @@
                     </a>
                 </li>
 
-
                 <li>
                     <a href="#education"
-                       title="Education">
+                       aria-label="Education">
 
                         <i data-lucide="graduation-cap"></i>
 
@@ -1487,10 +1846,9 @@
                     </a>
                 </li>
 
-
                 <li>
                     <a href="#skills"
-                       title="Skills">
+                       aria-label="Skills">
 
                         <i data-lucide="code-2"></i>
 
@@ -1499,10 +1857,9 @@
                     </a>
                 </li>
 
-
                 <li>
                     <a href="#projects"
-                       title="Projects">
+                       aria-label="Projects">
 
                         <i data-lucide="folder-git-2"></i>
 
@@ -1511,10 +1868,9 @@
                     </a>
                 </li>
 
-
                 <li>
                     <a href="#contact"
-                       title="Contact">
+                       aria-label="Contact">
 
                         <i data-lucide="mail"></i>
 
@@ -1530,14 +1886,13 @@
     </header>
 
 
-    <!-- =========================
+    <!-- =====================================================
          HERO
-    ========================= -->
+    ===================================================== -->
 
     <section class="hero" id="home">
 
         <div class="hero-content">
-
 
             <div class="hero-text">
 
@@ -1549,7 +1904,6 @@
 
                 </div>
 
-
                 <h1>
 
                     <span id="typingName"></span>
@@ -1558,13 +1912,9 @@
 
                 </h1>
 
-
                 <div class="hero-title">
-
                     Information Technology Student
-
                 </div>
-
 
                 <p class="hero-description">
 
@@ -1574,7 +1924,6 @@
                     and enterprise systems.
 
                 </p>
-
 
                 <div class="hero-buttons">
 
@@ -1586,7 +1935,6 @@
                         View Experience
 
                     </a>
-
 
                     <a href="Raghad_Alyagoot_CV.pdf"
                        class="btn btn-secondary"
@@ -1600,11 +1948,7 @@
 
                 </div>
 
-
-                <!-- STATS -->
-
                 <div class="hero-stats">
-
 
                     <div>
 
@@ -1618,7 +1962,6 @@
 
                     </div>
 
-
                     <div>
 
                         <div class="stat-number">
@@ -1630,7 +1973,6 @@
                         </div>
 
                     </div>
-
 
                     <div>
 
@@ -1649,8 +1991,6 @@
             </div>
 
 
-            <!-- HERO IMAGE -->
-
             <div class="hero-image-wrapper">
 
                 <img
@@ -1658,7 +1998,6 @@
                     alt="Raghad Alyagoot - Information Technology Student"
                     class="hero-image"
                 >
-
 
                 <div class="image-overlay">
 
@@ -1679,9 +2018,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          ABOUT
-    ========================= -->
+    ===================================================== -->
 
     <section id="about">
 
@@ -1706,9 +2045,7 @@
 
             </div>
 
-
             <div class="about-grid">
-
 
                 <div class="glass-card about-card reveal">
 
@@ -1742,7 +2079,6 @@
                         Professional Focus
                     </h3>
 
-
                     <ul class="about-list">
 
                         <li>
@@ -1753,7 +2089,6 @@
 
                         </li>
 
-
                         <li>
 
                             <i data-lucide="network"></i>
@@ -1761,7 +2096,6 @@
                             Computer Networking & Infrastructure
 
                         </li>
-
 
                         <li>
 
@@ -1771,7 +2105,6 @@
 
                         </li>
 
-
                         <li>
 
                             <i data-lucide="search-check"></i>
@@ -1779,7 +2112,6 @@
                             Root-Cause Analysis
 
                         </li>
-
 
                         <li>
 
@@ -1800,14 +2132,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          EXPERIENCE
-    ========================= -->
+    ===================================================== -->
 
     <section id="experience">
 
         <div class="container">
-
 
             <div class="section-heading reveal">
 
@@ -1828,9 +2159,7 @@
 
             </div>
 
-
             <div class="timeline">
-
 
                 <div class="timeline-item reveal">
 
@@ -1923,14 +2252,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          EDUCATION
-    ========================= -->
+    ===================================================== -->
 
     <section id="education">
 
         <div class="container">
-
 
             <div class="section-heading reveal">
 
@@ -1944,7 +2272,6 @@
 
             </div>
 
-
             <div class="glass-card education-card reveal">
 
                 <div class="icon-box">
@@ -1952,7 +2279,6 @@
                     <i data-lucide="graduation-cap"></i>
 
                 </div>
-
 
                 <div>
 
@@ -1969,7 +2295,8 @@
                     </p>
 
                     <p>
-                        GPA: <strong>3.22 / 5.00</strong>
+                        GPA:
+                        <strong>3.22 / 5.00</strong>
                     </p>
 
                 </div>
@@ -1981,14 +2308,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          SKILLS
-    ========================= -->
+    ===================================================== -->
 
     <section id="skills">
 
         <div class="container">
-
 
             <div class="section-heading reveal">
 
@@ -2009,12 +2335,9 @@
 
             </div>
 
-
             <div class="skills-grid">
 
-
                 <div class="glass-card reveal">
-
 
                     <div class="skill">
 
@@ -2123,7 +2446,6 @@
 
 
                 <div class="glass-card reveal">
-
 
                     <div class="skill">
 
@@ -2250,14 +2572,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          PROJECTS
-    ========================= -->
+    ===================================================== -->
 
     <section id="projects">
 
         <div class="container">
-
 
             <div class="section-heading reveal">
 
@@ -2281,7 +2602,6 @@
 
             <div class="projects-grid">
 
-
                 <div class="glass-card project-card reveal">
 
                     <div class="project-number">
@@ -2303,11 +2623,8 @@
                     <div class="project-tech">
 
                         <span>Cisco Packet Tracer</span>
-
                         <span>VLAN</span>
-
                         <span>Subnetting</span>
-
                         <span>Networking</span>
 
                     </div>
@@ -2347,17 +2664,15 @@
                     <div class="project-tech">
 
                         <span>Research</span>
-
                         <span>Privacy</span>
-
                         <span>Security</span>
-
                         <span>Web3</span>
 
                     </div>
 
-                    <a href="#"
-                       class="project-link">
+                    <a
+                        href="#"
+                        class="project-link">
 
                         Research Details
 
@@ -2389,11 +2704,8 @@
                     <div class="project-tech">
 
                         <span>React</span>
-
                         <span>Firebase</span>
-
                         <span>JavaScript</span>
-
                         <span>Web App</span>
 
                     </div>
@@ -2433,11 +2745,8 @@
                     <div class="project-tech">
 
                         <span>HTML</span>
-
                         <span>CSS</span>
-
                         <span>JavaScript</span>
-
                         <span>UI/UX</span>
 
                     </div>
@@ -2462,14 +2771,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          PROFESSIONAL DEVELOPMENT
-    ========================= -->
+    ===================================================== -->
 
     <section id="development">
 
         <div class="container">
-
 
             <div class="section-heading reveal">
 
@@ -2486,13 +2794,10 @@
 
             <div class="courses-grid">
 
-
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
-
                         <i data-lucide="network"></i>
-
                     </div>
 
                     <h3>
@@ -2509,9 +2814,7 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
-
                         <i data-lucide="cloud"></i>
-
                     </div>
 
                     <h3>
@@ -2528,9 +2831,7 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
-
                         <i data-lucide="code"></i>
-
                     </div>
 
                     <h3>
@@ -2547,9 +2848,7 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
-
                         <i data-lucide="palette"></i>
-
                     </div>
 
                     <h3>
@@ -2566,9 +2865,7 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
-
                         <i data-lucide="database"></i>
-
                     </div>
 
                     <h3>
@@ -2585,9 +2882,7 @@
                 <div class="glass-card course-card reveal">
 
                     <div class="course-icon">
-
                         <i data-lucide="server"></i>
-
                     </div>
 
                     <h3>
@@ -2607,14 +2902,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          INTERESTS
-    ========================= -->
+    ===================================================== -->
 
     <section id="interests">
 
         <div class="container">
-
 
             <div class="section-heading reveal">
 
@@ -2631,58 +2925,34 @@
 
             <div class="interests-grid">
 
-
                 <div class="interest reveal">
-
                     <i data-lucide="bug"></i>
-
                     Technical Problem Solving
-
                 </div>
 
-
                 <div class="interest reveal">
-
                     <i data-lucide="figma"></i>
-
                     UI/UX Design
-
                 </div>
 
-
                 <div class="interest reveal">
-
                     <i data-lucide="network"></i>
-
                     Network Architecture
-
                 </div>
 
-
                 <div class="interest reveal">
-
                     <i data-lucide="brush"></i>
-
                     Drawing & Visual Arts
-
                 </div>
 
-
                 <div class="interest reveal">
-
                     <i data-lucide="heart-pulse"></i>
-
                     Fitness & Well-being
-
                 </div>
 
-
                 <div class="interest reveal">
-
                     <i data-lucide="gamepad-2"></i>
-
                     Gaming
-
                 </div>
 
             </div>
@@ -2692,14 +2962,13 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          CONTACT
-    ========================= -->
+    ===================================================== -->
 
     <section id="contact">
 
         <div class="container contact-wrapper">
-
 
             <div class="section-heading reveal">
 
@@ -2723,7 +2992,6 @@
 
             <div class="contact-grid">
 
-
                 <div class="glass-card contact-item reveal">
 
                     <i data-lucide="mail"></i>
@@ -2733,9 +3001,7 @@
                     </h4>
 
                     <a href="mailto:ragad1alyagoot@gmail.com">
-
                         ragad1alyagoot@gmail.com
-
                     </a>
 
                 </div>
@@ -2750,9 +3016,7 @@
                     </h4>
 
                     <a href="tel:0545077990">
-
                         0545077990
-
                     </a>
 
                 </div>
@@ -2779,9 +3043,9 @@
     </section>
 
 
-    <!-- =========================
+    <!-- =====================================================
          FOOTER
-    ========================= -->
+    ===================================================== -->
 
     <footer>
 
@@ -2796,7 +3060,9 @@
     </footer>
 
 
-    <!-- SCROLL TOP -->
+    <!-- =====================================================
+         SCROLL TOP
+    ===================================================== -->
 
     <button
         id="scrollTop"
@@ -2807,22 +3073,22 @@
     </button>
 
 
-    <!-- =========================
+    <!-- =====================================================
          JAVASCRIPT
-    ========================= -->
+    ===================================================== -->
 
     <script>
 
-        /* =========================
-           LUCIDE ICONS
-        ========================= */
+        /* =====================================================
+           LUCIDE
+        ===================================================== */
 
         lucide.createIcons();
 
 
-        /* =========================
+        /* =====================================================
            TYPEWRITER
-        ========================= */
+        ===================================================== */
 
         const nameElement =
             document.getElementById("typingName");
@@ -2831,7 +3097,6 @@
             "Raghad Alyagoot";
 
         let nameIndex = 0;
-
 
         function typeName() {
 
@@ -2851,20 +3116,18 @@
 
         }
 
-
         setTimeout(
             typeName,
             450
         );
 
 
-        /* =========================
+        /* =====================================================
            REVEAL
-        ========================= */
+        ===================================================== */
 
         const revealElements =
             document.querySelectorAll(".reveal");
-
 
         const revealObserver =
             new IntersectionObserver(
@@ -2891,7 +3154,6 @@
 
             );
 
-
         revealElements.forEach(element => {
 
             revealObserver.observe(element);
@@ -2899,15 +3161,14 @@
         });
 
 
-        /* =========================
+        /* =====================================================
            SKILLS
-        ========================= */
+        ===================================================== */
 
         const skillBars =
             document.querySelectorAll(
                 ".skill-progress"
             );
-
 
         const skillObserver =
             new IntersectionObserver(
@@ -2940,7 +3201,6 @@
 
             );
 
-
         skillBars.forEach(bar => {
 
             skillObserver.observe(bar);
@@ -2948,21 +3208,19 @@
         });
 
 
-        /* =========================
+        /* =====================================================
            ACTIVE NAV
-        ========================= */
+        ===================================================== */
 
         const sections =
             document.querySelectorAll(
                 "section[id]"
             );
 
-
         const navLinks =
             document.querySelectorAll(
                 ".nav-links a"
             );
-
 
         const navObserver =
             new IntersectionObserver(
@@ -2981,12 +3239,10 @@
 
                             });
 
-
                             const activeLink =
                                 document.querySelector(
                                     `.nav-links a[href="#${entry.target.id}"]`
                                 );
-
 
                             if (activeLink) {
 
@@ -3008,7 +3264,6 @@
 
             );
 
-
         sections.forEach(section => {
 
             navObserver.observe(section);
@@ -3016,15 +3271,14 @@
         });
 
 
-        /* =========================
+        /* =====================================================
            SCROLL TOP
-        ========================= */
+        ===================================================== */
 
         const scrollTopButton =
             document.getElementById(
                 "scrollTop"
             );
-
 
         window.addEventListener(
             "scroll",
@@ -3047,7 +3301,6 @@
             }
         );
 
-
         scrollTopButton.addEventListener(
             "click",
             () => {
@@ -3064,9 +3317,9 @@
         );
 
 
-        /* =========================
+        /* =====================================================
            EMPTY LINKS
-        ========================= */
+        ===================================================== */
 
         document
             .querySelectorAll('a[href="#"]')
@@ -3084,28 +3337,82 @@
             });
 
 
-        /* =========================
+        /* =====================================================
+           CARD MOUSE HIGHLIGHT
+        ===================================================== */
+
+        const cards =
+            document.querySelectorAll(
+                ".glass-card"
+            );
+
+        cards.forEach(card => {
+
+            card.addEventListener(
+                "mousemove",
+                (event) => {
+
+                    const rect =
+                        card.getBoundingClientRect();
+
+                    const x =
+                        event.clientX -
+                        rect.left;
+
+                    const y =
+                        event.clientY -
+                        rect.top;
+
+                    card.style.setProperty(
+                        "--mouse-x",
+                        `${x}px`
+                    );
+
+                    card.style.setProperty(
+                        "--mouse-y",
+                        `${y}px`
+                    );
+
+                }
+            );
+
+            card.addEventListener(
+                "mouseleave",
+                () => {
+
+                    card.style.setProperty(
+                        "--mouse-x",
+                        "-100px"
+                    );
+
+                    card.style.setProperty(
+                        "--mouse-y",
+                        "-100px"
+                    );
+
+                }
+            );
+
+        });
+
+
+        /* =====================================================
            MATRIX
-        ========================= */
+           ONLY ZERO + ONE
+        ===================================================== */
 
         const canvas =
             document.getElementById(
                 "matrixCanvas"
             );
 
-
         const ctx =
             canvas.getContext("2d");
 
-
         let width;
-
         let height;
-
         let columns;
-
         let drops;
-
 
         function resizeCanvas() {
 
@@ -3117,24 +3424,19 @@
                 canvas.height =
                     window.innerHeight;
 
-
             const fontSize = 14;
-
 
             columns =
                 Math.floor(
                     width / fontSize
                 );
 
-
             drops =
                 Array(columns).fill(1);
 
         }
 
-
         resizeCanvas();
-
 
         window.addEventListener(
             "resize",
@@ -3142,15 +3444,18 @@
         );
 
 
+        /* IMPORTANT:
+           ONLY 0 AND 1
+        */
+
         const characters =
-            "01ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            "01";
 
 
         function drawMatrix() {
 
             ctx.fillStyle =
                 "rgba(7, 11, 18, 0.08)";
-
 
             ctx.fillRect(
                 0,
@@ -3159,10 +3464,8 @@
                 height
             );
 
-
             ctx.font =
                 "14px monospace";
-
 
             for (
                 let i = 0;
@@ -3178,25 +3481,20 @@
                         )
                     ];
 
-
                 const x =
                     i * 14;
-
 
                 const y =
                     drops[i] * 14;
 
-
                 ctx.fillStyle =
                     "#00e8c6";
-
 
                 ctx.fillText(
                     text,
                     x,
                     y
                 );
-
 
                 if (
                     y > height &&
@@ -3207,13 +3505,11 @@
 
                 }
 
-
                 drops[i]++;
 
             }
 
         }
-
 
         setInterval(
             drawMatrix,
